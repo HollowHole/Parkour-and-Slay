@@ -25,20 +25,26 @@ public class Plane : MonoBehaviour
     //}
     void FixedUpdate()
     {
-        float vy=0, vz=0;
-        vy = -transform.position.y*player.Speed/4;
+        
+
+        Move();
+
+    }
+    private void Move()
+    {
+        if (player.IsSwerving) return;
+
+        float vy = 0, vz = 0;
+        vy = -transform.position.y * player.Speed / 4;
         vz = -player.Speed;
         Vector3 moveSpeed = new Vector3(0, vy, vz);
-
-
         if (rb != null)
         {
             /*Transform tf = child.transform;
             tf.position = new Vector3(0,0,tf.position.z);
             Debug.Log(child.transform.position);*/
             rb.velocity = moveSpeed;
-        } 
-
+        }
     }
     private void Update()
     {

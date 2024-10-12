@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField]private List<Transform> Objects2Swerve = new List<Transform>();
     Camera cam;
     private Global.SwerveDirection _swerveDirection;
+
+    public bool IsSwerving = false;
     private void Start()
     {
         cam=FindObjectOfType<Camera>();
@@ -33,18 +36,20 @@ public class Player : MonoBehaviour
     {
         Objects2Swerve.Remove(tf);
     }
-    public void Swerve(Global.SwerveDirection swerveDirection)
+    public void Swerve(Global.SwerveDirection swerveDirection,Vector3 swerveCenter)
     {
         
         //启动携程
         _swerveDirection = swerveDirection;
         
-        StartCoroutine(SwerveAllObjects(swerveDirection));
+        StartCoroutine(SwerveAllObjects(swerveDirection,swerveCenter));
         
     }
-    private IEnumerator SwerveAllObjects(Global.SwerveDirection swerveDirection)
+    private IEnumerator SwerveAllObjects(Global.SwerveDirection swerveDirection, Vector3 swerveCenter)
     {
         Debug.Log("Swerve begin!");
+        Debug.Log(swerveCenter);
+        IsSwerving = true;
         float swerveAngleLeft = 90;
         Vector3 axis = transform.up;
         while (swerveAngleLeft>0)
@@ -55,13 +60,13 @@ public class Player : MonoBehaviour
 
             foreach (Transform t in Objects2Swerve)
             {
-                t.RotateAround(transform.position,axis, swerveAngle);
+                t.RotateAround(swerveCenter,axis, swerveAngle);
             }
             
             yield return null;
             
         }
-        bool breakFlag = false;
+        /*bool breakFlag = false;
         while (!breakFlag)
         {
             Vector3 offset = Vector3.zero;
@@ -69,12 +74,12 @@ public class Player : MonoBehaviour
             {
                 Vector3 pos = t.position;
 
-                /*pos.x *=  (1 - Time.deltaTime);
+                *//*pos.x *=  (1 - Time.deltaTime);
                 if (Mathf.Abs(t.position.x) < 0.15f)
                 {
                     pos.x = 0;
                     breakFlag = true;
-                }*/
+                }*//*
                 pos.x = 0;
                 breakFlag = true;
 
@@ -83,12 +88,13 @@ public class Player : MonoBehaviour
             }
             //玩家的位置也要修改
             transform.position -= offset;
-            
-
             yield return null;
-        }
+        }*/
+
+        IsSwerving = false;
         
         FindObjectOfType<RoadSpawn>().EnableSpawn();
+        
     }
 
 }

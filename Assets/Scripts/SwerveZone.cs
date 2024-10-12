@@ -15,15 +15,21 @@ public class SwerveZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             bool moveLeft = Input.GetAxis("Horizontal") < 0;
+            
+
             if (moveLeft && _swerveDirection == Global.SwerveDirection.LEFT)
             {
-                other.GetComponent<Player>().Swerve(_swerveDirection);
+                Vector3 swerveCenter = transform.parent.position;
+                swerveCenter.x = 0;
+                other.GetComponent<Player>().Swerve(_swerveDirection,swerveCenter);
                 Destroy(gameObject);
 
             }
             else if(!moveLeft && _swerveDirection == Global.SwerveDirection.RIGHT)
             {
-                other.GetComponent<Player>().Swerve(_swerveDirection);
+                Vector3 swerveCenter = transform.parent.position;
+                swerveCenter.x = 0;
+                other.GetComponent<Player>().Swerve(_swerveDirection, swerveCenter);
                 Destroy(gameObject);
             }
         }
