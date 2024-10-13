@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
     Camera cam;
     private Global.SwerveDirection _swerveDirection;
 
-    public bool IsSwerving = false;
+    public bool IsSwerving = false;//改成Speed等于0(暂时等于)
     private void Start()
     {
         cam=FindObjectOfType<Camera>();
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //Move
         float vx = 0;
         vx = Input.GetAxis("Horizontal") * LRMoveSpeed;
         rb.velocity = new Vector3(vx, 0, 0);
@@ -54,7 +56,8 @@ public class Player : MonoBehaviour
         Vector3 axis = transform.up;
         while (swerveAngleLeft>0)
         {
-            float swerveAngle = 10 * 10 * Time.deltaTime;
+            float swerveAngle = 1000 * Time.deltaTime;
+            swerveAngle = swerveAngle<swerveAngleLeft?swerveAngle:swerveAngleLeft;
             swerveAngleLeft -= swerveAngle;
             if (swerveDirection == Global.SwerveDirection.RIGHT) swerveAngle = -swerveAngle;
 

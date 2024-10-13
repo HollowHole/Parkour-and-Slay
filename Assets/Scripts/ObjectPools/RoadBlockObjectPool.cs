@@ -27,6 +27,7 @@ public class RoadBlockObjectPool : ObjectPool
     public override void Deactivate(GameObject gameObject)
     {
         player.UnsubscribeSwerve(gameObject.transform);
+        Hide(gameObject);
     }
 
 }

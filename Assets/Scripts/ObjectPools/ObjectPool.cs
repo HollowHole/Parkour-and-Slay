@@ -65,7 +65,10 @@ public abstract class ObjectPool:MonoBehaviour
 
             //TODO:执行对象被回收时的方法OnDespawn
         }
-        
-        
+    }
+    public void Hide(GameObject go)
+    {
+        Vector3 vector3 = new Vector3(0, -100, 0);
+        go.transform.position = vector3;
     }
 }

@@ -32,7 +32,10 @@ public class Plane : MonoBehaviour
     }
     private void Move()
     {
-        if (player.IsSwerving) return;
+        //if (player.IsSwerving)
+        //{
+        //    return;
+        //}
 
         float vy = 0, vz = 0;
         vy = -transform.position.y * player.Speed / 4;
@@ -44,6 +47,10 @@ public class Plane : MonoBehaviour
             tf.position = new Vector3(0,0,tf.position.z);
             Debug.Log(child.transform.position);*/
             rb.velocity = moveSpeed;
+        }
+        if (player.IsSwerving)
+        {
+            rb.velocity = Vector3.zero;
         }
     }
     private void Update()
