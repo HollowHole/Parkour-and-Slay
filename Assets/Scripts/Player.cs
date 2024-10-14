@@ -9,26 +9,87 @@ using UnityEngine.VFX;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float Speed;
-    public float LRMoveSpeed;
+    
     private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
     [SerializeField]private List<Transform> Objects2Swerve = new List<Transform>();
     Camera cam;
+
+    public float Speed;
+    public float jumpHeight;
+    private Vector3 velocity;
+    public float LRMoveSpeed;
+    [SerializeField]private bool isGrounded;
+    private float capsuleRadius;
+
     private Global.SwerveDirection _swerveDirection;
 
     public bool IsSwerving = false;//改成Speed等于0(暂时等于)
+
     private void Start()
     {
+        capsuleCollider = GetComponent<CapsuleCollider>();
         cam=FindObjectOfType<Camera>();
         rb = GetComponent<Rigidbody>();
+        capsuleRadius = capsuleCollider.radius;
     }
     private void FixedUpdate()
     {
-        //Move
+        velocity = rb.velocity;
+        GroundedCheck();
+        HandleMove();
+        HandleJumpAndFall();
+        rb.velocity = velocity;
+    }
+    private void GroundedCheck()
+    {
+        float radius = capsuleRadius * 0.9f;//避免侧面碰撞
+        float overLapCapsuleOffset = 1.1f;//到玩家脚底的距离+0.1f
+        Vector3 pointBottom = transform.position + transform.up * radius - transform.up * (overLapCapsuleOffset);
+        Vector3 pointTop = transform.position + transform.up * capsuleCollider.height / 2 - transform.up * radius;
+        LayerMask ignoreLayer = ~LayerMask.GetMask("Player");
+
+        Collider[] colliders = Physics.OverlapCapsule(pointBottom, pointTop, radius, ignoreLayer);
+        Debug.DrawLine(pointBottom, pointTop,Color.green);
+
+        /*foreach (Collider collider in colliders) { 
+            Debug.Log(collider.gameObject.name);
+        }*/
+        if (colliders.Length != 0)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded= false;
+        }
+    }
+    void HandleMove()
+    {
         float vx = 0;
         vx = Input.GetAxis("Horizontal") * LRMoveSpeed;
-        rb.velocity = new Vector3(vx, 0, 0);
-
+        velocity.x = vx;
+    }
+    void HandleJumpAndFall()
+    {
+        if (isGrounded)
+        {
+            
+            if (Input.GetButtonDown("Jump"))
+            {
+                Debug.Log("Jump");
+                velocity.y = Mathf.Sqrt(2 * Global.GRAVITY * jumpHeight);
+            }
+            if(velocity.y < -1)
+            {
+                velocity.y = -0.8f;
+            }
+        }
+        else
+        {
+            //HandleFall
+            velocity.y -= Global.GRAVITY * Time.deltaTime;
+        }
     }
     public void SubscribeSwerve(Transform tf)
     {
