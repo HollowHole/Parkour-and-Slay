@@ -52,6 +52,10 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 
+#版本控制
+/ProjectSettings/ProjectVersion.txt
+/ProjectSettings/ProjectSetting.asset
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 
