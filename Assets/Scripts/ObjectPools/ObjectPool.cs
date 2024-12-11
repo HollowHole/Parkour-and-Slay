@@ -7,12 +7,22 @@ public abstract class ObjectPool:MonoBehaviour
     public List<GameObject> usedGameObjectList = new List<GameObject>();
     public List<GameObject> unusedGameObjectList = new List<GameObject>();
     public int capacity = -1;
+    private Vector3 originScale;
     public void SetPrefab(string prefabPath)
     {
+
+        // π”√¡ÀRescource
         prefab = Resources.Load<GameObject>(prefabPath);
+        originScale = prefab.transform.localScale;
     }
-    public abstract void Activate(GameObject gameObject);
-    public abstract void Deactivate(GameObject gameObject);
+    public virtual void Activate(GameObject gameObject)
+    {
+        gameObject.transform.localScale = originScale;
+    }
+    public virtual void Deactivate(GameObject gameObject)
+    {
+        Hide(gameObject);
+    }
     public GameObject Spawn(Vector3 pos, Quaternion quaternion, Transform parent = null)
     {
         GameObject go;
@@ -28,7 +38,7 @@ public abstract class ObjectPool:MonoBehaviour
         }
         else
         {
-            go=Instantiate(prefab,pos,quaternion,parent);
+            go =Instantiate(prefab,pos,quaternion,parent);
             usedGameObjectList.Add(go);
             Activate(go);
         }
@@ -68,7 +78,6 @@ public abstract class ObjectPool:MonoBehaviour
     }
     public void Hide(GameObject go)
     {
-        Vector3 vector3 = new Vector3(0, -100, 0);
-        go.transform.position = vector3;
+        go.transform.localScale = Vector3.zero;
     }
 }

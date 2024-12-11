@@ -5,11 +5,17 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    HighlightableObject h;
+    private void Start()
+    {
+        h = GetComponent<HighlightableObject>();
+    }
     void Update()
     {
-        Vector3 vector3 = transform.position;
-        vector3.y += 0.02f;
-        transform.position = vector3;
+        if (Input.GetMouseButton(0))
+        {
+            h.ConstantOnImmediate(Color.cyan);
+        }
+        
     }
 }

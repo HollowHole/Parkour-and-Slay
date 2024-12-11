@@ -3,15 +3,33 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class CardProto : MonoBehaviour
 {
-    public RectTransform CDGrey;
-    private RectTransform myRectTransform;
-    public float coolDownTime = 3f;
-    [SerializeField]private float coolDownTimer = 0;//0表示冷却完毕
-    private void Start()
+    //[Header("Highlight")]
+    //HighlightableObject highlightableObject;
+    //public Color highLightColor = Color.white;
+
+    [Header("CoolDown")]
+    RectTransform CDGrey;
+    RectTransform myRectTransform;
+    //SO
+    [SerializeField] protected CardProtoSO cardSO;
+    
+    private float coolDownTimer = 0;//0表示冷却完毕
+
+    protected virtual void Awake()
     {
         myRectTransform = GetComponent<RectTransform>();
+        CDGrey = transform.Find("CDGrey").GetComponent<RectTransform>();
+        //highlightableObject = GetComponent<HighlightableObject>();
+        
+        GetComponent<Button>().onClick.AddListener(OnClick);
+    }
+    protected virtual void Start()
+    {
+        
     }
     private void FixedUpdate()
     {
@@ -32,20 +50,25 @@ public class CardProto : MonoBehaviour
         //修改Scale和position
         Vector3 targetScale = new Vector3(1.3f, 1.3f, 1.3f);
         myRectTransform.localScale = targetScale;
-        
+        //highlightableObject.ConstantOnImmediate(highLightColor);
     }
     public void Unpick()
     {
         //Scale和position改回去
         myRectTransform.localScale = new Vector3(1,1,1);
+        //highlightableObject.ConstantOffImmediate();
     }
-    public void OnUse()
+    public virtual void OnUse()
     {
-        CDStart();
+        //CDStart();
+    }
+    public virtual int GetCost()
+    {
+        return cardSO.EnergyCost;
     }
     private void CDStart()
     {
-        coolDownTimer = coolDownTime;
+        coolDownTimer = cardSO.CD;
     }
     private bool CDReady()
     {
@@ -55,10 +78,9 @@ public class CardProto : MonoBehaviour
     {
         //调整CD时灰色部分的大小
 
-        float height = coolDownTimer / coolDownTime * myRectTransform.rect.height;
+        float height = coolDownTimer / cardSO.CD * myRectTransform.rect.height;
         float width = CDGrey.rect.width;
         Vector2 targetSize = new Vector2(width,height);
         CDGrey.sizeDelta = targetSize;
-        Debug.Log(CDGrey.rect);
     }
 }

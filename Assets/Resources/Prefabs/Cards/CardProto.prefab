@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1260619841427667882}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -111,7 +110,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1260619841427667882}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -188,7 +186,6 @@ RectTransform:
   - {fileID: 3058047148760300925}
   - {fileID: 7392046440353586979}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -276,19 +273,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6764228176363792906}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8707816198057529305}
-        m_TargetAssemblyTypeName: CardProto, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8707816198057529305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +286,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6f2dd823925d042b90d678ab929367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CDGrey: {fileID: 7392046440353586979}
-  coolDownTime: 3
-  coolDownTimer: 0
+  cardSO: {fileID: 11400000, guid: 8813fa94476048a46bd05ab4cd8d7899, type: 2}

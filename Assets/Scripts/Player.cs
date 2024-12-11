@@ -1,45 +1,107 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]public PlayerIniData InitDataSO;
     // Start is called before the first frame update
     
-    private Rigidbody rb;
-    private CapsuleCollider capsuleCollider;
-    [SerializeField]private List<Transform> Objects2Swerve = new List<Transform>();
-    Camera cam;
+    
 
-    public float Speed;
-    public float jumpHeight;
+    [HideInInspector]public float Speed { get; set; }
+    float SpeedUpRate;
+    bool jumpInput;
+    float jumpHeight;
     private Vector3 velocity;
-    public float LRMoveSpeed;
-    [SerializeField]private bool isGrounded;
+    float LRMoveSpeed;
+    private bool isGrounded;
     private float capsuleRadius;
 
-    private Global.SwerveDirection _swerveDirection;
+    private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
 
-    public bool IsSwerving = false;//改成Speed等于0(暂时等于)
+    Camera cam;
 
-    private void Start()
+    private float hp;
+    private float MaxHp;
+    public Action<float,float> OnHpChange;
+    
+    public float Hp
     {
+        get
+        {
+            return hp;
+        }
+        set
+        {
+            if(value < 0)
+            {
+                hp = 0;
+            }
+            else
+            {
+                hp = value>MaxHp?MaxHp: value;
+            }
+            OnHpChange?.Invoke(value,MaxHp);
+        }
+    }
+
+    private void Awake()
+    {
+        ReadInitData();
+
         capsuleCollider = GetComponent<CapsuleCollider>();
-        cam=FindObjectOfType<Camera>();
+        cam = FindObjectOfType<Camera>();
         rb = GetComponent<Rigidbody>();
         capsuleRadius = capsuleCollider.radius;
     }
+
+    private void ReadInitData()
+    {
+        MaxHp = InitDataSO.IniMaxHp;
+        jumpHeight = InitDataSO.IniJumpHeight;
+        LRMoveSpeed = InitDataSO.LRMoveSpeed;
+        Speed = InitDataSO.IniSpeed;
+        SpeedUpRate = InitDataSO.IniSpeedUpRate;
+    }
+
+
     private void FixedUpdate()
     {
         velocity = rb.velocity;
         GroundedCheck();
         HandleMove();
         HandleJumpAndFall();
+        HandleSpeedUp();
         rb.velocity = velocity;
+    }
+
+    private void HandleSpeedUp()
+    {
+        Speed += SpeedUpRate * Time.deltaTime;
+        Speed = Math.Clamp(Speed, 0, InitDataSO.SpeedLimit);
+    }
+
+    private void Update()
+    {
+        HandleInput();
+        
+    }
+    private void HandleInput()
+    {
+        if (Input.GetButton("Jump"))
+        {
+            jumpInput = true;
+        }
+        else
+        {
+            jumpInput = false;
+        }
+
+        
     }
     private void GroundedCheck()
     {
@@ -72,12 +134,12 @@ public class Player : MonoBehaviour
     }
     void HandleJumpAndFall()
     {
+        
+
         if (isGrounded)
         {
-            
-            if (Input.GetButtonDown("Jump"))
+            if (jumpInput)
             {
-                Debug.Log("Jump");
                 velocity.y = Mathf.Sqrt(2 * Global.GRAVITY * jumpHeight);
             }
             if(velocity.y < -1)
@@ -91,74 +153,9 @@ public class Player : MonoBehaviour
             velocity.y -= Global.GRAVITY * Time.deltaTime;
         }
     }
-    public void SubscribeSwerve(Transform tf)
+    
+    public void TakeDamage(float damage)
     {
-        Objects2Swerve.Add(tf);
+        Hp-=damage;
     }
-    public void UnsubscribeSwerve(Transform tf)
-    {
-        Objects2Swerve.Remove(tf);
-    }
-    public void Swerve(Global.SwerveDirection swerveDirection,Vector3 swerveCenter)
-    {
-        
-        //启动携程
-        _swerveDirection = swerveDirection;
-        
-        StartCoroutine(SwerveAllObjects(swerveDirection,swerveCenter));
-        
-    }
-    private IEnumerator SwerveAllObjects(Global.SwerveDirection swerveDirection, Vector3 swerveCenter)
-    {
-        Debug.Log("Swerve begin!");
-        Debug.Log(swerveCenter);
-        IsSwerving = true;
-        float swerveAngleLeft = 90;
-        Vector3 axis = transform.up;
-        while (swerveAngleLeft>0)
-        {
-            float swerveAngle = 1000 * Time.deltaTime;
-            swerveAngle = swerveAngle<swerveAngleLeft?swerveAngle:swerveAngleLeft;
-            swerveAngleLeft -= swerveAngle;
-            if (swerveDirection == Global.SwerveDirection.RIGHT) swerveAngle = -swerveAngle;
-
-            foreach (Transform t in Objects2Swerve)
-            {
-                t.RotateAround(swerveCenter,axis, swerveAngle);
-            }
-            
-            yield return null;
-            
-        }
-        /*bool breakFlag = false;
-        while (!breakFlag)
-        {
-            Vector3 offset = Vector3.zero;
-            foreach(Transform t in Objects2Swerve)
-            {
-                Vector3 pos = t.position;
-
-                *//*pos.x *=  (1 - Time.deltaTime);
-                if (Mathf.Abs(t.position.x) < 0.15f)
-                {
-                    pos.x = 0;
-                    breakFlag = true;
-                }*//*
-                pos.x = 0;
-                breakFlag = true;
-
-                offset = t.position - pos;
-                t.position = pos;
-            }
-            //玩家的位置也要修改
-            transform.position -= offset;
-            yield return null;
-        }*/
-
-        IsSwerving = false;
-        
-        FindObjectOfType<RoadSpawn>().EnableSpawn();
-        
-    }
-
 }
