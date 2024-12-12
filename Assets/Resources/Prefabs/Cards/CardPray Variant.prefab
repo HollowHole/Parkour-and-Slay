@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &9062150994050660103
+--- !u!1001 &6186730790001593455
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -18,19 +18,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_SizeDelta.x
@@ -58,15 +58,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -90,27 +90,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_Text
-      value: "\u52A0\u901F"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 75
+      value: "\u7948\u7977"
       objectReference: {fileID: 0}
     - target: {fileID: 3641322444996257290, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_Name
-      value: CardDash Variant
+      value: CardPray Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7007838605241618131, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_text
-      value: "\u51B2\u523A"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007838605241618131, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
-      propertyPath: m_fontSize
-      value: 50
+      value: "\u7948\u7977"
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
@@ -119,23 +107,23 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3641322444996257290, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8845484962533601886}
+      addedObject: {fileID: 6866279901320924152}
   m_SourcePrefab: {fileID: 100100000, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
---- !u!1 &5713846542788399373 stripped
+--- !u!1 &7445362398282443365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3641322444996257290, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
-  m_PrefabInstance: {fileID: 9062150994050660103}
+  m_PrefabInstance: {fileID: 6186730790001593455}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8845484962533601886
+--- !u!114 &6866279901320924152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5713846542788399373}
+  m_GameObject: {fileID: 7445362398282443365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 775ba4b7e9fb0a5478db3901389b5e60, type: 3}
+  m_Script: {fileID: 11500000, guid: f0d52b5e4a17eaf478effd33e00d935d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSO: {fileID: 11400000, guid: ff6ce72a28a0dab4585d952cc9601286, type: 2}
+  cardSO: {fileID: 11400000, guid: f5f2fd44fd0f37e45a47fac31fe40d47, type: 2}

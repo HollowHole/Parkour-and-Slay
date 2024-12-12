@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e218631ced2d945b2a163201b7c85b, type: 3}
-  m_Name: "\u73A9\u5BB6\u521D\u59CB\u6570\u636ESO"
+  m_Script: {fileID: 11500000, guid: f0ae6937a4f79c64b945eb538fe533b4, type: 3}
+  m_Name: "\u6C34\u7403\u5B50\u5F39SO"
   m_EditorClassIdentifier: 
-  LRMoveSpeed: 2
-  IniSpeed: 100
-  IniSpeedUpRate: 5
-  IniJumpHeight: 2
-  IniMaxHp: 100
-  SpeedLimit: 200
+  Speed: 5
+  Value: 6
+  TargetTag: Monster

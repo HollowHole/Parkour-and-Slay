@@ -17,7 +17,7 @@ public class CardProto : MonoBehaviour
     //SO
     [SerializeField] protected CardProtoSO cardSO;
     
-    private float coolDownTimer = 0;//0±íÊ¾ÀäÈ´Íê±Ï
+    private float coolDownTimer = 0;//0è¡¨ç¤ºå†·å´å®Œæ¯•
 
     protected virtual void Awake()
     {
@@ -47,20 +47,21 @@ public class CardProto : MonoBehaviour
     }
     public void OnPick()
     {
-        //ĞŞ¸ÄScaleºÍposition
+        //ä¿®æ”¹Scaleå’Œposition
         Vector3 targetScale = new Vector3(1.3f, 1.3f, 1.3f);
         myRectTransform.localScale = targetScale;
         //highlightableObject.ConstantOnImmediate(highLightColor);
     }
     public void Unpick()
     {
-        //ScaleºÍposition¸Ä»ØÈ¥
+        //Scaleå’Œpositionæ”¹å›å»
         myRectTransform.localScale = new Vector3(1,1,1);
         //highlightableObject.ConstantOffImmediate();
     }
     public virtual void OnUse()
     {
         //CDStart();
+        Instantiate(cardSO.bullet,Player.Instance.transform,false);
     }
     public virtual int GetCost()
     {
@@ -76,7 +77,7 @@ public class CardProto : MonoBehaviour
     }
     private void Update()
     {
-        //µ÷ÕûCDÊ±»ÒÉ«²¿·ÖµÄ´óĞ¡
+        //è°ƒæ•´CDæ—¶ç°è‰²éƒ¨åˆ†çš„å¤§å°
 
         float height = coolDownTimer / cardSO.CD * myRectTransform.rect.height;
         float width = CDGrey.rect.width;

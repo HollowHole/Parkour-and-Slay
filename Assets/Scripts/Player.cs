@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,ICanTakeDmg
 {
+    public static Player Instance { get; private set; }
     [SerializeField]public PlayerIniData InitDataSO;
     // Start is called before the first frame update
     
@@ -45,12 +46,14 @@ public class Player : MonoBehaviour
             {
                 hp = value>MaxHp?MaxHp: value;
             }
-            OnHpChange?.Invoke(value,MaxHp);
+            OnHpChange?.Invoke(hp,MaxHp);
         }
     }
 
     private void Awake()
     {
+        Instance = this;
+
         ReadInitData();
 
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour
     private void ReadInitData()
     {
         MaxHp = InitDataSO.IniMaxHp;
+        hp = MaxHp;
         jumpHeight = InitDataSO.IniJumpHeight;
         LRMoveSpeed = InitDataSO.LRMoveSpeed;
         Speed = InitDataSO.IniSpeed;
@@ -105,8 +109,8 @@ public class Player : MonoBehaviour
     }
     private void GroundedCheck()
     {
-        float radius = capsuleRadius * 0.9f;//±ÜÃâ²àÃæÅö×²
-        float overLapCapsuleOffset = 1.1f;//µ½Íæ¼Ò½Åµ×µÄ¾àÀë+0.1f
+        float radius = capsuleRadius * 0.9f;//é¿å…ä¾§é¢ç¢°æ’
+        float overLapCapsuleOffset = 1.1f;//åˆ°ç©å®¶è„šåº•çš„è·ç¦»+0.1f
         Vector3 pointBottom = transform.position + transform.up * radius - transform.up * (overLapCapsuleOffset);
         Vector3 pointTop = transform.position + transform.up * capsuleCollider.height / 2 - transform.up * radius;
         LayerMask ignoreLayer = ~LayerMask.GetMask("Player");
@@ -154,7 +158,7 @@ public class Player : MonoBehaviour
         }
     }
     
-    public void TakeDamage(float damage)
+    void ICanTakeDmg.TakeDamage(float damage)
     {
         Hp-=damage;
     }
