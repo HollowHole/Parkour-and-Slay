@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &9062150994050660103
+--- !u!1001 &6186730790001593455
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -18,19 +18,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_SizeDelta.x
@@ -58,15 +58,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260619841427667882, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -90,36 +90,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_Text
-      value: "\u52A0\u901F"
+      value: "\u6253\u51FB"
       objectReference: {fileID: 0}
     - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 75
+      propertyPath: m_FontData.m_RichText
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3641322444996257290, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_Name
-      value: CardDash Variant
+      value: CardAdrenaline
       objectReference: {fileID: 0}
     - target: {fileID: 7007838605241618131, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_text
-      value: "\u51B2\u523A"
+      value: "\u80BE\u4E0A\u817A\u7D20"
       objectReference: {fileID: 0}
     - target: {fileID: 7007838605241618131, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_fontSize
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: Bullet
       value: 
-      objectReference: {fileID: 3071723399305695654, guid: b4fc69847763b174bb83c4a360701316, type: 3}
+      objectReference: {fileID: 8821137583379545090, guid: e4c059ece19f62340bc56ef0bd031e93, type: 3}
     - target: {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: cardSO
       value: 
-      objectReference: {fileID: 11400000, guid: ff6ce72a28a0dab4585d952cc9601286, type: 2}
+      objectReference: {fileID: 11400000, guid: 7869b2700c7228b4498014ce5fc252d4, type: 2}
     - target: {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: BulletPrefab
       value: 

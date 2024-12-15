@@ -9,7 +9,8 @@ public class CardManager : MonoBehaviour
 
     static CardManager instance;
     public static CardManager Instance=>instance;
-    [SerializeField]List<CardProto> InitCards;
+
+    [SerializeField]List<CardProto> CardDeck;
     List<CardProto> DrawPileCards = new List<CardProto>();
     List<CardProto> DiscardPileCards = new List<CardProto>();
 
@@ -35,11 +36,16 @@ public class CardManager : MonoBehaviour
             OnEnergyChange?.Invoke(energyCnt);
         }
     }
+    //Events
     public Action<int> OnEnergyChange;
+    public Action<CardProto> OnUseSpeedUpCard;
     //my var
     List<CardProto> handCards = new List<CardProto>();//not used yet
     CardProto ChosenCard;
     CardProto CardGonnaChoose;
+
+
+
     private void Awake()
     {
         ChosenCard = null;
@@ -53,16 +59,17 @@ public class CardManager : MonoBehaviour
     {
         StartCoroutine(GenerateEnergyNaturally());
 
-        foreach (CardProto card in InitCards)
+        foreach (CardProto card in CardDeck)
         {
             CardProto c = Instantiate(card,transform);
             DrawPileCards.Add(c);
         }
-
-        for (int i = 0; i < MaxHandCnt; i++)
+    }
+    private void Update()
+    {
+        if(DiscardPileCards.Count + DrawPileCards.Count  == CardDeck.Count)//æ‰‹ç‰Œæ‰“å®Œäº†
         {
-            if (!DrawCard())
-                break;            
+            DrawCard();
         }
     }
     private void LateUpdate()
@@ -97,7 +104,7 @@ public class CardManager : MonoBehaviour
         {
             if(EnergyCnt < card.GetCost())
             {
-                Debug.Log("·ÑÓÃ²»×ã");
+                Debug.Log("è´¹ç”¨ä¸è¶³");
             }
             else
                 Use(card);
@@ -112,18 +119,31 @@ public class CardManager : MonoBehaviour
     {
         EnergyCnt -= card.GetCost();
 
+
+        if(card.SpeedUpValue > 0)
+        {
+            OnUseSpeedUpCard?.Invoke(card);
+        }
+
         card.OnUse();
+
         //Discard
         Discard(card);
-        //Draw
-        DrawCard();
     }
     void Discard(CardProto card)
     {
         card.transform.SetParent(transform, false);
         DiscardPileCards.Add(card);
     }
-    bool DrawCard()
+    void DrawCard()
+    {
+        for (int i = 0; i < MaxHandCnt; i++)
+        {
+            if (!DrawOneCard())
+                break;
+        }
+    }
+    public bool DrawOneCard()
     {
         if (DrawPileCards.Count == 0)
         {
@@ -154,7 +174,7 @@ public class CardManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(EnergyRegenerateRate);
+            yield return new WaitForSeconds(1/EnergyRegenerateRate);
             EnergyCnt = Math.Clamp(EnergyCnt + 1, 0, MaxEnergyLimit);
         }
     }

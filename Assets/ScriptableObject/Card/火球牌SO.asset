@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ae6937a4f79c64b945eb538fe533b4, type: 3}
-  m_Name: "\u7948\u7977\u5B50\u5F39SO"
+  m_Script: {fileID: 11500000, guid: 31af29a80579abe4b8986f782cd49e11, type: 3}
+  m_Name: "\u706B\u7403\u724CSO"
   m_EditorClassIdentifier: 
-  Speed: 5
-  Value: -5
-  TargetTag: Player
+  EnergyCost: 1
+  SpeedUpValue: 0
+  DrawCardCnt: 0
+  isPierce: 0
+  BulletSpeed: 5
+  TargetTag: Monster
+  Damage: 0
+  CD: 3

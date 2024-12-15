@@ -77,8 +77,8 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         if (collision.collider.CompareTag("Player"))
         {
-            player.GetComponent<ICanTakeDmg>().TakeDamage(monsterSO.Damage);    
-            player.Speed -= monsterSO.SlowSpeedAbility;
+            player.GetComponent<ICanTakeDmg>().TakeDamage(monsterSO.Damage);
+            player.GetComponent<ICanAffectSpeed>().AffectSpeed(monsterSO.AffectSpeedAbility);
         }
     }
 }

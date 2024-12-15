@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 11400000, guid: 8813fa94476048a46bd05ab4cd8d7899, type: 2}
+  BulletPrefab: {fileID: 5015294809367098342, guid: 96d07af8c5c4c934bbc8f2bf72aa39f6, type: 3}
 --- !u!1 &6200116845679452033
 GameObject:
   m_ObjectHideFlags: 0

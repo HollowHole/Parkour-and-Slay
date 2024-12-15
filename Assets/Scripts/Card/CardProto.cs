@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class CardProto : MonoBehaviour
 {
@@ -16,17 +18,45 @@ public class CardProto : MonoBehaviour
     RectTransform myRectTransform;
     //SO
     [SerializeField] protected CardProtoSO cardSO;
-    
+    [SerializeField] private GameObject BulletPrefab;
+
+    protected List<GameObject> myBullets = new List<GameObject>();
+
     private float coolDownTimer = 0;//0表示冷却完毕
+
+
+    public int EnergyCost{get;set;}
+    public float SpeedUpValue {get;set;}
+    public int DrawCardCnt { get;set;}
+    public bool isPierce { get;set;}
+    public float BulletSpeed { get; set; }
+    public string TargetTag { get; set; }
+    public float Damage { get; set; }
 
     protected virtual void Awake()
     {
         myRectTransform = GetComponent<RectTransform>();
         CDGrey = transform.Find("CDGrey").GetComponent<RectTransform>();
+
+        ReadSO();
         //highlightableObject = GetComponent<HighlightableObject>();
         
         GetComponent<Button>().onClick.AddListener(OnClick);
+
+
     }
+
+    private void ReadSO()
+    {
+        EnergyCost = cardSO.EnergyCost;
+        SpeedUpValue = cardSO.SpeedUpValue;
+        DrawCardCnt = cardSO.DrawCardCnt;
+        isPierce = cardSO.isPierce;
+        BulletSpeed = cardSO.BulletSpeed;
+        Damage = cardSO.Damage;
+        TargetTag = cardSO.TargetTag;
+    }
+
     protected virtual void Start()
     {
         
@@ -60,12 +90,35 @@ public class CardProto : MonoBehaviour
     }
     public virtual void OnUse()
     {
-        //CDStart();
-        Instantiate(cardSO.bullet,Player.Instance.transform,false);
+        //抽卡
+        for(int i = 0; i < DrawCardCnt; i++) 
+            CardManager.Instance.DrawOneCard();
+        //自我加速
+        Player.Instance.GetComponent<ICanAffectSpeed>().AffectSpeed(SpeedUpValue);
+        //生成子弹
+        myBullets.Clear();
+        
+        SpawnBullets();
+
+        ApplyBasicAttri2Bullet();
+    }
+
+    private void ApplyBasicAttri2Bullet()
+    {
+        foreach(GameObject bullet in myBullets)
+        {
+            BulletProto b = bullet.GetComponent<BulletProto>();
+            b.ApplyBasicAttri(TargetTag, BulletSpeed, isPierce, Damage);
+        }
+    }
+
+    protected virtual void SpawnBullets()
+    {
+        myBullets.Add(Instantiate(BulletPrefab, Player.Instance.transform, false));
     }
     public virtual int GetCost()
     {
-        return cardSO.EnergyCost;
+        return EnergyCost;
     }
     private void CDStart()
     {

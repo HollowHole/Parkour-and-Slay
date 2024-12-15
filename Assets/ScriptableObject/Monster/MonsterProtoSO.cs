@@ -7,5 +7,5 @@ public class MonsterProtoSO : ScriptableObject
     public float Hp;
     public float Speed;
     public float Damage;
-    public float SlowSpeedAbility;
+    public float AffectSpeedAbility;
 }

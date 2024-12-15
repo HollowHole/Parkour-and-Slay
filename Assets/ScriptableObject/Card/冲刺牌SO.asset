@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: "\u51B2\u523A\u724CSO"
   m_EditorClassIdentifier: 
   EnergyCost: 1
+  SpeedUpValue: 5
+  DrawCardCnt: 1
+  isPierce: 0
+  BulletSpeed: 0
+  TargetTag: Player
+  Damage: 0
   CD: 3
-  bullet: {fileID: 4745017226738002849, guid: b4fc69847763b174bb83c4a360701316, type: 3}

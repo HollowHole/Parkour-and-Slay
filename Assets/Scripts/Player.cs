@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour,ICanTakeDmg
+public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed
 {
     public static Player Instance { get; private set; }
     [SerializeField]public PlayerIniData InitDataSO;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour,ICanTakeDmg
     
     
 
-    [HideInInspector]public float Speed { get; set; }
+    [HideInInspector]public float Speed { get;  private set; }
     float SpeedUpRate;
     bool jumpInput;
     float jumpHeight;
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour,ICanTakeDmg
 
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
+    BuffMgr buffMgr;
 
     Camera cam;
 
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour,ICanTakeDmg
         capsuleCollider = GetComponent<CapsuleCollider>();
         cam = FindObjectOfType<Camera>();
         rb = GetComponent<Rigidbody>();
+        buffMgr = GetComponent<BuffMgr>();
         capsuleRadius = capsuleCollider.radius;
     }
 
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour,ICanTakeDmg
     private void Update()
     {
         HandleInput();
-        
+        buffMgr.HandleBuffEffect();
     }
     private void HandleInput()
     {
@@ -161,5 +163,10 @@ public class Player : MonoBehaviour,ICanTakeDmg
     void ICanTakeDmg.TakeDamage(float damage)
     {
         Hp-=damage;
+    }
+
+    public void AffectSpeed(float value)
+    {
+        Speed += value;
     }
 }

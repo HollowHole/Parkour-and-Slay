@@ -90,16 +90,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_Text
-      value: "\u7948\u7977"
+      value: "\u6253\u51FB"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090202351575326270, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3641322444996257290, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_Name
-      value: CardPray Variant
+      value: CardWarmUp
       objectReference: {fileID: 0}
     - target: {fileID: 7007838605241618131, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       propertyPath: m_text
-      value: "\u7948\u7977"
+      value: "\u70ED\u8EAB\u8FD0\u52A8"
       objectReference: {fileID: 0}
+    - target: {fileID: 7007838605241618131, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
+      propertyPath: Bullet
+      value: 
+      objectReference: {fileID: 8821137583379545090, guid: e4c059ece19f62340bc56ef0bd031e93, type: 3}
+    - target: {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
+      propertyPath: cardSO
+      value: 
+      objectReference: {fileID: 11400000, guid: b79f45641dacbf54f91692404a728e39, type: 2}
+    - target: {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
+      propertyPath: BulletPrefab
+      value: 
+      objectReference: {fileID: 5015294809367098342, guid: 96d07af8c5c4c934bbc8f2bf72aa39f6, type: 3}
     m_RemovedComponents:
     - {fileID: 8707816198057529305, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
     m_RemovedGameObjects: []
@@ -107,14 +127,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3641322444996257290, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6866279901320924152}
+      addedObject: {fileID: 3982994717128580422}
   m_SourcePrefab: {fileID: 100100000, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
 --- !u!1 &7445362398282443365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3641322444996257290, guid: 33015bde8568dc44c93a46501c43b016, type: 3}
   m_PrefabInstance: {fileID: 6186730790001593455}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6866279901320924152
+--- !u!114 &3982994717128580422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +143,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7445362398282443365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0d52b5e4a17eaf478effd33e00d935d, type: 3}
+  m_Script: {fileID: 11500000, guid: b97be4ea414216347a6d26bfaedcc955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSO: {fileID: 11400000, guid: f5f2fd44fd0f37e45a47fac31fe40d47, type: 2}
+  cardSO: {fileID: 11400000, guid: b79f45641dacbf54f91692404a728e39, type: 2}
+  BulletPrefab: {fileID: 5015294809367098342, guid: 96d07af8c5c4c934bbc8f2bf72aa39f6, type: 3}

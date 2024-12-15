@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ae6937a4f79c64b945eb538fe533b4, type: 3}
-  m_Name: "\u51B2\u523A\u5B50\u5F39SO"
+  m_Script: {fileID: 11500000, guid: efc73dd81a06f2046a3a50a9ca1e55f0, type: 3}
+  m_Name: "\u70ED\u8EAB\u8FD0\u52A8SO"
   m_EditorClassIdentifier: 
-  Speed: 5
-  Value: 5
+  EnergyCost: 1
+  SpeedUpValue: 0
+  DrawCardCnt: 0
+  isPierce: 0
+  BulletSpeed: 0
   TargetTag: Player
+  Damage: 0
+  CD: 3
+  ExtraSpeedValue: 10

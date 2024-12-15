@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31af29a80579abe4b8986f782cd49e11, type: 3}
-  m_Name: "\u653B\u51FB\u724CSO"
+  m_Name: "\u80BE\u4E0A\u817A\u7D20\u724CSO"
   m_EditorClassIdentifier: 
   EnergyCost: 1
+  SpeedUpValue: 15
+  DrawCardCnt: 0
+  isPierce: 0
+  BulletSpeed: 0
+  TargetTag: Player
+  Damage: 5
   CD: 3
-  bullet: {fileID: 1230535800347919877, guid: 7c599ddc4891eeb4e970035833757ede, type: 3}

@@ -437,14 +437,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573dc35808a9a584db9079178d3a4de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitCards:
-  - {fileID: 8845484962533601886, guid: 1efdc4cee7a1acb4db102824e5de2c77, type: 3}
-  - {fileID: 6866279901320924152, guid: c8e9b48e841567b43b02ece188306658, type: 3}
+  CardDeck:
+  - {fileID: 3243663127498769334, guid: 93402aa7fb87ea847a9053abc82e33fd, type: 3}
+  - {fileID: 3982994717128580422, guid: b512b8379722a0a40ad801e78ef83f9e, type: 3}
+  - {fileID: 3243663127498769334, guid: 9e7c7d1e7ffe61c4fbee68a54858b636, type: 3}
   HandCardZone: {fileID: 973173099}
   MaxHandCnt: 2
   MaxEnergyLimit: 4
   InitEnergy: 3
-  EnergyRegenerateRate: 2
+  EnergyRegenerateRate: 20
 --- !u!4 &90865648
 Transform:
   m_ObjectHideFlags: 0
@@ -1500,6 +1501,7 @@ GameObject:
   - component: {fileID: 1174651061}
   - component: {fileID: 1174651060}
   - component: {fileID: 1174651065}
+  - component: {fileID: 1174651066}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1636,6 +1638,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &1174651066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174651059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00db8ec606ec8d4e8e859c1a9c36c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1217075425
 GameObject:
   m_ObjectHideFlags: 0
