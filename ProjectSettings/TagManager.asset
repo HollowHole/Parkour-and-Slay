@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RoadBlock
   - Monster
+  - Bullet
   layers:
   - Default
   - TransparentFX

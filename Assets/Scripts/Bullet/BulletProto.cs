@@ -8,6 +8,7 @@ public class BulletProto : MonoBehaviour
 {
     Rigidbody rb;
 
+    string sourceTag;
     string targetTag;
     float initSpeed;
     bool isPierce;
@@ -15,7 +16,8 @@ public class BulletProto : MonoBehaviour
 
     public Action<Collider> OnHitTarget;
 
-
+    public bool isHostile => targetTag == "Player";
+    public string GetSource => sourceTag;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,13 +29,19 @@ public class BulletProto : MonoBehaviour
     {
         rb.velocity = new Vector3(0, 0, initSpeed);
     }
-    public void ApplyBasicAttri(string t,float s,bool isP,float D)
+    protected virtual void Update()
     {
-        targetTag = t;
+        Debug.Log(rb.velocity);
+    }
+    public void ApplyBasicAttri(string tt,float s,float D,bool isP = false,string st = "Player")
+    {
+        targetTag = tt;
         initSpeed = s;
         isPierce = isP;
         damage = D;
+        sourceTag = st;
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(targetTag))
@@ -47,6 +55,9 @@ public class BulletProto : MonoBehaviour
     void BasicHitEffect(Collider target)
     {
         target.GetComponent<ICanTakeDmg>().TakeDamage(damage);
-        
+        if (isHostile)
+        {
+            DodgeJudger.Instance.SuccessfullyHit(gameObject);
+        }
     }
 }

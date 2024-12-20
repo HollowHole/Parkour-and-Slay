@@ -30,6 +30,9 @@ public class TrapManager : MonoBehaviour
 
     private void SpawnTrap(Transform Pos)
     {
+        if (TrapTypeList.Count == 0)
+            return;
+
         int index = UnityEngine.Random.Range(0, TrapTypeList.Count - 1);
         Instantiate(TrapTypeList[index],Pos);
     }

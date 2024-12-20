@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6711885e519291945bc7676c8ca0e7e5, type: 3}
+  m_Name: "\u5DE6\u53F3\u6A2A\u8DF3SO"
+  m_EditorClassIdentifier: 
+  CardTypes: 00000000
+  EnergyCost: 3
+  SpeedUpValue: 0
+  DrawCardCnt: 0
+  isPierce: 0
+  BulletSpeed: 5
+  TargetTag: Player
+  Damage: 0
+  CD: 3
+  DodgeSuccBonus: 3
+  DodgeFailPunish: 2

@@ -9,16 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bdb50a82544dc64bbe431d7b66fdadb, type: 3}
-  m_Name: "\u57FA\u7840\u602A\u7269SO"
+  m_Script: {fileID: 11500000, guid: 6466b7c054496fe4d86806e31a287248, type: 3}
+  m_Name: "\u57FA\u7840\u8FDC\u7A0B\u602A\u7269SO"
   m_EditorClassIdentifier: 
-  Type: 0
-  Hp: 15
-  Speed: 30
-  SpeedUpRate: 0
-  MaxSpeedLimit: 40
+  Type: 1
+  Hp: 1
+  Speed: 1
+  SpeedUpRate: 1
+  MaxSpeedLimit: 1
   CollideDamage: 0
   AffectSpeedAbility: 0
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
-  DifficultyValue: 0.3
+  DifficultyValue: 0.1
+  AttackInterval: 5
+  BulletSpeed: 5
+  BulletSpeedUpRate: 1
+  TargetTag: Player
+  BulletDamage: 1

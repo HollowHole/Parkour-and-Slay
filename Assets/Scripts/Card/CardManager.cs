@@ -43,6 +43,7 @@ public class CardManager : MonoBehaviour
     List<CardProto> handCards = new List<CardProto>();//not used yet
     CardProto ChosenCard;
     CardProto CardGonnaChoose;
+    //bool useCardTrigger;//will Trigger on use card
 
 
 
@@ -82,24 +83,30 @@ public class CardManager : MonoBehaviour
         {
             if (ChosenCard != CardGonnaChoose)
             {
-                ChosenCard?.Unpick();
+                //ChosenCard?.Unpick();
 
                 ChosenCard = CardGonnaChoose;
 
                 ChosenCard?.OnPick();
             }
+            //else if(useCardTrigger && ChosenCard.cardTypes.Contains(CardType.Comsume))//使用了消耗卡，则卡已被销毁
+            //{
+            //    CardGonnaChoose = null;
+            //    ChosenCard = null;
+            //}
             else
             {
                 CardGonnaChoose = null;
-                ChosenCard?.Unpick();
-                ChosenCard=null;
+                if(ChosenCard != null)
+                    ChosenCard.Unpick();
+                ChosenCard = null;
             }
         }
 
     }
     public void Choose(CardProto card)
     {
-        Debug.Log("Choose" + card.name);
+        Debug.Log("Choose " + card.name);
         if (card == ChosenCard)
         {
             if(EnergyCnt < card.GetCost())
@@ -126,9 +133,15 @@ public class CardManager : MonoBehaviour
         }
 
         card.OnUse();
-
-        //Discard
-        Discard(card);
+        if (card.cardTypes.Contains(CardType.Comsume))//消耗类型
+        {
+            //Destroy(card.gameObject);
+            DestroyImmediate(card.gameObject);
+        }
+        else
+        {
+            Discard(card);
+        }
     }
     void Discard(CardProto card)
     {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8983504261209435241}
   m_Layer: 0
   m_Name: BulletProto
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223dd12f581815e4fa06004d7ec27c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSO: {fileID: 0}
 --- !u!33 &7481158266891490897
 MeshFilter:
   m_ObjectHideFlags: 0

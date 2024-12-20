@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class MonsterProto : MonoBehaviour,ICanTakeDmg
 {
-    [SerializeField]MonsterProtoSO monsterSO;
+    [SerializeField]protected MonsterProtoSO monsterSO;
     Player player;
     Rigidbody rb;
 
+    protected float speed;
     private float hp;
     private float MaxHp;
     public Action<float, float> OnHpChange;
@@ -48,9 +49,9 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     protected virtual void ReadSO()
     {
         hp = MaxHp = monsterSO.Hp;
-
+        speed = monsterSO.Speed;
     }
-    private void Update()
+    protected virtual void Update()
     {
         HandleMovement();
         HandleRotation();
@@ -60,15 +61,22 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         Vector3 v = (player.transform.position - transform.position).normalized;
         v.y = 0;
-        v *= monsterSO.Speed;
+        v *= speed;
         v -= new Vector3(0, 0, player.Speed);
         rb.velocity = v * Global.SpeedFactor;
+
+        speed += monsterSO.SpeedUpRate * Time.deltaTime;
+        speed = Mathf.Clamp(speed,0,monsterSO.MaxSpeedLimit);
+        
     }
     private void HandleRotation()
     {
         transform.LookAt(player.transform.position);
     }
-
+    public MonsterProtoSO GetSO()
+    {
+        return monsterSO;
+    }
     public void TakeDamage(float damage)
     {
         Hp -= damage;
@@ -77,7 +85,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         if (collision.collider.CompareTag("Player"))
         {
-            player.GetComponent<ICanTakeDmg>().TakeDamage(monsterSO.Damage);
+            player.GetComponent<ICanTakeDmg>().TakeDamage(monsterSO.CollideDamage);
             player.GetComponent<ICanAffectSpeed>().AffectSpeed(monsterSO.AffectSpeedAbility);
         }
     }

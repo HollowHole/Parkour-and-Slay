@@ -2,9 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum CardType { Comsume };
+
 [CreateAssetMenu(fileName = "基础牌SO", menuName = "ScriptableObject/牌/基础牌SO", order = 0)]
 public class CardProtoSO : ScriptableObject
 {
+    public List<CardType> CardTypes;
+
     [Tooltip("费用")]
     public int EnergyCost = 1;
 

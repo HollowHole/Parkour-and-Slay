@@ -10,23 +10,11 @@ public class CardWarmUp : CardProto
     {
         base.Awake();
         cardWarmUpSO = (CardWarmUpSO)cardSO;
-
         
     }
-    public override void OnUse()
-    {
-        base.OnUse();
-        foreach (GameObject bullet in myBullets)
-        {
-            
-            BulletProto b = bullet.GetComponent<BulletProto>();
-            b.OnHitTarget += ApplyMyBuff;
-        }
-    }
 
-    private void ApplyMyBuff(Collider collider)
+    protected override void ApplyMyBuffOnHit(Collider collider)
     {
-        
         collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(cardWarmUpSO.ExtraSpeedValue));
     }
     public class MyBuff : Buff

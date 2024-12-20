@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
+
 
 public class CardProto : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class CardProto : MonoBehaviour
 
     private float coolDownTimer = 0;//0表示冷却完毕
 
-
+    public List<CardType> cardTypes {  get; set; }
     public int EnergyCost{get;set;}
     public float SpeedUpValue {get;set;}
     public int DrawCardCnt { get;set;}
@@ -55,6 +57,7 @@ public class CardProto : MonoBehaviour
         BulletSpeed = cardSO.BulletSpeed;
         Damage = cardSO.Damage;
         TargetTag = cardSO.TargetTag;
+        cardTypes = cardSO.CardTypes;
     }
 
     protected virtual void Start()
@@ -85,7 +88,7 @@ public class CardProto : MonoBehaviour
     public void Unpick()
     {
         //Scale和position改回去
-        myRectTransform.localScale = new Vector3(1,1,1);
+        myRectTransform.localScale= new Vector3(1,1,1);
         //highlightableObject.ConstantOffImmediate();
     }
     public virtual void OnUse()
@@ -100,17 +103,19 @@ public class CardProto : MonoBehaviour
         
         SpawnBullets();
 
-        ApplyBasicAttri2Bullet();
+        ApplyBasicAttriAndBuffAffect2Bullet();
     }
 
-    private void ApplyBasicAttri2Bullet()
+    private void ApplyBasicAttriAndBuffAffect2Bullet()
     {
         foreach(GameObject bullet in myBullets)
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
-            b.ApplyBasicAttri(TargetTag, BulletSpeed, isPierce, Damage);
+            b.ApplyBasicAttri(TargetTag, BulletSpeed,  Damage, isPierce);
+            b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
+    protected virtual void ApplyMyBuffOnHit(Collider collider) { }
 
     protected virtual void SpawnBullets()
     {
