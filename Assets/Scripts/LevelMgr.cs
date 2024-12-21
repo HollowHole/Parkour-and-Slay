@@ -16,6 +16,7 @@ public class LevelMgr : MonoBehaviour
     }
     public void LevelUp()
     {
+        Debug.Log("Level Up!");
         OnLevelUp?.Invoke();
     }
 }

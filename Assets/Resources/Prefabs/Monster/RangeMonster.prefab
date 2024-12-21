@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2828502855493462801}
   - component: {fileID: 7528018684666987394}
   - component: {fileID: 9135915996067539127}
-  m_Layer: 5
-  m_Name: Monster 1
+  m_Layer: 9
+  m_Name: RangeMonster
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5875585168720395763
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSO: {fileID: 11400000, guid: 66c4d78b6e94ab14ca6fd0b1fc8048a8, type: 2}
+  StayPoint: {x: 0, y: 0, z: 0}
   BulletPrefab: {fileID: 5015294809367098342, guid: 96d07af8c5c4c934bbc8f2bf72aa39f6, type: 3}
 --- !u!1 &4744461533877570169
 GameObject:
@@ -137,7 +138,7 @@ GameObject:
   - component: {fileID: 1035201163321982227}
   - component: {fileID: 6232538065310294061}
   - component: {fileID: 3997460497419923197}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +272,7 @@ GameObject:
   - component: {fileID: 4821982409820687608}
   - component: {fileID: 9181924630465160255}
   - component: {fileID: 3117508943272732865}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7735849, g: 0.7123785, b: 0.4772873, a: 1}
+  m_Color: {r: 0.7169812, g: 0.070345305, b: 0.59409535, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

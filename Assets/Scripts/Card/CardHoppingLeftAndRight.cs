@@ -13,18 +13,24 @@ public class CardHoppingLeftAndRight : CardProto
     }
     public override void OnUse()
     {
+        //Debug.Log("use " + gameObject.name);
         base.OnUse();
     }
     protected override void ApplyMyBuffOnHit(Collider collider)
     {
+        //Debug.Log("hit" + collider.name);
+        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.DodgeSuccBonus,m_cardSO.DodgeFailPunish));
+    }
+    protected override void SpawnBullets()
+    {
+        base.SpawnBullets();
 
-        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.DodgeSuccBonus,m_cardSO.DodgeFailPunish));
     }
     public class MyBuff : Buff
     {
         float bonusValue;
         float punishValue;
-        public MyBuff(float bonus,float punish)
+        public MyBuff(Sprite sprite,float bonus,float punish):base(sprite) 
         {
             bonusValue = bonus;
             punishValue = punish;

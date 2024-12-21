@@ -23,3 +23,4 @@ MonoBehaviour:
   CD: 3
   DodgeSuccBonus: 3
   DodgeFailPunish: 2
+  BuffSprite: {fileID: 21300000, guid: da88ff3a2f2efc047aafedcc95699984, type: 3}

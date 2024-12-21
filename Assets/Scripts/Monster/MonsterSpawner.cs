@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
+    public static MonsterSpawner Instance;  
     //difficulty
     [SerializeField] float difficultyBias = 0.3f;
     float difficultyAccum;
@@ -18,14 +19,17 @@ public class MonsterSpawner : MonoBehaviour
     int meleeMonsterCnt = 0;
     [SerializeField] int meleeMonsterCntLimit = 3;
     [SerializeField] Transform MonsterSpawnPoint;
+    [Tooltip("生成位置的X轴偏移范围")]
+    [SerializeField] float spawnXBias = 3f;
+
     int rangedMonsterCnt = 0;
     [SerializeField] int rangedMonsterCntLimit = 3;
-    [SerializeField] Transform rangedMonsterStayPoint;
 
     List<MonsterProto> meleeMonsters2Spawn = new List<MonsterProto>();
     List<MonsterProto> rangedMonsters2Spawn = new List<MonsterProto>();
     private void Awake()
     {
+        Instance = this;
         difficultyDemand = 0 + difficultyIncreaseRate;
         GenerateMonsterList();
     }
@@ -82,6 +86,7 @@ public class MonsterSpawner : MonoBehaviour
     }
     public void OnMonsterDisappear(MonsterProto monster)
     {
+
         if(monster.GetSO().Type == MonsterType.Melee)
             meleeMonsterCnt--;
         else
@@ -109,6 +114,7 @@ public class MonsterSpawner : MonoBehaviour
     private void SpawnMonster(MonsterType type)
     {
         Vector3 spawnPoint = MonsterSpawnPoint.position;
+        spawnPoint.x += UnityEngine.Random.Range(-spawnXBias, spawnXBias);
 
         if(type == MonsterType.Melee) {
             MonsterProto monster;
@@ -123,7 +129,6 @@ public class MonsterSpawner : MonoBehaviour
             monster = Instantiate(rangedMonsters2Spawn[rangedMonsters2Spawn.Count - 1], transform) as RangedMonsterProto;
             rangedMonsters2Spawn.RemoveAt(rangedMonsters2Spawn.Count - 1);
             monster.transform.position = spawnPoint;
-            monster.StayPoint = new Vector3(monster.transform.position.x, spawnPoint.y, spawnPoint.z);
         }
     }
 

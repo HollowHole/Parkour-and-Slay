@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2828502855493462801}
   - component: {fileID: 7528018684666987394}
   - component: {fileID: -5106301686479512116}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 1035201163321982227}
   - component: {fileID: 6232538065310294061}
   - component: {fileID: 3997460497419923197}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 4821982409820687608}
   - component: {fileID: 9181924630465160255}
   - component: {fileID: 3117508943272732865}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

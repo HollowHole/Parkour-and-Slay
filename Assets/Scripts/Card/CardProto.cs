@@ -111,15 +111,20 @@ public class CardProto : MonoBehaviour
         foreach(GameObject bullet in myBullets)
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
-            b.ApplyBasicAttri(TargetTag, BulletSpeed,  Damage, isPierce);
+            Vector3 bulletV = transform.forward * BulletSpeed;
+            b.ApplyBasicAttri(TargetTag, bulletV,  Damage, isPierce);
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
-    protected virtual void ApplyMyBuffOnHit(Collider collider) { }
+    protected virtual void ApplyMyBuffOnHit(Collider collider) {
+        
+    }
 
     protected virtual void SpawnBullets()
     {
-        myBullets.Add(Instantiate(BulletPrefab, Player.Instance.transform, false));
+        GameObject b = (Instantiate(BulletPrefab, GameObject.Find("AllBullets").transform, false));
+        myBullets.Add(b);
+        b.transform.position = Player.Instance.transform.position;
     }
     public virtual int GetCost()
     {

@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RangedMonsterProto : MonsterProto
 {
-    RangedMonsterProtoSO rangedMonsterSO;
+    new RangedMonsterProtoSO monsterSO;
     public Vector3 StayPoint;
     [SerializeField] private GameObject BulletPrefab;
     protected float AttackTimer;
@@ -14,12 +15,12 @@ public class RangedMonsterProto : MonsterProto
     protected override void Awake()
     {
         base.Awake();
-        rangedMonsterSO = monsterSO as RangedMonsterProtoSO;
+        monsterSO = base.monsterSO as RangedMonsterProtoSO;
     }
     protected override void Start()
     {
         base.Start();
-        AttackTimer = rangedMonsterSO.AttackInterval;
+        AttackTimer = monsterSO.AttackInterval;
     }
     protected override void Update()
     {
@@ -35,7 +36,7 @@ public class RangedMonsterProto : MonsterProto
         }
         else
         {
-            AttackTimer = rangedMonsterSO.AttackInterval;
+            AttackTimer = monsterSO.AttackInterval;
             SpawnBullets();
             ApplyBasicAttriAndBuffAffect2Bullet();
         }
@@ -45,19 +46,28 @@ public class RangedMonsterProto : MonsterProto
         foreach (GameObject bullet in myBullets)
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
-            b.ApplyBasicAttri(rangedMonsterSO.TargetTag, rangedMonsterSO.BulletSpeed, rangedMonsterSO.BulletDamage);
+            Vector3 bulletV = transform.forward * monsterSO.BulletSpeed;
+            b.ApplyBasicAttri(monsterSO.TargetTag, bulletV, monsterSO.BulletDamage);
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
     protected virtual void SpawnBullets()
     {
         myBullets.Clear();
-        myBullets.Add(Instantiate(BulletPrefab, transform, false));
+        GameObject b = (Instantiate(BulletPrefab, GameObject.Find("AllBullets").transform, false));
+        myBullets.Add(b);
+        b.transform.position = transform.position;
     }
 
     protected override void HandleMovement()
     {
-        //
+        float dist = transform.position.z - player.transform.position.z;
+        Vector3 v = Vector3.zero;
+        if (dist > monsterSO.AttackRange)
+        {
+            v = transform.forward * (monsterSO.Speed + player.Speed);
+        }
+        rb .velocity = v * Global.SpeedFactor;
     }
     protected virtual void ApplyMyBuffOnHit(Collider collider) { }
 }

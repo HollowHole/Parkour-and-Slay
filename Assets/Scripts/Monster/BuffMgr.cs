@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuffMgr : MonoBehaviour
@@ -10,14 +11,22 @@ public class BuffMgr : MonoBehaviour
     public void AddBuff(Buff buff)
     {
         BuffList.Add(buff);
+
+        //Debug.Log("buff added!");
+
         buff.Init(transform);
+        ICanShowBuffUI i = GetComponent<ICanShowBuffUI>();
+        if(i != null )
+        {
+            buff.myUI=i.ShowThisUI(buff.UISprite);
+        }
     }
     public void HandleBuffEffect()
     {
         for (int i = BuffList.Count - 1; i >= 0; i--)
         {
             
-            BuffList[i].Update(transform);
+            BuffList[i].Update();
             if (BuffList[i].isOver)
             {
                 BuffList.RemoveAt(i);
@@ -50,21 +59,28 @@ public class BuffMgr : MonoBehaviour
 public abstract class Buff
 {
     private float LastTime;
+    public Sprite UISprite;
+    Transform target;
+    public GameObject myUI;
     public bool isOver => LastTime <= 0;
 
-    public Buff(float lastTime = 1f)
+    public Buff(Sprite uiSprite, float lastTime = 1f, GameObject BuffUI = null)
     {
         LastTime = lastTime;
+        myUI = BuffUI;
+        UISprite = uiSprite;    
     }
     public virtual void CountDown()
     {
         LastTime -= Time.deltaTime;
     }
-    public void Init(Transform target)
+    public void Init(Transform _target)
     {
+        target = _target;
+        
         HandleInitEffect(target);
     }
-    public void Update(Transform target)
+    public void Update()
     {
         if (isOver)
         {
@@ -80,7 +96,12 @@ public abstract class Buff
     protected virtual void HandleLastingEffect(Transform target) { }
 
 
-    protected virtual void HandleFinishEffect(Transform target) { }
+    protected virtual void HandleFinishEffect(Transform target) {
+        if(myUI != null)
+        {
+            BuffUIZone.HelpDestroy(myUI);
+        }
+    }
     protected void Finish()
     {
         LastTime = 0;

@@ -6,8 +6,8 @@ using UnityEngine;
 public class RangedMonsterProtoSO : MonsterProtoSO
 {
     [Header("远程相关")]
-    [Tooltip("登场时间")]
-    public float EntryTime;
+    [Tooltip("攻击距离")]
+    public float AttackRange;
     [Tooltip("攻击间隔")]
     public float AttackInterval = 1;
     [Tooltip("子弹飞行速度")]

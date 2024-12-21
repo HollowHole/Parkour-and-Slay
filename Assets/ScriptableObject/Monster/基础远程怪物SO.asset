@@ -22,6 +22,7 @@ MonoBehaviour:
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
   DifficultyValue: 0.1
+  AttackRange: 23
   AttackInterval: 5
   BulletSpeed: 5
   BulletSpeedUpRate: 1

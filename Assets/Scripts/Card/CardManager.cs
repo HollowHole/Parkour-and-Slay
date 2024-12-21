@@ -68,7 +68,7 @@ public class CardManager : MonoBehaviour
     }
     private void Update()
     {
-        if(DiscardPileCards.Count + DrawPileCards.Count  == CardDeck.Count)//手牌打完了
+        if(HandCardZone.childCount  == 0)//手牌打完了
         {
             DrawCard();
         }
@@ -83,7 +83,7 @@ public class CardManager : MonoBehaviour
         {
             if (ChosenCard != CardGonnaChoose)
             {
-                //ChosenCard?.Unpick();
+                ChosenCard?.Unpick();
 
                 ChosenCard = CardGonnaChoose;
 
@@ -106,7 +106,7 @@ public class CardManager : MonoBehaviour
     }
     public void Choose(CardProto card)
     {
-        Debug.Log("Choose " + card.name);
+        //Debug.Log("Choose " + card.name);
         if (card == ChosenCard)
         {
             if(EnergyCnt < card.GetCost())

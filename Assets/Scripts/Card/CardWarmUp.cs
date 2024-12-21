@@ -15,12 +15,12 @@ public class CardWarmUp : CardProto
 
     protected override void ApplyMyBuffOnHit(Collider collider)
     {
-        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(cardWarmUpSO.ExtraSpeedValue));
+        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(cardWarmUpSO.BuffSprite,cardWarmUpSO.ExtraSpeedValue));
     }
     public class MyBuff : Buff
     {
         float extraSpeedValue;
-        public MyBuff(float _extraSpeedValue)
+        public MyBuff(Sprite ui,float _extraSpeedValue):base(ui) 
         {
             extraSpeedValue = _extraSpeedValue;
         }

@@ -9,4 +9,6 @@ public class CardExhaustSO : CardProtoSO
     public float Time;
     [Tooltip("速度影响值")]
     public float PunishValue;
+    [Tooltip("BuffUISprite")]
+    public Sprite BuffSprite;
 }

@@ -10,7 +10,7 @@ public class BulletProto : MonoBehaviour
 
     string sourceTag;
     string targetTag;
-    float initSpeed;
+    Vector3 initSpeed;
     bool isPierce;
     float damage;
 
@@ -27,13 +27,24 @@ public class BulletProto : MonoBehaviour
     }
     private void Start()
     {
-        rb.velocity = new Vector3(0, 0, initSpeed);
+        rb.velocity = initSpeed;
     }
     protected virtual void Update()
     {
-        Debug.Log(rb.velocity);
+        HandleDisappear();
     }
-    public void ApplyBasicAttri(string tt,float s,float D,bool isP = false,string st = "Player")
+    protected virtual void HandleDisappear()
+    {
+        if (transform.position.z < -5f)
+        {
+            Destroy(gameObject);
+        }
+        if(transform.position.z > 100f)
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void ApplyBasicAttri(string tt,Vector3 s,float D,bool isP = false,string st = "Player")
     {
         targetTag = tt;
         initSpeed = s;
@@ -46,6 +57,7 @@ public class BulletProto : MonoBehaviour
     {
         if (other.CompareTag(targetTag))
         {
+            Debug.Log("Bullet Hit "+other.name);
             OnHitTarget(other);
 
             if (!isPierce)

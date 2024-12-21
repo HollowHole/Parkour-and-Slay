@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31af29a80579abe4b8986f782cd49e11, type: 3}
   m_Name: "\u706B\u7403\u724CSO"
   m_EditorClassIdentifier: 
+  CardTypes: 
   EnergyCost: 1
   SpeedUpValue: 0
   DrawCardCnt: 0
   isPierce: 0
   BulletSpeed: 5
   TargetTag: Monster
-  Damage: 0
+  Damage: 20
   CD: 3

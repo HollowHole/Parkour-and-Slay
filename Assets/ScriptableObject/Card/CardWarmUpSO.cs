@@ -6,4 +6,6 @@ public class CardWarmUpSO : CardProtoSO
 {
     [Header("特殊效果")]
     public float ExtraSpeedValue = 10f;
+    [Tooltip("BuffUISprite")]
+    public Sprite BuffSprite;
 }

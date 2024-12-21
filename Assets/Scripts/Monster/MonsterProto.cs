@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonsterProto : MonoBehaviour,ICanTakeDmg
 {
     [SerializeField]protected MonsterProtoSO monsterSO;
-    Player player;
-    Rigidbody rb;
+    protected Player player;
+    protected Rigidbody rb;
 
     protected float speed;
     private float hp;
@@ -23,8 +24,11 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         set
         {
             if (value < 0)
-            {
-                hp = 0;
+            {   hp = 0;
+                //die and ?//TODO drops
+                MonsterSpawner.Instance.OnMonsterDisappear(this);
+                Destroy(gameObject);
+                
             }
             else
             {
@@ -55,6 +59,16 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         HandleMovement();
         HandleRotation();
+        HandleDisappear();
+    }
+
+    protected virtual void HandleDisappear()
+    {
+        if (transform.position.z < -5f)
+        {
+            MonsterSpawner.Instance.OnMonsterDisappear(this);
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void HandleMovement()

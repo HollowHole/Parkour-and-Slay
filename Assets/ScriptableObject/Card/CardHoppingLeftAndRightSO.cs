@@ -9,4 +9,6 @@ public class CardHoppingLeftAndRightSO : CardProtoSO
     public float DodgeSuccBonus;
     [Tooltip("闪避失败惩罚")]
     public float DodgeFailPunish;
+    [Tooltip("BuffUISprite")]
+    public Sprite BuffSprite;
 }

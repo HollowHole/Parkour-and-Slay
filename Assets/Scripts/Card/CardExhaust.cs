@@ -17,12 +17,12 @@ public class CardExhaust : CardProto
     protected override void ApplyMyBuffOnHit(Collider collider)
     {
 
-        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.Time, m_cardSO.PunishValue));
+        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.Time, m_cardSO.PunishValue));
     }
     public class MyBuff : Buff
     {
         float punishValue;
-        public MyBuff(float delayTime,float _punishValue):base(delayTime)
+        public MyBuff(Sprite ui,float delayTime,float _punishValue):base(ui,delayTime)
         {
             punishValue = _punishValue;
         }

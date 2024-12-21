@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed
+public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 {
     public static Player Instance { get; private set; }
     [SerializeField]public PlayerIniData InitDataSO;
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed
 
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
+    Transform buffUIZone;
     BuffMgr buffMgr;
 
     Camera cam;
@@ -62,6 +63,10 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed
         rb = GetComponent<Rigidbody>();
         buffMgr = GetComponent<BuffMgr>();
         capsuleRadius = capsuleCollider.radius;
+    }
+    private void Start()
+    {
+        buffUIZone = GameObject.Find("BuffUIZone").transform;
     }
 
     private void ReadInitData()
@@ -168,5 +173,10 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed
     public void AffectSpeed(float value)
     {
         Speed += value;
+    }
+
+    public GameObject ShowThisUI(Sprite sprite)
+    {
+        return BuffUIZone.Instance.AddBuffUI(sprite);
     }
 }
