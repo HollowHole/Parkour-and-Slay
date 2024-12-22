@@ -42,10 +42,6 @@ public class CardProto : MonoBehaviour
 
         ReadSO();
         //highlightableObject = GetComponent<HighlightableObject>();
-        
-        GetComponent<Button>().onClick.AddListener(OnClick);
-
-
     }
 
     private void ReadSO()
@@ -71,7 +67,21 @@ public class CardProto : MonoBehaviour
             coolDownTimer -= Time.deltaTime;
         }
     }
-    public void OnClick()
+    public void SetBonusZoneBehavior()
+    {
+        GetComponent<Button>().onClick.RemoveAllListeners();
+        GetComponent<Button>().onClick.AddListener(OnBonusZoneClick);
+    }
+    public void SetHandZoneBehavior()
+    {
+        GetComponent<Button>().onClick.RemoveAllListeners();
+        GetComponent<Button>().onClick.AddListener(OnHandZoneClick);
+    }
+    public void OnBonusZoneClick()//在奖励界面中的点击事件
+    {
+        BonusMgr.Instance.Choose(this);
+    }
+    public void OnHandZoneClick()//在手牌中的点击事件
     {
         if (CDReady())
         {

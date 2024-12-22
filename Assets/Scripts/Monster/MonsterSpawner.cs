@@ -27,6 +27,8 @@ public class MonsterSpawner : MonoBehaviour
 
     List<MonsterProto> meleeMonsters2Spawn = new List<MonsterProto>();
     List<MonsterProto> rangedMonsters2Spawn = new List<MonsterProto>();
+    //
+    public Action OnAllMonsterCleared;
     private void Awake()
     {
         Instance = this;
@@ -35,7 +37,7 @@ public class MonsterSpawner : MonoBehaviour
     }
     private void Start()
     {
-        LevelMgr.Instance.OnLevelUp += OnLevelUp;
+        LevelMgr.Instance.OnLevelBegin += OnLevelBegin;
     }
     private void GenerateMonsterList()
     {
@@ -79,7 +81,7 @@ public class MonsterSpawner : MonoBehaviour
             }
         }
     }
-    void OnLevelUp()
+    void OnLevelBegin()
     {
         difficultyDemand += difficultyIncreaseRate;
         GenerateMonsterList();
@@ -91,15 +93,15 @@ public class MonsterSpawner : MonoBehaviour
             meleeMonsterCnt--;
         else
             rangedMonsterCnt--;
+
+        if (meleeMonsters2Spawn.Count + rangedMonsters2Spawn.Count + meleeMonsterCnt + rangedMonsterCnt <= 0)
+        {
+            OnAllMonsterCleared?.Invoke();
+        }
     }
 
     private void Update()
     {
-        if (meleeMonsters2Spawn.Count + rangedMonsters2Spawn.Count <= 0)
-        {
-            LevelMgr.Instance.LevelUp();
-            return;
-        }
         if(meleeMonsterCnt < meleeMonsterCntLimit && meleeMonsters2Spawn.Count>0)
         {
             SpawnMonster(MonsterType.Melee);

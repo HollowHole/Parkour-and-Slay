@@ -12,6 +12,8 @@ public class SwerveManager : MonoBehaviour
     public Action OnSwerveBegin;
     public Action OnSwerveEnd;
 
+    public Action OnSwerveZonePassed;
+
     public static SwerveManager instance;
 
     private void Awake()
@@ -30,7 +32,7 @@ public class SwerveManager : MonoBehaviour
     public void Swerve(Global.SwerveDirection swerveDirection, Vector3 swerveCenter)
     {
 
-        //Æô¶¯Ğ¯³Ì
+        //å¯åŠ¨æºç¨‹
         _swerveDirection = swerveDirection;
 
         StartCoroutine(SwerveAllObjects(swerveDirection, swerveCenter));
@@ -80,12 +82,14 @@ public class SwerveManager : MonoBehaviour
                 offset = t.position - pos;
                 t.position = pos;
             }
-            //Íæ¼ÒµÄÎ»ÖÃÒ²ÒªĞŞ¸Ä
+            //ç©å®¶çš„ä½ç½®ä¹Ÿè¦ä¿®æ”¹
             transform.position -= offset;
             yield return null;
         }*/
 
         OnSwerveEnd?.Invoke();
+
+        OnSwerveZonePassed?.Invoke();
 
     }
 }

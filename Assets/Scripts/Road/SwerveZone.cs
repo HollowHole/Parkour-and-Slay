@@ -15,8 +15,8 @@ public class SwerveZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             bool moveLeft = Input.GetAxis("Horizontal") < 0;
-            //bool moveRight = Input.GetAxis("Horizontal") > 0;
-            bool moveRight = !moveLeft;
+            bool moveRight = Input.GetAxis("Horizontal") > 0;
+            //bool moveRight = !moveLeft;
 
 
             if (moveLeft && _swerveDirection == Global.SwerveDirection.LEFT)
@@ -26,7 +26,7 @@ public class SwerveZone : MonoBehaviour
                 Debug.Log(swerveCenter);
                 //swerveCenter.x = 0;
                 SwerveManager.instance.Swerve(_swerveDirection,swerveCenter);
-                Destroy(gameObject);
+                Hide();
 
             }
             else if(moveRight && _swerveDirection == Global.SwerveDirection.RIGHT)
@@ -37,7 +37,7 @@ public class SwerveZone : MonoBehaviour
                 //swerveCenter.x = 0;
 
                 SwerveManager.instance.Swerve(_swerveDirection, swerveCenter);
-                Destroy(gameObject);
+                Hide() ;
             }
         }
     }
@@ -45,7 +45,14 @@ public class SwerveZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Hide();
+
+            SwerveManager.instance.OnSwerveZonePassed?.Invoke();
         }
+    }
+    public void Hide()
+    {
+        transform.SetParent(SwerveManager.instance.transform, false);
+
     }
 }

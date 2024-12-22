@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class RoadSpawn : MonoBehaviour
 {
-    [Tooltip("¹Ø¿¨ÄÚËùÓĞÂ·¿éÀàĞÍ")]
+    [Tooltip("å…³å¡å†…æ‰€æœ‰è·¯å—ç±»å‹")]
     public List<GameObject> RoadPieces;
     public GameObject SwerveZonePrefab;
+    GameObject swerveZone;
     public List<Material> Materials;
     private int materialIndex = 0;
     public Transform Road;
@@ -21,9 +22,9 @@ public class RoadSpawn : MonoBehaviour
 
     [SerializeField]private float ZofDespawn = -8f;
 
-    [SerializeField]bool stopSpawn = false;//Éú³ÉÍäµÀÊ±´¥·¢£¬×ªÍä³É¹¦ºó¸´Î»
+    [SerializeField]bool stopSpawn = false;//ç”Ÿæˆå¼¯é“æ—¶è§¦å‘ï¼Œè½¬å¼¯æˆåŠŸåå¤ä½
 
-    [SerializeField]private int collidingObjectCount;//ÅĞ¶¨ÇøÓòÄÚÃ»ÓĞRoadBlockÁË¾ÍÉú³ÉĞÂµÄ
+    [SerializeField]private int collidingObjectCount;//åˆ¤å®šåŒºåŸŸå†…æ²¡æœ‰RoadBlockäº†å°±ç”Ÿæˆæ–°çš„
 
     [SerializeField] private bool spawnSwerveTrigger;
 
@@ -38,6 +39,8 @@ public class RoadSpawn : MonoBehaviour
     private void Start()
     {
         pool = RoadBlockObjectPool.Instance;
+        swerveZone = Instantiate(SwerveZonePrefab, transform);
+        swerveZone.GetComponent<SwerveZone>().Hide();
 
         collidingObjectCount = 0;
 
@@ -53,6 +56,8 @@ public class RoadSpawn : MonoBehaviour
         SwerveManager.instance.OnSwerveEnd += AllowSpawn;
 
         StartCoroutine(GenerateInitRoad());
+        //å…³å¡ç»“æŸç”Ÿæˆè½¬å¼¯
+        LevelMgr.Instance.OnLevelEnd += () => { spawnSwerveTrigger = true; };
     }
     private void Update()
     {
@@ -137,7 +142,7 @@ public class RoadSpawn : MonoBehaviour
         //
         lastSpawnedPiece = pool.Spawn(spawnPoint, Quaternion.identity, Road).transform;
         AllRoadPieceOnUse.Add(lastSpawnedPiece.gameObject);
-        //Ëæ»úÉÏ¸ö²ÄÖÊ
+        //éšæœºä¸Šä¸ªæè´¨
         lastSpawnedPiece.GetComponent<MeshRenderer>().material = Materials[materialIndex];
         materialIndex++;
         if (materialIndex >= Materials.Count) { materialIndex = 0; }
@@ -150,7 +155,7 @@ public class RoadSpawn : MonoBehaviour
         spawnPoint.x = 0;
         //
         bool swerveZoneSetParent = false;
-        GameObject swerveZone = Instantiate(SwerveZonePrefab, spawnPoint, Quaternion.identity);
+        
 
         Vector3 curSpawnPoint = spawnPoint;
         
@@ -167,7 +172,8 @@ public class RoadSpawn : MonoBehaviour
 
             if(!swerveZoneSetParent) {
                 lastSpawnedPiece = go.transform;
-                swerveZone.transform.SetParent(go.transform);
+                swerveZone.transform.SetParent(go.transform,true);
+                swerveZone.transform.position = go.transform.position;
                 swerveZoneSetParent = true;
                 if(left) swerveZone.GetComponent<SwerveZone>().SetSwerveDirection(Global.SwerveDirection.LEFT);
                 else swerveZone.GetComponent<SwerveZone>().SetSwerveDirection(Global.SwerveDirection.RIGHT);

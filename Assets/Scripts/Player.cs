@@ -67,6 +67,8 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     private void Start()
     {
         buffUIZone = GameObject.Find("BuffUIZone").transform;
+
+        LevelMgr.Instance.OnLevelEnd += OnLevelEnd;
     }
 
     private void ReadInitData()
@@ -79,7 +81,10 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         SpeedUpRate = InitDataSO.IniSpeedUpRate;
     }
 
-
+    void OnLevelEnd()
+    {
+        buffMgr.ClearAllBuff();
+    }
     private void FixedUpdate()
     {
         velocity = rb.velocity;

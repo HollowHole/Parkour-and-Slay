@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -60,11 +61,35 @@ public class CardManager : MonoBehaviour
     {
         StartCoroutine(GenerateEnergyNaturally());
 
+        SpawnAllCardsInDeck();
+
+        LevelMgr.Instance.OnLevelEnd += RemoveAllCards;
+        LevelMgr.Instance.OnLevelBegin += SpawnAllCardsInDeck;
+    }
+    void SpawnAllCardsInDeck()
+    {
         foreach (CardProto card in CardDeck)
         {
-            CardProto c = Instantiate(card,transform);
+            CardProto c = Instantiate(card, transform);
             DrawPileCards.Add(c);
+            c.SetHandZoneBehavior();
         }
+    }
+    public void RemoveAllCards()
+    {
+        foreach(CardProto card in DrawPileCards) {
+            Destroy(card.gameObject);
+        }
+        foreach (CardProto card in DiscardPileCards)
+        {
+            Destroy(card.gameObject);
+        }
+        foreach(Transform cardGo in HandCardZone.transform)
+        {
+            Destroy(cardGo.gameObject);
+        }
+        DrawPileCards = new List<CardProto>();
+        DiscardPileCards = new List<CardProto>();
     }
     private void Update()
     {
@@ -142,6 +167,21 @@ public class CardManager : MonoBehaviour
         {
             Discard(card);
         }
+
+        //Debug cardPile information
+        //StringBuilder stringBuilder = new StringBuilder();
+        //foreach (CardProto c in DrawPileCards)
+        //{
+        //    stringBuilder.Append(c.ToString()+" ");
+        //}
+        //Debug.Log("DrawPileCard:" + stringBuilder);
+        //stringBuilder = new StringBuilder();
+        //foreach (CardProto c in DiscardPileCards)
+        //{
+        //    stringBuilder.Append(c.ToString() + " ");
+        //}
+        //Debug.Log("DiscardPileCards:" + stringBuilder);
+        //stringBuilder = new StringBuilder();
     }
     void Discard(CardProto card)
     {
@@ -160,7 +200,7 @@ public class CardManager : MonoBehaviour
     {
         if (DrawPileCards.Count == 0)
         {
-            if (DrawFromDiscardPile() == false)
+            if (Shuffle() == false)
                 return false;
         }
         CardProto card = DrawPileCards[DrawPileCards.Count - 1];
@@ -170,7 +210,7 @@ public class CardManager : MonoBehaviour
         return true;
     }
 
-    private bool DrawFromDiscardPile()
+    private bool Shuffle()//从弃牌堆洗到抽牌堆
     {
         if (DiscardPileCards.Count == 0)
             return false;

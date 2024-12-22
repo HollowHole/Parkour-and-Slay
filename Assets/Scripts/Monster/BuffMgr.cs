@@ -35,6 +35,14 @@ public class BuffMgr : MonoBehaviour
 
         }
     }
+
+    public void ClearAllBuff()
+    {
+        foreach(Buff buff in BuffList)
+        {
+            buff.Finish();
+        }
+    }
 }
 //public class Buff
 //{
@@ -102,7 +110,7 @@ public abstract class Buff
             BuffUIZone.HelpDestroy(myUI);
         }
     }
-    protected void Finish()
+    public void Finish()
     {
         LastTime = 0;
     }

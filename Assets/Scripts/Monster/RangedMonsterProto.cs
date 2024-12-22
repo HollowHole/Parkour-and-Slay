@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RangedMonsterProto : MonsterProto
 {
-    new RangedMonsterProtoSO monsterSO;
+    RangedMonsterProtoSO m_monsterSO;
     public Vector3 StayPoint;
     [SerializeField] private GameObject BulletPrefab;
     protected float AttackTimer;
@@ -15,12 +15,12 @@ public class RangedMonsterProto : MonsterProto
     protected override void Awake()
     {
         base.Awake();
-        monsterSO = base.monsterSO as RangedMonsterProtoSO;
+        m_monsterSO = base.monsterSO as RangedMonsterProtoSO;
     }
     protected override void Start()
     {
         base.Start();
-        AttackTimer = monsterSO.AttackInterval;
+        AttackTimer = m_monsterSO.AttackInterval;
     }
     protected override void Update()
     {
@@ -36,7 +36,7 @@ public class RangedMonsterProto : MonsterProto
         }
         else
         {
-            AttackTimer = monsterSO.AttackInterval;
+            AttackTimer = m_monsterSO.AttackInterval;
             SpawnBullets();
             ApplyBasicAttriAndBuffAffect2Bullet();
         }
@@ -46,8 +46,8 @@ public class RangedMonsterProto : MonsterProto
         foreach (GameObject bullet in myBullets)
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
-            Vector3 bulletV = transform.forward * monsterSO.BulletSpeed;
-            b.ApplyBasicAttri(monsterSO.TargetTag, bulletV, monsterSO.BulletDamage);
+            Vector3 bulletV = transform.forward * m_monsterSO.BulletSpeed;
+            b.ApplyBasicAttri(m_monsterSO.TargetTag, bulletV, m_monsterSO.BulletDamage);
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
@@ -63,9 +63,9 @@ public class RangedMonsterProto : MonsterProto
     {
         float dist = transform.position.z - player.transform.position.z;
         Vector3 v = Vector3.zero;
-        if (dist > monsterSO.AttackRange)
+        if (dist > m_monsterSO.AttackRange)
         {
-            v = transform.forward * (monsterSO.Speed + player.Speed);
+            v = transform.forward * (m_monsterSO.Speed + player.Speed);
         }
         rb .velocity = v * Global.SpeedFactor;
     }
