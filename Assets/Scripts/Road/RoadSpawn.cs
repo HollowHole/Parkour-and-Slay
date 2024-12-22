@@ -91,7 +91,7 @@ public class RoadSpawn : MonoBehaviour
             if(obj.transform.position.z < ZofDespawn)
             {
                 pool.Despawn(obj);
-                AllRoadPieceOnUse.Remove(obj.gameObject);
+                AllRoadPieceOnUse.Remove(obj);
             }
         }
     }

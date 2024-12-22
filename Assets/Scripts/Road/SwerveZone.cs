@@ -52,7 +52,7 @@ public class SwerveZone : MonoBehaviour
     }
     public void Hide()
     {
-        transform.SetParent(SwerveManager.instance.transform, false);
-
+        transform.SetParent(SwerveManager.instance.transform,true);
+        transform.position = SwerveManager.instance.transform.position;
     }
 }

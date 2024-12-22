@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SwerveManager : MonoBehaviour
 {
-    [SerializeField] private List<Transform> Objects2Swerve = new List<Transform>();
+    private List<Transform> Objects2Swerve = new List<Transform>();
 
     private Global.SwerveDirection _swerveDirection;
 
