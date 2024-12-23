@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31af29a80579abe4b8986f782cd49e11, type: 3}
   m_Name: "\u7EF7\u5E26\u724CSO"
   m_EditorClassIdentifier: 
+  CardTypes: 00000000
+  CardName: "\u7EF7\u5E26"
+  CardDesc: "\u56DE\u590D3\u70B9\u8840\u91CF\u3002\u6D88\u8017\u3002"
   EnergyCost: 1
   SpeedUpValue: 0
   DrawCardCnt: 0

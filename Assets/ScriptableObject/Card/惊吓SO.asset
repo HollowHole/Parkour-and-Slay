@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31af29a80579abe4b8986f782cd49e11, type: 3}
   m_Name: "\u60CA\u5413SO"
   m_EditorClassIdentifier: 
+  CardTypes: 
+  CardName: "\u60CA\u5413"
+  CardDesc: "\u51CF8\u70B9\u79FB\u901F"
   EnergyCost: 1
-  SpeedUpValue: -20
+  SpeedUpValue: -8
   DrawCardCnt: 0
   isPierce: 0
   BulletSpeed: 0

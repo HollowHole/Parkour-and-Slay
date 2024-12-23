@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: "\u706B\u7403\u724CSO"
   m_EditorClassIdentifier: 
   CardTypes: 
+  CardName: "\u706B\u7403"
+  CardDesc: "\u53D1\u5C04\u706B\u7403\u5BF9\u76F4\u7EBF\u7B2C\u4E00\u4E2A\u654C\u4EBA\u9020\u62106\u70B9\u4F24\u5BB3"
   EnergyCost: 1
   SpeedUpValue: 0
   DrawCardCnt: 0
   isPierce: 0
   BulletSpeed: 20
   TargetTag: Monster
-  Damage: 20
+  Damage: 6
   CD: 3

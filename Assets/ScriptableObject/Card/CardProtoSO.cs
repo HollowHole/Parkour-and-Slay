@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public enum CardType { Comsume };
@@ -9,6 +10,11 @@ public enum CardType { Comsume };
 public class CardProtoSO : ScriptableObject
 {
     public List<CardType> CardTypes;
+
+    [Tooltip("卡牌名称")]
+    public string CardName = "卡牌名称";
+    [Tooltip("卡牌描述")]
+    public string CardDesc = "卡牌描述";
 
     [Tooltip("费用")]
     public int EnergyCost = 1;

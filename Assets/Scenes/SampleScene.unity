@@ -444,6 +444,10 @@ MonoBehaviour:
   - {fileID: -4144954298468955936, guid: fcdcbf7ceeca3b84893cd385b4df6773, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
+  - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
+  - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
+  - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
+  - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   HandCardZone: {fileID: 973173099}
   MaxHandCnt: 4
   MaxEnergyLimit: 4

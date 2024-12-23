@@ -22,7 +22,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     private float capsuleRadius;
 
     private Rigidbody rb;
-    private CapsuleCollider capsuleCollider;
+    private MeshCollider meshCollider;
     Transform buffUIZone;
     BuffMgr buffMgr;
 
@@ -58,11 +58,12 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 
         ReadInitData();
 
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        meshCollider = GetComponentInChildren<MeshCollider>();
         cam = FindObjectOfType<Camera>();
         rb = GetComponent<Rigidbody>();
         buffMgr = GetComponent<BuffMgr>();
-        capsuleRadius = capsuleCollider.radius;
+        // capsuleRadius = capsuleCollider.radius;
+        capsuleRadius = meshCollider.bounds.size.x / 2;
     }
     private void Start()
     {
@@ -124,7 +125,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         float radius = capsuleRadius * 0.9f;//避免侧面碰撞
         float overLapCapsuleOffset = 1.1f;//到玩家脚底的距离+0.1f
         Vector3 pointBottom = transform.position + transform.up * radius - transform.up * (overLapCapsuleOffset);
-        Vector3 pointTop = transform.position + transform.up * capsuleCollider.height / 2 - transform.up * radius;
+        Vector3 pointTop = transform.position + transform.up * meshCollider.bounds.size.y/2 - transform.up * radius;
         LayerMask ignoreLayer = ~LayerMask.GetMask("Player");
 
         Collider[] colliders = Physics.OverlapCapsule(pointBottom, pointTop, radius, ignoreLayer);
