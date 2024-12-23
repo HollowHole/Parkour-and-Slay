@@ -14,10 +14,10 @@ public class CardExhaust : CardProto
     {
         base.OnUse();
     }
-    protected override void ApplyMyBuffOnHit(Collider collider)
+    protected override void ApplyMyBuffOnHit(Transform target)
     {
 
-        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.Time, m_cardSO.PunishValue));
+        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.Time, m_cardSO.PunishValue));
     }
     public class MyBuff : Buff
     {

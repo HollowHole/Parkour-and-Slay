@@ -26,6 +26,7 @@ public class CardProto : MonoBehaviour
 
     private float coolDownTimer = 0;//0表示冷却完毕
 
+    int IDinBonusList;
     public List<CardType> cardTypes {  get; set; }
     public int EnergyCost{get;set;}
     public float SpeedUpValue {get;set;}
@@ -67,9 +68,10 @@ public class CardProto : MonoBehaviour
             coolDownTimer -= Time.deltaTime;
         }
     }
-    public void SetBonusZoneBehavior()
+    public void SetBonusZoneBehavior(int _IDinBonusList)
     {
         GetComponent<Button>().onClick.RemoveAllListeners();
+        IDinBonusList = _IDinBonusList;
         GetComponent<Button>().onClick.AddListener(OnBonusZoneClick);
     }
     public void SetHandZoneBehavior()
@@ -79,7 +81,7 @@ public class CardProto : MonoBehaviour
     }
     public void OnBonusZoneClick()//在奖励界面中的点击事件
     {
-        BonusMgr.Instance.Choose(this);
+        BonusMgr.Instance.Choose(this,IDinBonusList);
     }
     public void OnHandZoneClick()//在手牌中的点击事件
     {
@@ -126,7 +128,7 @@ public class CardProto : MonoBehaviour
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
-    protected virtual void ApplyMyBuffOnHit(Collider collider) {
+    protected virtual void ApplyMyBuffOnHit(Transform target) {
         
     }
 
@@ -134,7 +136,10 @@ public class CardProto : MonoBehaviour
     {
         GameObject b = (Instantiate(BulletPrefab, GameObject.Find("AllBullets").transform, false));
         myBullets.Add(b);
-        b.transform.position = Player.Instance.transform.position;
+
+        Vector3 bulletPos =  Player.Instance.transform.position;
+        bulletPos.y += Player.BulletShootHeight;
+        b.transform.position =  bulletPos;
     }
     public virtual int GetCost()
     {

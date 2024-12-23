@@ -75,6 +75,10 @@ public class CardManager : MonoBehaviour
             c.SetHandZoneBehavior();
         }
     }
+    public void AddNewCardToDeck(CardProto card)
+    {
+        CardDeck.Add(card);
+    }
     public void RemoveAllCards()
     {
         foreach(CardProto card in DrawPileCards) {

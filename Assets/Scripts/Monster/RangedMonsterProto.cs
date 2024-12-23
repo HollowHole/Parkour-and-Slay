@@ -29,6 +29,10 @@ public class RangedMonsterProto : MonsterProto
 
     protected virtual void HandleAttack()
     {
+        if(transform.position.z - player.transform.position.z > m_monsterSO.AttackRange)
+        {
+            return;
+        }
         if (AttackTimer > 0)
         {
             AttackTimer -= Time.deltaTime;
@@ -68,5 +72,5 @@ public class RangedMonsterProto : MonsterProto
         }
         rb .velocity = v * Global.SpeedFactor;
     }
-    protected virtual void ApplyMyBuffOnHit(Collider collider) { }
+    protected virtual void ApplyMyBuffOnHit(Transform target) { }
 }

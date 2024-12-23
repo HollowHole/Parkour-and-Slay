@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 {
+    public const float BulletShootHeight = 0.8f;//子弹发射的高度（距离playerPosition)
     public static Player Instance { get; private set; }
     [SerializeField]public PlayerIniData InitDataSO;
     // Start is called before the first frame update
@@ -19,7 +20,6 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     private Vector3 velocity;
     float LRMoveSpeed;
     private bool isGrounded;
-    private float capsuleRadius;
 
     private Rigidbody rb;
     private MeshCollider meshCollider;
@@ -43,6 +43,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
             if(value < 0)
             {
                 hp = 0;
+                PlayerDie();
             }
             else
             {
@@ -62,8 +63,6 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         cam = FindObjectOfType<Camera>();
         rb = GetComponent<Rigidbody>();
         buffMgr = GetComponent<BuffMgr>();
-        // capsuleRadius = capsuleCollider.radius;
-        capsuleRadius = meshCollider.bounds.size.x / 2;
     }
     private void Start()
     {
@@ -95,6 +94,11 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         HandleSpeedUp();
         rb.velocity = velocity;
     }
+    void PlayerDie()
+    {
+        //死亡动画，玩家死亡音效（如果有游戏失败音效，放GameOverMgr里
+        transform.localScale = Vector3.zero;
+    }
 
     private void HandleSpeedUp()
     {
@@ -122,14 +126,16 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     }
     private void GroundedCheck()
     {
-        float radius = capsuleRadius * 0.9f;//避免侧面碰撞
-        float overLapCapsuleOffset = 1.1f;//到玩家脚底的距离+0.1f
-        Vector3 pointBottom = transform.position + transform.up * radius - transform.up * (overLapCapsuleOffset);
-        Vector3 pointTop = transform.position + transform.up * meshCollider.bounds.size.y/2 - transform.up * radius;
+        float radius = meshCollider.bounds.extents.x * 0.9f;//避免侧面碰撞
+        //float overLapCapsuleOffset = meshCollider.bounds.extents.y + 0.1f;//到玩家脚底的距离+0.1f
+        //Vector3 pointBottom = transform.position  - transform.up * (overLapCapsuleOffset);
+        //Vector3 pointTop = transform.position + transform.up * meshCollider.bounds.size.y/2 - transform.up * radius;
+        Vector3 pointBottom = transform.position + transform.up * 0.2f;
+        Vector3 pointTop = pointBottom + transform.up * meshCollider.bounds.extents.y;
         LayerMask ignoreLayer = ~LayerMask.GetMask("Player");
 
         Collider[] colliders = Physics.OverlapCapsule(pointBottom, pointTop, radius, ignoreLayer);
-        Debug.DrawLine(pointBottom, pointTop,Color.green);
+        Debug.DrawLine(pointBottom, pointTop,Color.black);
 
         /*foreach (Collider collider in colliders) { 
             Debug.Log(collider.gameObject.name);

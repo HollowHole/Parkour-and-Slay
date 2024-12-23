@@ -16,10 +16,10 @@ public class CardHoppingLeftAndRight : CardProto
         //Debug.Log("use " + gameObject.name);
         base.OnUse();
     }
-    protected override void ApplyMyBuffOnHit(Collider collider)
+    protected override void ApplyMyBuffOnHit(Transform target)
     {
         //Debug.Log("hit" + collider.name);
-        collider.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.DodgeSuccBonus,m_cardSO.DodgeFailPunish));
+        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.DodgeSuccBonus,m_cardSO.DodgeFailPunish));
     }
     protected override void SpawnBullets()
     {

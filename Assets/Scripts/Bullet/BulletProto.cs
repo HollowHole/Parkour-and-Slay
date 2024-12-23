@@ -14,7 +14,7 @@ public class BulletProto : MonoBehaviour
     bool isPierce;
     float damage;
 
-    public Action<Collider> OnHitTarget;
+    public Action<Transform> OnHitTarget;
 
     public bool isHostile => targetTag == "Player";
     public string GetSource => sourceTag;
@@ -57,19 +57,24 @@ public class BulletProto : MonoBehaviour
     {
         if (other.CompareTag(targetTag))
         {
-            Debug.Log("Bullet Hit "+other.name);
-            OnHitTarget(other);
+            Transform target = other.transform;
+            //用ICanTakeDmg定位
+            ICanTakeDmg cpnt = other.GetComponent<ICanTakeDmg>();
+            if (cpnt == null)
+                target = target.parent;
+            //cpnt.TakeDamage(damage);
+
+            Debug.Log("Bullet Hit "+target.name);
+            OnHitTarget(target);
 
             if (!isPierce)
                 Destroy(gameObject);
         }
     }
-    void BasicHitEffect(Collider target)
+    void BasicHitEffect(Transform target)
     {
-        ICanTakeDmg cpnt = target.GetComponent<ICanTakeDmg>();
-        if (cpnt == null)
-            cpnt = target.transform.parent.GetComponent<ICanTakeDmg>();
-        cpnt.TakeDamage(damage);
+        
+        target.GetComponent<ICanTakeDmg>().TakeDamage(damage);
         if (isHostile)
         {
             DodgeJudger.Instance.SuccessfullyHit(gameObject);

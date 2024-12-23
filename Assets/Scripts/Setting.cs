@@ -15,7 +15,7 @@ public class Setting : MonoBehaviour
     {
         transform.localScale = Vector3.zero;
         isOpen = false;
-        Time.timeScale = 1;
+        TimeMgr.Instance.ResumeGame();
     }
     public void GoMainMenu()
     {
@@ -24,7 +24,7 @@ public class Setting : MonoBehaviour
     public void OpenSettingMenu()
     {
         transform.localScale = Vector3.one;
-        Time.timeScale = 0;
+        TimeMgr.Instance.PauseGame();
         isOpen = true;
     }
     private void Update()

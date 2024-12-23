@@ -9,7 +9,12 @@ public class BonusMgr : MonoBehaviour
 
     [SerializeField] List<CardProto> AllBonusCards;
 
-    CardProto CardGonnaChoose;
+    [SerializeField] Transform BonusCardZone;
+    [Tooltip("可选奖励卡牌的数量")]
+    public int BonusCardCount = 3;
+    CardProto ChosenCard;
+    int ChosenCardID;
+
     private void Awake()
     {
         Instance = this;
@@ -20,23 +25,41 @@ public class BonusMgr : MonoBehaviour
     {
         LevelMgr.Instance.OnLevelEnd += GenerateBonusCards;
         LevelMgr.Instance.OnLevelEnd += OpenBonusMenu;
-        LevelMgr.Instance.OnLevelEnd += () => { Time.timeScale = 0; };
+        LevelMgr.Instance.OnLevelEnd += () => { TimeMgr.Instance.PauseGame(); };
     }
     void GenerateBonusCards()
     {
         //clear old cards
+        int childCount = BonusCardZone.childCount;
+        for (int i = childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(BonusCardZone.GetChild(i).gameObject);
+        }
         //generate new cards
+        for (int i = 0; i < BonusCardCount; i++)
+        {
+            int index = Random.Range(0, AllBonusCards.Count);
+            CardProto BonusCard = Instantiate(AllBonusCards[index]);//等权随机选一个
+            BonusCard.transform.SetParent(BonusCardZone,false);
+            BonusCard.SetBonusZoneBehavior(index);
+        }
     }
-    public void Choose(CardProto card)
+    public void Choose(CardProto card,int cardIDinBonusList)
     {
-        CardGonnaChoose = card;
+        ChosenCardID = cardIDinBonusList;
+        if (ChosenCard != null)
+            ChosenCard.Unpick();
+        ChosenCard = card;
+        ChosenCard.OnPick();
     }
     public void Comfirm()
     {
-        if (CardGonnaChoose == null)
+        if (ChosenCard == null)
             return;
 
         //add to card deck
+        CardManager.Instance.AddNewCardToDeck(AllBonusCards[ChosenCardID]);
+        //
         CloseBonusMenu();
     }
     public void Skip()
@@ -50,6 +73,6 @@ public class BonusMgr : MonoBehaviour
     void CloseBonusMenu()
     {
         BonusMenu.transform.localScale = Vector3.zero;
-        Time.timeScale = 1;
+        TimeMgr.Instance.ResumeGame();
     }
 }
