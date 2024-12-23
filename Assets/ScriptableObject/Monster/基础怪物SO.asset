@@ -17,8 +17,8 @@ MonoBehaviour:
   Speed: 30
   SpeedUpRate: 2
   MaxSpeedLimit: 40
-  CollideDamage: 0
-  AffectSpeedAbility: 0
+  CollideDamage: 10
+  AffectSpeedAbility: -5
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
   DifficultyValue: 0.3
