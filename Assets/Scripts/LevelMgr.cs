@@ -8,12 +8,13 @@ public class LevelMgr : MonoBehaviour
     public static LevelMgr Instance;
 
     int levelCnt;
+    public int CurLevelCnt => levelCnt;
     public Action OnLevelEnd;
     public Action OnLevelBegin;
     private void Awake()
     {
         Instance = this;
-        levelCnt = 0;
+        levelCnt = 1;
     }
     private void Start()
     {

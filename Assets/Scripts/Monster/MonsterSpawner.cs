@@ -32,8 +32,8 @@ public class MonsterSpawner : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        difficultyDemand = 0 + difficultyIncreaseRate;
-        GenerateMonsterList();
+
+        OnLevelBegin();
     }
     private void Start()
     {
@@ -83,7 +83,7 @@ public class MonsterSpawner : MonoBehaviour
     }
     void OnLevelBegin()
     {
-        difficultyDemand += difficultyIncreaseRate;
+        difficultyDemand =LevelMgr.Instance.CurLevelCnt * difficultyIncreaseRate;
         GenerateMonsterList();
     }
     public void OnMonsterDisappear(MonsterProto monster)
