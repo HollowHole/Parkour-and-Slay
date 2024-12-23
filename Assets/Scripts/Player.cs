@@ -43,7 +43,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
             if(value < 0)
             {
                 hp = 0;
-                PlayerDie();
+                // PlayerDie();
             }
             else
             {
@@ -93,6 +93,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         HandleJumpAndFall();
         HandleSpeedUp();
         rb.velocity = velocity;
+        Debug.Log(velocity);
     }
     void PlayerDie()
     {

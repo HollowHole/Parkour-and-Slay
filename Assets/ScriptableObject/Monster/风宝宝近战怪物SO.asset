@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bdb50a82544dc64bbe431d7b66fdadb, type: 3}
-  m_Name: "\u57FA\u7840\u602A\u7269SO"
+  m_Name: "\u98CE\u5B9D\u5B9D\u8FD1\u6218\u602A\u7269SO"
   m_EditorClassIdentifier: 
   Type: 0
-  Hp: 15
-  Speed: 30
-  SpeedUpRate: 2
-  MaxSpeedLimit: 40
+  Hp: 6
+  Speed: 50
+  SpeedUpRate: 4
+  MaxSpeedLimit: 70
   CollideDamage: 10
-  AffectSpeedAbility: -5
+  AffectSpeedAbility: -10
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
-  DifficultyValue: 0.3
+  DifficultyValue: 0.1

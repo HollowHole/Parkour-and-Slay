@@ -438,10 +438,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardDeck:
-  - {fileID: 3243663127498769334, guid: 93402aa7fb87ea847a9053abc82e33fd, type: 3}
-  - {fileID: 3982994717128580422, guid: b512b8379722a0a40ad801e78ef83f9e, type: 3}
-  - {fileID: 3243663127498769334, guid: 9e7c7d1e7ffe61c4fbee68a54858b636, type: 3}
-  - {fileID: -4144954298468955936, guid: fcdcbf7ceeca3b84893cd385b4df6773, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
@@ -1041,7 +1037,7 @@ Transform:
   m_GameObject: {fileID: 590920824}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.38, z: 120}
+  m_LocalPosition: {x: 0, y: 2.38, z: 110}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1921,13 +1917,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2752179, y: -0, z: -0, w: 0.9613819}
-  m_LocalPosition: {x: 0.00999999, y: 3.6100001, z: -3.3}
+  m_LocalRotation: {x: 0.20526476, y: 0, z: 0, w: 0.9787065}
+  m_LocalPosition: {x: 0.00999999, y: 2, z: -2.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1493299027}
-  m_LocalEulerAnglesHint: {x: 31.95, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.69, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2741,7 +2737,7 @@ MonoBehaviour:
   meleeMonsterCntLimit: 3
   MonsterSpawnPoint: {fileID: 883567309}
   spawnXBias: 3
-  rangedMonsterCntLimit: 1
+  rangedMonsterCntLimit: 3
 --- !u!4 &1456790816
 Transform:
   m_ObjectHideFlags: 0

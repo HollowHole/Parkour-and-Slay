@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6466b7c054496fe4d86806e31a287248, type: 3}
-  m_Name: "\u57FA\u7840\u8FDC\u7A0B\u602A\u7269SO"
+  m_Name: "\u706B\u5B9D\u5B9D\u8FDC\u7A0B\u602A\u7269SO"
   m_EditorClassIdentifier: 
   Type: 1
-  Hp: 6
-  Speed: 1
-  SpeedUpRate: 1
-  MaxSpeedLimit: 1
+  Hp: 15
+  Speed: 20
+  SpeedUpRate: 0
+  MaxSpeedLimit: 20
   CollideDamage: 0
   AffectSpeedAbility: 0
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
-  DifficultyValue: 0.1
+  DifficultyValue: 0.5
   AttackRange: 23
   AttackInterval: 5
-  BulletSpeed: 5
-  BulletSpeedUpRate: 1
+  BulletSpeed: 10
+  BulletSpeedUpRate: 0
   TargetTag: Player
-  BulletDamage: 1
+  BulletDamage: 5

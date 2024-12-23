@@ -61,6 +61,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         HandleMovement();
         HandleRotation();
         HandleDisappear();
+        // Debug.Log(rb.velocity);
     }
 
     protected virtual void HandleDisappear()
@@ -78,6 +79,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         v.y = 0;
         v *= speed;
         v -= new Vector3(0, 0, player.Speed);
+        v.x = Math.Clamp(v.x, -0.04f, 0.04f);
         rb.velocity = v * Global.SpeedFactor;
         //Debug.Log(gameObject.name + " has velocity " + rb.velocity);
 
