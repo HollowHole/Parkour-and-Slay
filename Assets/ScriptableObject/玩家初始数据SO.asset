@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "\u73A9\u5BB6\u521D\u59CB\u6570\u636ESO"
   m_EditorClassIdentifier: 
   LRMoveSpeed: 2
-  IniSpeed: 100
-  IniSpeedUpRate: 2
+  IniSpeed: 200
+  IniSpeedUpRate: 1
   IniJumpHeight: 2
   IniMaxHp: 60
-  SpeedLimit: 200
+  SpeedLimit: 400

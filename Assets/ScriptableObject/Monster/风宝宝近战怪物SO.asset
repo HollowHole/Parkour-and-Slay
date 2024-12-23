@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Hp: 6
-  Speed: 50
+  Speed: 80
   SpeedUpRate: 4
-  MaxSpeedLimit: 70
+  MaxSpeedLimit: 100
   CollideDamage: 10
   AffectSpeedAbility: -10
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
-  DifficultyValue: 0.1
+  DifficultyValue: 0.05
