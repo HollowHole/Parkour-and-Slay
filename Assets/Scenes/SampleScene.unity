@@ -1212,7 +1212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ba985c72bd120418c3c6c2f8d403c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Objects2Swerve: []
 --- !u!1 &883567308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,8 +2001,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultyBias: 0.3
   AllSpawnableMonsters:
-  - {fileID: -5106301686479512116, guid: 8c117c8deacc6e64992b85b78a23e36f, type: 3}
-  - {fileID: 9135915996067539127, guid: 313e7c1cba2144048af20f858d4dcf0a, type: 3}
+  - {fileID: 8473279208959269314, guid: eaf36464e73fc144ea0c0587e85c146d, type: 3}
+  - {fileID: 3929496286462209729, guid: 8a0d7309dd0856d4daa3742a1b89b843, type: 3}
   meleeMonsterCntLimit: 3
   MonsterSpawnPoint: {fileID: 883567309}
   spawnXBias: 3

@@ -108,11 +108,13 @@ public class CardManager : MonoBehaviour
         {
             if (ChosenCard != CardGonnaChoose)
             {
-                ChosenCard?.Unpick();
+                if (ChosenCard != null)
+                ChosenCard.Unpick();
 
                 ChosenCard = CardGonnaChoose;
 
-                ChosenCard?.OnPick();
+                if (ChosenCard != null)
+                ChosenCard.OnPick();
             }
             //else if(useCardTrigger && ChosenCard.cardTypes.Contains(CardType.Comsume))//使用了消耗卡，则卡已被销毁
             //{

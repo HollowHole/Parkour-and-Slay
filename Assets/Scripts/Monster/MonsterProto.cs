@@ -42,6 +42,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         
         rb = GetComponent<Rigidbody>();
+        // rb = GetComponentInChildren<Rigidbody>();
         ReadSO();
         
     }
