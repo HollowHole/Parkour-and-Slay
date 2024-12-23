@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 {
     public const float BulletShootHeight = 0.8f;//子弹发射的高度（距离playerPosition)
+    public const float PlayerInvincibilityFrameOnHit = 0.1f;
     public static Player Instance { get; private set; }
     [SerializeField]public PlayerIniData InitDataSO;
     // Start is called before the first frame update
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 
     private float hp;
     private float MaxHp;
+    private float InvincibalTimer;
+    public bool isInvincibal => InvincibalTimer > 0;
     public Action<float,float> OnHpChange;
     
     public float Hp
@@ -93,7 +96,6 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         HandleJumpAndFall();
         HandleSpeedUp();
         rb.velocity = velocity;
-        Debug.Log(velocity);
     }
     void PlayerDie()
     {
@@ -109,6 +111,9 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 
     private void Update()
     {
+        if(InvincibalTimer > 0 )
+            InvincibalTimer -= Time.deltaTime;
+
         HandleInput();
         buffMgr.HandleBuffEffect();
     }
@@ -155,6 +160,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         float vx = 0;
         vx = Input.GetAxis("Horizontal") * LRMoveSpeed;
         velocity.x = vx;
+        velocity.z = -transform.position.z;
     }
     void HandleJumpAndFall()
     {
@@ -180,7 +186,13 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     
     void ICanTakeDmg.TakeDamage(float damage)
     {
+        if (isInvincibal)
+        {
+            return;
+        }
         Hp-=damage;
+        if (damage > 0)
+            InvincibalTimer = PlayerInvincibilityFrameOnHit;
     }
 
     public void AffectSpeed(float value)

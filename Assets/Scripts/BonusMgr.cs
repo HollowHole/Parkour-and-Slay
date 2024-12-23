@@ -29,12 +29,7 @@ public class BonusMgr : MonoBehaviour
     }
     void GenerateBonusCards()
     {
-        //clear old cards
-        int childCount = BonusCardZone.childCount;
-        for (int i = childCount - 1; i >= 0; i--)
-        {
-            DestroyImmediate(BonusCardZone.GetChild(i).gameObject);
-        }
+        
         //generate new cards
         for (int i = 0; i < BonusCardCount; i++)
         {
@@ -72,6 +67,13 @@ public class BonusMgr : MonoBehaviour
     }
     void CloseBonusMenu()
     {
+        //clear old cards
+        int childCount = BonusCardZone.childCount;
+        for (int i = childCount - 1; i >= 0; i--)
+        {
+            Destroy(BonusCardZone.GetChild(i).gameObject);
+        }
+
         BonusMenu.transform.localScale = Vector3.zero;
         TimeMgr.Instance.ResumeGame();
     }

@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public static MonsterSpawner Instance;  
+    public static MonsterSpawner Instance;
+    [SerializeField] float SpawnCD = 0.33f;
+    [SerializeField] float SpawnTimer;
     //difficulty
     [SerializeField] float difficultyBias = 0.3f;
     float difficultyAccum;
@@ -102,6 +104,13 @@ public class MonsterSpawner : MonoBehaviour
 
     private void Update()
     {
+        if(SpawnTimer>0)
+        {
+            SpawnTimer -= Time.deltaTime;
+            return;
+        }
+        
+        //Spawn Monster
         if(meleeMonsterCnt < meleeMonsterCntLimit && meleeMonsters2Spawn.Count>0)
         {
             SpawnMonster(MonsterType.Melee);
@@ -113,10 +122,12 @@ public class MonsterSpawner : MonoBehaviour
         
     }
 
-    private void SpawnMonster(MonsterType type)
+    private bool SpawnMonster(MonsterType type)
     {
         Vector3 spawnPoint = MonsterSpawnPoint.position;
         spawnPoint.x += UnityEngine.Random.Range(-spawnXBias, spawnXBias);
+
+        if (Physics.OverlapSphere(spawnPoint, 0.3f, LayerMask.GetMask("Monster")).Length > 0) return false;//
 
         if(type == MonsterType.Melee) {
             MonsterProto monster;
@@ -132,6 +143,9 @@ public class MonsterSpawner : MonoBehaviour
             rangedMonsters2Spawn.RemoveAt(rangedMonsters2Spawn.Count - 1);
             monster.transform.position = spawnPoint;
         }
+
+        SpawnTimer = SpawnCD;
+        return true;
     }
 
 }

@@ -89,7 +89,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     }
     private void HandleRotation()
     {
-        transform.LookAt(player.transform.position);
+        transform.LookAt(player.transform.position + new Vector3(0,Player.BulletShootHeight,0));
     }
     public MonsterProtoSO GetSO()
     {

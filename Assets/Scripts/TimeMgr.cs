@@ -33,6 +33,10 @@ public class TimeMgr
     public void ResumeGame()
     {
         PauseGameRequestCnt--;
+        if (PauseGameRequestCnt < 0)
+        {
+            PauseGameRequestCnt = 0;
+        }
         GamePauseJudge();
     }
     void GamePauseJudge()
@@ -41,5 +45,6 @@ public class TimeMgr
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+        //Debug.Log("TimeScale: " + Time.timeScale);
     }
 }
