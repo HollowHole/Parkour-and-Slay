@@ -79,6 +79,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         v *= speed;
         v -= new Vector3(0, 0, player.Speed);
         rb.velocity = v * Global.SpeedFactor;
+        //Debug.Log(gameObject.name + " has velocity " + rb.velocity);
 
         speed += monsterSO.SpeedUpRate * Time.deltaTime;
         speed = Mathf.Clamp(speed,0,monsterSO.MaxSpeedLimit);

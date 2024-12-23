@@ -15,7 +15,7 @@ MonoBehaviour:
   Type: 0
   Hp: 15
   Speed: 30
-  SpeedUpRate: 0
+  SpeedUpRate: 2
   MaxSpeedLimit: 40
   CollideDamage: 0
   AffectSpeedAbility: 0

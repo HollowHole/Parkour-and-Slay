@@ -43,7 +43,7 @@ public class SwerveManager : MonoBehaviour
         Debug.Log("Swerve begin!");
         OnSwerveBegin?.Invoke();
 
-        Debug.Log(swerveCenter);
+        Debug.Log("swerveCenter:"+swerveCenter.ToString());
 
         float swerveAngleLeft = 90;
         Vector3 axis = transform.up;

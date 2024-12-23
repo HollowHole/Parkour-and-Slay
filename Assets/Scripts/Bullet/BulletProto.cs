@@ -66,7 +66,10 @@ public class BulletProto : MonoBehaviour
     }
     void BasicHitEffect(Collider target)
     {
-        target.GetComponent<ICanTakeDmg>().TakeDamage(damage);
+        ICanTakeDmg cpnt = target.GetComponent<ICanTakeDmg>();
+        if (cpnt == null)
+            cpnt = target.transform.parent.GetComponent<ICanTakeDmg>();
+        cpnt.TakeDamage(damage);
         if (isHostile)
         {
             DodgeJudger.Instance.SuccessfullyHit(gameObject);

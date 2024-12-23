@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5985823481016383696}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigWind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2297134752800283883}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 6829956607523011776}
   - component: {fileID: 7807787179438372366}
   - component: {fileID: 4789172026819850252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Whirlwind
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,9 +171,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 72378435923866924, guid: 27844ad668261694d87923a8c03f3022, type: 3}
 --- !u!1 &6328989366422268598
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,9 +186,9 @@ GameObject:
   - component: {fileID: 756299295482669686}
   - component: {fileID: 8473279208959269314}
   - component: {fileID: 6418816300541102455}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Whirlwind
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 3e96c1560b65977498549bc7f25c6a43, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -283,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1033795208729323803}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigWindBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7453592290400822847}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigJaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7137949277113941543}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

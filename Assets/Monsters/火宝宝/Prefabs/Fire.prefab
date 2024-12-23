@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1320993476}
   - component: {fileID: 1320993478}
   - component: {fileID: 1320993477}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FX Spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4837,7 +4837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1403127920217250816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigJaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4868,7 +4868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7662345939967282918}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigHair4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4901,9 +4901,9 @@ GameObject:
   - component: {fileID: 5808367189360045159}
   - component: {fileID: 7660664156075073131}
   - component: {fileID: 3522203072604134370}
-  m_Layer: 0
-  m_Name: Fire
-  m_TagString: Untagged
+  m_Layer: 9
+  m_Name: Fire_
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5001,9 +5001,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 1468685452459130787, guid: abf5547d670cabb4094fb39dc0c030bd, type: 3}
 --- !u!1 &726248222277283198
 GameObject:
   m_ObjectHideFlags: 0
@@ -5013,7 +5013,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659441045658977304}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5045,11 +5045,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2924618728731019827}
   - component: {fileID: 9112604939947495497}
-  - component: {fileID: 3929496286462209729}
   - component: {fileID: 5803307998864780413}
-  m_Layer: 0
+  - component: {fileID: -2224205344330128727}
+  m_Layer: 9
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5085,7 +5085,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 67e4a4975fc40344c897fc40aaeee6b9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -5093,19 +5093,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3929496286462209729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2584368621543739529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838cd81644046e74991a2c80c489e36d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterSO: {fileID: 11400000, guid: 66c4d78b6e94ab14ca6fd0b1fc8048a8, type: 2}
 --- !u!54 &5803307998864780413
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5133,6 +5120,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2224205344330128727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584368621543739529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e07b283c32e5c46b766b60fb02998c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterSO: {fileID: 11400000, guid: 66c4d78b6e94ab14ca6fd0b1fc8048a8, type: 2}
+  BulletPrefab: {fileID: 5015294809367098342, guid: 96d07af8c5c4c934bbc8f2bf72aa39f6, type: 3}
 --- !u!1 &2712975248723504729
 GameObject:
   m_ObjectHideFlags: 0
@@ -5142,7 +5143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7775918001446495956}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5176,7 +5177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7994945964860198866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigHair3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5208,7 +5209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7083565918389989758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigHair1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5240,7 +5241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3981075506662852290}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigHair2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

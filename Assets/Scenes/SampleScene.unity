@@ -2002,7 +2002,7 @@ MonoBehaviour:
   difficultyBias: 0.3
   AllSpawnableMonsters:
   - {fileID: 8473279208959269314, guid: eaf36464e73fc144ea0c0587e85c146d, type: 3}
-  - {fileID: 3929496286462209729, guid: 8a0d7309dd0856d4daa3742a1b89b843, type: 3}
+  - {fileID: -2224205344330128727, guid: 8a0d7309dd0856d4daa3742a1b89b843, type: 3}
   meleeMonsterCntLimit: 3
   MonsterSpawnPoint: {fileID: 883567309}
   spawnXBias: 3

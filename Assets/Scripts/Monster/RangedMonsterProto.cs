@@ -7,7 +7,6 @@ using UnityEngine;
 public class RangedMonsterProto : MonsterProto
 {
     RangedMonsterProtoSO m_monsterSO;
-    public Vector3 StayPoint;
     [SerializeField] private GameObject BulletPrefab;
     protected float AttackTimer;
 
