@@ -445,8 +445,8 @@ MonoBehaviour:
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   HandCardZone: {fileID: 973173099}
-  MaxHandCnt: 5
-  MaxEnergyLimit: 6
+  MaxHandCnt: 4
+  MaxEnergyLimit: 4
   InitEnergy: 3
   EnergyRegenerateRate: 0.5
 --- !u!4 &90865648
@@ -1039,7 +1039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &590920825
 Transform:
   m_ObjectHideFlags: 0
@@ -1049,7 +1049,7 @@ Transform:
   m_GameObject: {fileID: 590920824}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.48, z: 110}
+  m_LocalPosition: {x: 0, y: 2.38, z: 110}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1658,7 +1658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &883567309
 Transform:
   m_ObjectHideFlags: 0
@@ -1668,7 +1668,7 @@ Transform:
   m_GameObject: {fileID: 883567308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.57, z: 120}
+  m_LocalPosition: {x: 0, y: 1.5, z: 120}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1719,12 +1719,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BonusMenu: {fileID: 1309232278}
-  AllBonusCards:
-  - {fileID: 3243663127498769334, guid: c8e9b48e841567b43b02ece188306658, type: 3}
-  - {fileID: 3243663127498769334, guid: c8e9b48e841567b43b02ece188306658, type: 3}
-  - {fileID: 367987725091682526, guid: 1efdc4cee7a1acb4db102824e5de2c77, type: 3}
   BonusCardZone: {fileID: 2086852250}
   BonusCardCount: 3
+  InitCommonDropRate: 90
+  InitRareDropRate: 10
+  InitLegendDropRate: 0
+  CommonDropRateChangeRate: -8
+  RareDropRateChangeRate: 5
+  LegendDropRateChangeRate: 3
 --- !u!1 &934384610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,8 +2871,7 @@ MonoBehaviour:
   AllSpawnableMonsters:
   - {fileID: 8473279208959269314, guid: eaf36464e73fc144ea0c0587e85c146d, type: 3}
   - {fileID: -2224205344330128727, guid: 8a0d7309dd0856d4daa3742a1b89b843, type: 3}
-  meleeMonsterCntLimit: 10
-  MonsterSpawnPoint: {fileID: 883567309}
+  MonsterSpawnPoint: {fileID: 590920825}
   spawnXBias: 3
   rangedMonsterCntLimit: 3
 --- !u!4 &1456790816

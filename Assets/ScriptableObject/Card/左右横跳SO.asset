@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u5DE6\u53F3\u6A2A\u8DF3SO"
   m_EditorClassIdentifier: 
   CardTypes: 00000000
+  rarity: 3
   CardName: "\u5DE6\u53F3\u6A2A\u8DF3"
   CardDesc: "\u6210\u529F\u95EA\u907F\u589E\u52A03\u70B9\u79FB\u901F\uFF1B\u95EA\u907F\u5931\u8D25\u51CF\u5C112\u70B9\u79FB\u901F\u3002\u6D88\u8017\u3002"
   EnergyCost: 3

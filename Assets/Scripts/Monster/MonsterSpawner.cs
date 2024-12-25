@@ -18,8 +18,8 @@ public class MonsterSpawner : MonoBehaviour
     [Tooltip("所有在这里生成的怪物")]
     [SerializeField] List<MonsterProto> AllSpawnableMonsters;
 
-    int meleeMonsterCnt = 0;
-    [SerializeField] int meleeMonsterCntLimit = 3;
+    //int meleeMonsterCnt = 0;
+    //[SerializeField] int meleeMonsterCntLimit = 3;
     [SerializeField] Transform MonsterSpawnPoint;
     [Tooltip("生成位置的X轴偏移范围")]
     [SerializeField] float spawnXBias = 3f;
@@ -27,7 +27,7 @@ public class MonsterSpawner : MonoBehaviour
     int rangedMonsterCnt = 0;
     [SerializeField] int rangedMonsterCntLimit = 3;
 
-    List<MonsterProto> meleeMonsters2Spawn = new List<MonsterProto>();
+    //List<MonsterProto> meleeMonsters2Spawn = new List<MonsterProto>();
     List<MonsterProto> rangedMonsters2Spawn = new List<MonsterProto>();
     //
     public Action OnAllMonsterCleared;
@@ -68,11 +68,11 @@ public class MonsterSpawner : MonoBehaviour
             else
             {
                 //成功
-                if (monsterSO.Type == MonsterType.Melee)
-                {
-                    meleeMonsters2Spawn.Add(monster);
-                }
-                else if(monsterSO.Type == MonsterType.Ranged) 
+                //if (monsterSO.Type == MonsterType.Melee)
+                //{
+                //    meleeMonsters2Spawn.Add(monster);
+                //}
+                if(monsterSO.Type == MonsterType.Ranged) 
                 {
                     rangedMonsters2Spawn.Add(monster);
                 }
@@ -91,12 +91,14 @@ public class MonsterSpawner : MonoBehaviour
     public void OnMonsterDisappear(MonsterProto monster)
     {
 
-        if(monster.GetSO().Type == MonsterType.Melee)
-            meleeMonsterCnt--;
-        else
+        if(monster.GetSO().Type == MonsterType.Ranged)
             rangedMonsterCnt--;
 
-        if (meleeMonsters2Spawn.Count + rangedMonsters2Spawn.Count + meleeMonsterCnt + rangedMonsterCnt <= 0)
+        //if (meleeMonsters2Spawn.Count + rangedMonsters2Spawn.Count + meleeMonsterCnt + rangedMonsterCnt <= 0)
+        //{
+        //    OnAllMonsterCleared?.Invoke();
+        //}
+        if ( rangedMonsters2Spawn.Count + rangedMonsterCnt <= 0)
         {
             OnAllMonsterCleared?.Invoke();
         }
@@ -111,10 +113,10 @@ public class MonsterSpawner : MonoBehaviour
         }
         
         //Spawn Monster
-        if(meleeMonsterCnt < meleeMonsterCntLimit && meleeMonsters2Spawn.Count>0)
-        {
-            SpawnMonster(MonsterType.Melee);
-        }
+        //if(meleeMonsterCnt < meleeMonsterCntLimit && meleeMonsters2Spawn.Count>0)
+        //{
+        //    SpawnMonster(MonsterType.Melee);
+        //}
         if(rangedMonsterCnt < rangedMonsterCntLimit && rangedMonsters2Spawn.Count>0)
         {
             SpawnMonster(MonsterType.Ranged);
@@ -129,14 +131,14 @@ public class MonsterSpawner : MonoBehaviour
 
         if (Physics.OverlapSphere(spawnPoint, 0.3f, LayerMask.GetMask("Monster")).Length > 0) return false;//
 
-        if(type == MonsterType.Melee) {
-            MonsterProto monster;
-            meleeMonsterCnt++;
-            monster = Instantiate(meleeMonsters2Spawn[meleeMonsters2Spawn.Count - 1],transform);
-            meleeMonsters2Spawn.RemoveAt(meleeMonsters2Spawn.Count - 1);
-            monster.transform.position = spawnPoint;
-        }
-        else if(type == MonsterType.Ranged) {
+        //if(type == MonsterType.Melee) {
+        //    MonsterProto monster;
+        //    meleeMonsterCnt++;
+        //    monster = Instantiate(meleeMonsters2Spawn[meleeMonsters2Spawn.Count - 1],transform);
+        //    meleeMonsters2Spawn.RemoveAt(meleeMonsters2Spawn.Count - 1);
+        //    monster.transform.position = spawnPoint;
+        //}
+        if(type == MonsterType.Ranged) {
             RangedMonsterProto monster;
             rangedMonsterCnt++;
             monster = Instantiate(rangedMonsters2Spawn[rangedMonsters2Spawn.Count - 1], transform) as RangedMonsterProto;

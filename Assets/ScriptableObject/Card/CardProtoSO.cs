@@ -5,11 +5,13 @@ using UnityEditor.EditorTools;
 using UnityEngine;
 
 public enum CardType { Comsume };
+public enum Rarity { Initial,Common,Rare,Legendary};
 
 [CreateAssetMenu(fileName = "基础牌SO", menuName = "ScriptableObject/牌/基础牌SO", order = 0)]
 public class CardProtoSO : ScriptableObject
 {
     public List<CardType> CardTypes;
+    public Rarity rarity = Rarity.Common;
 
     [Tooltip("卡牌名称")]
     public string CardName = "卡牌名称";

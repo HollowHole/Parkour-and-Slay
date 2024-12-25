@@ -19,7 +19,7 @@ public class CardProto : MonoBehaviour
     RectTransform CDGrey;
     RectTransform myRectTransform;
     //SO
-    [SerializeField] protected CardProtoSO cardSO;
+    public CardProtoSO cardSO;
     [SerializeField] private GameObject BulletPrefab;
 
     protected List<GameObject> myBullets = new List<GameObject>();
