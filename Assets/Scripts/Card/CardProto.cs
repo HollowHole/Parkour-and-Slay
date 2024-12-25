@@ -124,7 +124,7 @@ public class CardProto : MonoBehaviour
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
             Vector3 bulletV = transform.forward * BulletSpeed;
-            b.ApplyBasicAttri(TargetTag, bulletV,  Damage, isPierce);
+            b.ApplyBasicAttri(TargetTag, bulletV,  Damage * Player.Instance.Speed /100 , isPierce);
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }

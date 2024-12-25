@@ -10,6 +10,8 @@ public class RangedMonsterProtoSO : MonsterProtoSO
     public float AttackRange;
     [Tooltip("攻击间隔")]
     public float AttackInterval = 1;
+    [Tooltip("离散(角度)")]
+    public float Scatter = 0;
     [Tooltip("子弹飞行速度")]
     public float BulletSpeed = 5;
     [Tooltip("子弹加速度")]

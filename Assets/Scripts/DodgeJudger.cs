@@ -35,6 +35,7 @@ public class DodgeJudger : MonoBehaviour
     {
         if (DodgeSuccessRecord.Contains(other.gameObject))
         {
+            Debug.Log("Dodge " + other.gameObject.name);
             OnDodgeSuccess?.Invoke();
         }
     }

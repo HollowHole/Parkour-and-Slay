@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TimeMgr
 {
+    bool isBulletTime = false;
     public static TimeMgr Instance
     {
         get
@@ -28,7 +29,7 @@ public class TimeMgr
     public void PauseGame()
     {
         PauseGameRequestCnt++;
-        GamePauseJudge();
+        TimeJudge();
     }
     public void ResumeGame()
     {
@@ -37,12 +38,25 @@ public class TimeMgr
         {
             PauseGameRequestCnt = 0;
         }
-        GamePauseJudge();
+        TimeJudge();
     }
-    void GamePauseJudge()
+    public void BulletTime()
     {
-        if(PauseGameRequestCnt > 0)
+        isBulletTime = true;
+        TimeJudge() ;
+    }
+    public void EndBulletTime()
+    {
+        isBulletTime =false;
+        Debug.Log("END Bullet Time");
+        TimeJudge();
+    }
+    void TimeJudge()
+    {
+        if (PauseGameRequestCnt > 0)
             Time.timeScale = 0;
+        else if (isBulletTime)
+            Time.timeScale = 0.2f;
         else
             Time.timeScale = 1;
         //Debug.Log("TimeScale: " + Time.timeScale);

@@ -119,6 +119,8 @@ public class CardManager : MonoBehaviour
 
                 if (ChosenCard != null)
                 ChosenCard.OnPick();
+
+                TimeMgr.Instance.BulletTime();
             }
             //else if(useCardTrigger && ChosenCard.cardTypes.Contains(CardType.Comsume))//使用了消耗卡，则卡已被销毁
             //{
@@ -131,12 +133,15 @@ public class CardManager : MonoBehaviour
                 if(ChosenCard != null)
                     ChosenCard.Unpick();
                 ChosenCard = null;
+
+                TimeMgr.Instance.EndBulletTime();
             }
         }
 
     }
     public void Choose(CardProto card)
     {
+        CardGonnaChoose = card;
         //Debug.Log("Choose " + card.name);
         if (card == ChosenCard)
         {
@@ -146,11 +151,6 @@ public class CardManager : MonoBehaviour
             }
             else
                 Use(card);
-            CardGonnaChoose = null;
-        }
-        else
-        {
-            CardGonnaChoose = card;
         }
     }
     private void Use(CardProto card)

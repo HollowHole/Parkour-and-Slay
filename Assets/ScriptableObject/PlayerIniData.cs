@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Íæ¼Ò³õÊ¼Êı¾İSO", menuName = "ScriptableObject/Íæ¼Ò³õÊ¼Êı¾İSO", order = 0)]
+[CreateAssetMenu(fileName = "ç©å®¶åˆå§‹æ•°æ®SO", menuName = "ScriptableObject/ç©å®¶åˆå§‹æ•°æ®SO", order = 0)]
 public class PlayerIniData : ScriptableObject
 {
-    [Tooltip("×óÓÒÒÆ¶¯ËÙ¶È")]
+    [Tooltip("å·¦å³ç§»åŠ¨é€Ÿåº¦")]
     public float LRMoveSpeed = 2;
-    [Tooltip("³õÊ¼ËÙ¶È")]
+    [Tooltip("åˆå§‹é€Ÿåº¦")]
     public float IniSpeed = 10;
-    [Tooltip("³õÊ¼¼ÓËÙ¶È")]
+    [Tooltip("åˆå§‹åŠ é€Ÿåº¦")]
     public float IniSpeedUpRate = 0.5f;
-    [Tooltip("³õÊ¼ÌøÔ¾¸ß¶È")]
+    [Tooltip("åˆå§‹è·³è·ƒé«˜åº¦")]
     public float IniJumpHeight = 2;
-    [Tooltip("³õÊ¼×î´óÑªÁ¿")]
-    public float IniMaxHp = 100;
-    [Tooltip("×î´óËÙ¶ÈÏŞÖÆ")]
-    public float SpeedLimit = 20;
     
+    [Tooltip("æœ€å¤§é€Ÿåº¦é™åˆ¶")]
+    public float SpeedLimit = 20;
+    [Tooltip("åˆå§‹æœ€å¤§è¡€é‡")]
+    public float IniMaxHp = 100;
+
 }

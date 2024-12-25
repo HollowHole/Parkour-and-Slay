@@ -49,8 +49,13 @@ public class RangedMonsterProto : MonsterProto
         foreach (GameObject bullet in myBullets)
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
+
             Vector3 bulletV = transform.forward * m_monsterSO.BulletSpeed;
-            b.ApplyBasicAttri(m_monsterSO.TargetTag, bulletV, m_monsterSO.BulletDamage);
+            Vector3 randomAxis = UnityEngine.Random.onUnitSphere;
+            Quaternion rotationQuaternion = Quaternion.AngleAxis(UnityEngine.Random.Range(0,m_monsterSO.Scatter), randomAxis);
+            bulletV = rotationQuaternion * bulletV;
+
+            b.ApplyBasicAttri(m_monsterSO.TargetTag, bulletV, m_monsterSO.BulletDamage,false,"Monster");
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
