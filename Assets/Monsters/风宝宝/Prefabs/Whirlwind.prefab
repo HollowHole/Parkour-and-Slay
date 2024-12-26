@@ -184,8 +184,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6673990394430271500}
   - component: {fileID: 756299295482669686}
-  - component: {fileID: 8473279208959269314}
   - component: {fileID: 6418816300541102455}
+  - component: {fileID: 7695444286047695889}
   m_Layer: 9
   m_Name: Whirlwind
   m_TagString: Monster
@@ -234,19 +234,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8473279208959269314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6328989366422268598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838cd81644046e74991a2c80c489e36d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterSO: {fileID: 11400000, guid: f1ba19b7173974640bc2d014cdb9b4c3, type: 2}
 --- !u!54 &6418816300541102455
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -274,6 +261,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7695444286047695889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328989366422268598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e07b283c32e5c46b766b60fb02998c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterSO: {fileID: 11400000, guid: 9b3d41545b3cdba4e9b4483916665c1e, type: 2}
+  BulletPrefab: {fileID: 6345515787644573431, guid: 1d786f77475035346ab94eb6abf3dd9c, type: 3}
 --- !u!1 &6333764013192719110
 GameObject:
   m_ObjectHideFlags: 0

@@ -1049,7 +1049,7 @@ Transform:
   m_GameObject: {fileID: 590920824}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.38, z: 110}
+  m_LocalPosition: {x: 0, y: 0, z: 110}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2869,7 +2869,7 @@ MonoBehaviour:
   SpawnTimer: 0
   difficultyBias: 0.3
   AllSpawnableMonsters:
-  - {fileID: 8473279208959269314, guid: eaf36464e73fc144ea0c0587e85c146d, type: 3}
+  - {fileID: 7695444286047695889, guid: eaf36464e73fc144ea0c0587e85c146d, type: 3}
   - {fileID: -2224205344330128727, guid: 8a0d7309dd0856d4daa3742a1b89b843, type: 3}
   MonsterSpawnPoint: {fileID: 590920825}
   spawnXBias: 3
