@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BulletProto : MonoBehaviour
 {
-    Rigidbody rb;
+    protected Rigidbody rb;
 
     string sourceTag;
     string targetTag;
@@ -32,6 +31,7 @@ public class BulletProto : MonoBehaviour
     protected virtual void Update()
     {
         HandleDisappear();
+        
     }
     protected virtual void HandleDisappear()
     {
@@ -43,14 +43,18 @@ public class BulletProto : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (Math.Abs(transform.position.y) > 100f)
+        {
+            Destroy(gameObject);
+        }
     }
-    public void ApplyBasicAttri(string tt,Vector3 s,float D,bool isP = false,string st = "Player")
+    public void ApplyBasicAttri(string _targettag,Vector3 speed,float D,bool isP = false,string _sourcetag = "Player")
     {
-        targetTag = tt;
-        initSpeed = s;
+        targetTag = _targettag;
+        initSpeed = speed;
         isPierce = isP;
         damage = D;
-        sourceTag = st;
+        sourceTag = _sourcetag;
     }
     
     private void OnTriggerEnter(Collider other)
@@ -58,13 +62,14 @@ public class BulletProto : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             Transform target = other.transform;
+            Debug.Log("Bullet Hit " + target.name);
             //用ICanTakeDmg定位
             ICanTakeDmg cpnt = other.GetComponent<ICanTakeDmg>();
             if (cpnt == null)
                 target = target.parent;
             //cpnt.TakeDamage(damage);
 
-            Debug.Log("Bullet Hit "+target.name);
+            
             OnHitTarget(target);
 
             if (!isPierce)

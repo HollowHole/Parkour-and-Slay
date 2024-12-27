@@ -6,30 +6,38 @@ using UnityEngine;
 
 public class RangedMonsterProto : MonsterProto
 {
-    RangedMonsterProtoSO m_monsterSO;
+    
+    RangedMonsterProtoSO r_monsterSO;
     [SerializeField] private GameObject BulletPrefab;
     protected float AttackTimer;
+
+    public float BulletDmg { get; set; }
 
     protected List<GameObject> myBullets = new List<GameObject>();
     protected override void Awake()
     {
+        r_monsterSO = base.monsterSO as RangedMonsterProtoSO;
         base.Awake();
-        m_monsterSO = base.monsterSO as RangedMonsterProtoSO;
+        
     }
     protected override void Start()
     {
         base.Start();
-        AttackTimer = m_monsterSO.AttackInterval;
+        AttackTimer = r_monsterSO.AttackInterval;
     }
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
         HandleAttack();
     }
-
+    protected override void ReadSO()
+    {
+        base.ReadSO();
+        BulletDmg = r_monsterSO.BulletDamage;
+    }
     protected virtual void HandleAttack()
     {
-        if(transform.position.z - player.transform.position.z > m_monsterSO.AttackRange)
+        if(transform.position.z - player.transform.position.z > r_monsterSO.AttackRange)
         {
             return;
         }
@@ -39,23 +47,23 @@ public class RangedMonsterProto : MonsterProto
         }
         else
         {
-            AttackTimer = m_monsterSO.AttackInterval;
+            AttackTimer = r_monsterSO.AttackInterval;
             SpawnBullets();
             ApplyBasicAttriAndBuffAffect2Bullet();
         }
     }
-    private void ApplyBasicAttriAndBuffAffect2Bullet()
+    protected void ApplyBasicAttriAndBuffAffect2Bullet()
     {
         foreach (GameObject bullet in myBullets)
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
 
-            Vector3 bulletV = transform.forward * m_monsterSO.BulletSpeed;
+            Vector3 bulletV = transform.forward * r_monsterSO.BulletSpeed;
             Vector3 randomAxis = UnityEngine.Random.onUnitSphere;
-            Quaternion rotationQuaternion = Quaternion.AngleAxis(UnityEngine.Random.Range(0,m_monsterSO.Scatter), randomAxis);
+            Quaternion rotationQuaternion = Quaternion.AngleAxis(UnityEngine.Random.Range(0,r_monsterSO.Scatter), randomAxis);
             bulletV = rotationQuaternion * bulletV;
 
-            b.ApplyBasicAttri(m_monsterSO.TargetTag, bulletV, m_monsterSO.BulletDamage,false,"Monster");
+            b.ApplyBasicAttri(r_monsterSO.TargetTag, bulletV, BulletDmg,false,"Monster");
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
@@ -64,18 +72,26 @@ public class RangedMonsterProto : MonsterProto
         myBullets.Clear();
         GameObject b = (Instantiate(BulletPrefab, GameObject.Find("AllBullets").transform, false));
         myBullets.Add(b);
-        b.transform.position = transform.position;
+        b.transform.position = Center;
+        //b.transform.rotation = transform.rotation;
     }
 
     protected override void HandleMovement()
     {
-        float dist = transform.position.z - player.transform.position.z;
+        float dist = transform.position.z - r_monsterSO.AttackRange;
         Vector3 v = Vector3.zero;
-        if (dist > m_monsterSO.AttackRange)
+        if (dist > 0)
         {
-            v = transform.forward * (m_monsterSO.Speed + player.Speed);
+            v =  transform.forward * speed + new Vector3(0, 0, -1) * player.Speed;
         }
-        rb .velocity = v * Global.SpeedFactor;
+        rb.velocity = v * Global.SpeedFactor;
+
+        //Vector3 v = signal * transform.forward * (r_monsterSO.Speed + player.Speed);
+        //rb .velocity = ( v * Global.SpeedFactor);
+
+        speed += monsterSO.SpeedUpRate * Time.deltaTime;
+        speed = Mathf.Clamp(speed, 0, monsterSO.MaxSpeedLimit);
+
     }
     protected virtual void ApplyMyBuffOnHit(Transform target) { }
 }

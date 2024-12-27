@@ -81,6 +81,7 @@ public abstract class Buff
     public virtual void CountDown()
     {
         LastTime -= Time.deltaTime;
+        
     }
     public void Init(Transform _target)
     {
@@ -90,13 +91,14 @@ public abstract class Buff
     }
     public void Update()
     {
+        CountDown();
         if (isOver)
         {
             HandleFinishEffect(target);
             return;
         }
         HandleLastingEffect(target);
-        CountDown();
+        
         
     }
     protected virtual void HandleInitEffect(Transform target) { }

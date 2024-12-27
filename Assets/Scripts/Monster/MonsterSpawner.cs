@@ -7,7 +7,7 @@ public class MonsterSpawner : MonoBehaviour
 {
     public static MonsterSpawner Instance;
     [SerializeField] float SpawnCD = 0.33f;
-    [SerializeField] float SpawnTimer;
+    float SpawnTimer;
     //difficulty
     [SerializeField] float difficultyBias = 0.3f;
     float difficultyAccum;
@@ -23,6 +23,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] Transform MonsterSpawnPoint;
     [Tooltip("生成位置的X轴偏移范围")]
     [SerializeField] float spawnXBias = 3f;
+    [SerializeField] float spawnPosMaxY = 2f;
 
     int rangedMonsterCnt = 0;
     [SerializeField] int rangedMonsterCntLimit = 3;
@@ -128,7 +129,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         Vector3 spawnPoint = MonsterSpawnPoint.position;
         spawnPoint.x += UnityEngine.Random.Range(-spawnXBias, spawnXBias);
-
+        spawnPoint.y = UnityEngine.Random.Range(0, spawnPosMaxY);
         if (Physics.OverlapSphere(spawnPoint, 0.3f, LayerMask.GetMask("Monster")).Length > 0) return false;//
 
         //if(type == MonsterType.Melee) {

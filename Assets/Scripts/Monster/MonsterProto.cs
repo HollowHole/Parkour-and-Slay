@@ -1,19 +1,25 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(BuffMgr),typeof(Rigidbody))]
 public class MonsterProto : MonoBehaviour,ICanTakeDmg
 {
     [SerializeField]protected MonsterProtoSO monsterSO;
     protected Player player;
     protected Rigidbody rb;
+    protected BuffMgr buffMgr;
 
     protected float speed;
+    public float AffectSpeedAbi {  get; set; }
     private float hp;
     private float MaxHp;
     public Action<float, float> OnHpChange;
+    [HideInInspector]public Vector3 Center =>center + transform.position;
+    Vector3 center;
 
     public float Hp
     {
@@ -32,7 +38,8 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
             }
             else
             {
-                hp = value > MaxHp ? MaxHp : value;
+                //hp = value > MaxHp ? MaxHp : value;
+                hp = value;
             }
             OnHpChange?.Invoke(hp, MaxHp);
         }
@@ -42,6 +49,8 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         
         rb = GetComponent<Rigidbody>();
+        buffMgr = GetComponent<BuffMgr>();
+        center = GetComponentInChildren<Collider>().bounds.center;
         // rb = GetComponentInChildren<Rigidbody>();
         ReadSO();
         
@@ -55,13 +64,37 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         hp = MaxHp = monsterSO.Hp;
         speed = monsterSO.Speed;
+        AffectSpeedAbi = monsterSO.AffectSpeedAbility;
     }
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         HandleMovement();
         HandleRotation();
         HandleDisappear();
-        // Debug.Log(rb.velocity);
+        HandleRepulseMonster();
+        // Debug.Log(gameObject.name + " has velocity " + rb.velocity);
+    }
+
+    private void HandleRepulseMonster()
+    {
+        Collider myCollider = GetComponentInChildren<Collider>();
+        Bounds bound = myCollider.bounds;
+        Vector3 center = bound.center;
+        Collider[] colliders = Physics.OverlapBox(center, bound.extents);
+        foreach (Collider collider in colliders)
+        {
+            if (collider == myCollider) continue;
+            if (collider.CompareTag("Monster"))
+            {
+                Bounds colBnd = collider.bounds;
+                Vector3 repulsive = colBnd.center - bound.center;//Direction
+                repulsive = 1 / repulsive.magnitude * repulsive.normalized;
+                repulsive *= 40;
+
+                Rigidbody otherRB = collider.GetComponentInParent<Rigidbody>();
+                if(otherRB != null) otherRB.AddForce(repulsive);
+            }
+        }
     }
 
     protected virtual void HandleDisappear()
@@ -87,7 +120,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         speed = Mathf.Clamp(speed,0,monsterSO.MaxSpeedLimit);
         
     }
-    private void HandleRotation()
+    protected virtual void HandleRotation()
     {
         transform.LookAt(player.transform.position + new Vector3(0,Player.BulletShootHeight,0));
     }

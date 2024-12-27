@@ -19,12 +19,13 @@ public class RangedMonsterProtoSO : MonsterProtoSO
 
     [Tooltip("攻击对象TAG")]
     public string TargetTag = "Player";
+    
 
     [Tooltip("子弹伤害")]
     public float BulletDamage = 1 ;
 
 
-    RangedMonsterProtoSO()
+    public RangedMonsterProtoSO()
     {
         Type = MonsterType.Ranged;
     }

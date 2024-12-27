@@ -2951,9 +2951,12 @@ MonoBehaviour:
   SpawnCD: 0.33
   difficultyBias: 0.3
   AllSpawnableMonsters:
+<<<<<<< Updated upstream
+  - {fileID: 7695444286047695889, guid: eaf36464e73fc144ea0c0587e85c146d, type: 3}
+=======
   - {fileID: 5534684804959627167, guid: 509da9e9425ca004d99d6775aa1d85eb, type: 3}
+>>>>>>> Stashed changes
   - {fileID: -2224205344330128727, guid: 8a0d7309dd0856d4daa3742a1b89b843, type: 3}
-  - {fileID: -2324982508714719240, guid: eaf36464e73fc144ea0c0587e85c146d, type: 3}
   MonsterSpawnPoint: {fileID: 590920825}
   spawnXBias: 3
   spawnPosMaxY: 2

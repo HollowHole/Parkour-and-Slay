@@ -20,6 +20,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     float jumpHeight;
     private Vector3 velocity;
     float LRMoveSpeed;
+    [HideInInspector]public bool Moveable { get; set; } 
     private bool isGrounded;
 
     private Rigidbody rb;
@@ -66,6 +67,8 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         cam = FindObjectOfType<Camera>();
         rb = GetComponent<Rigidbody>();
         buffMgr = GetComponent<BuffMgr>();
+
+        Moveable = true;
     }
     private void Start()
     {
@@ -161,7 +164,8 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     void HandleMove()
     {
         float vx = 0;
-        vx = Input.GetAxis("Horizontal") * LRMoveSpeed;
+        if(Moveable)
+            vx = Input.GetAxis("Horizontal") * LRMoveSpeed ;
         velocity.x = vx;
         velocity.z = -transform.position.z;
     }
@@ -171,7 +175,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 
         if (isGrounded)
         {
-            if (jumpInput)
+            if (jumpInput && Moveable)
             {
                 velocity.y = Mathf.Sqrt(2 * Global.GRAVITY * jumpHeight);
             }
