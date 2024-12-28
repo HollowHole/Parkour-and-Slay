@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: "\u70ED\u8EAB\u8FD0\u52A8SO"
   m_EditorClassIdentifier: 
   CardTypes: 
+  rarity: 1
   CardName: "\u70ED\u8EAB\u8FD0\u52A8"
   CardDesc: "\u4E0B\u4E00\u5F20\u52A0\u901F\u5361\u989D\u5916\u83B7\u5F9710\u70B9\u79FB\u901F"
+  CardFace: {fileID: 21300000, guid: 6f85b8cf53eed5842839377a5c334829, type: 3}
   EnergyCost: 1
   SpeedUpValue: 0
   DrawCardCnt: 0

@@ -24,7 +24,7 @@ MonoBehaviour:
   DifficultyValue: 0.08
   AttackRange: 23
   AttackInterval: 3
-  Scatter: 5
+  Scatter: 2
   BulletSpeed: 50
   BulletSpeedUpRate: 0
   TargetTag: Player

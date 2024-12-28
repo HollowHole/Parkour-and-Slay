@@ -29,5 +29,5 @@ MonoBehaviour:
   BulletSpeedUpRate: 1
   TargetTag: Player
   BulletDamage: 1
-  ControlTime: 0.5
-  BuffSprite: {fileID: 21300000, guid: da88ff3a2f2efc047aafedcc95699984, type: 3}
+  ControlTime: 2
+  BuffSprite: {fileID: 21300000, guid: 7c597c4f397c1e44080598e4a5339b7c, type: 3}
