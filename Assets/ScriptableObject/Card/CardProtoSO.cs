@@ -17,6 +17,8 @@ public class CardProtoSO : ScriptableObject
     public string CardName = "卡牌名称";
     [Tooltip("卡牌描述")]
     public string CardDesc = "卡牌描述";
+    [Tooltip("卡牌牌面")]
+    public Sprite CardFace;
 
     [Tooltip("费用")]
     public int EnergyCost = 1;

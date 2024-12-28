@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31af29a80579abe4b8986f782cd49e11, type: 3}
+  m_Name: "\u5145\u7535\u724CSO"
+  m_EditorClassIdentifier: 
+  CardTypes: 00000000
+  rarity: 1
+  CardName: "\u5145\u7535"
+  CardDesc: "\u56DE\u590D3\u70B9\u8840\u91CF\u3002\u6D88\u8017\u3002"
+  CardFace: {fileID: 0}
+  EnergyCost: 1
+  SpeedUpValue: 0
+  DrawCardCnt: 0
+  isPierce: 0
+  BulletSpeed: 5
+  TargetTag: Player
+  Damage: -3
+  CD: 3

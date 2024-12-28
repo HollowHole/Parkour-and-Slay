@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5015294809367098342, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
       propertyPath: m_Name
-      value: GhostbabyBullet Variant
+      value: GhostBabyBullet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7481158266891490897, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
       propertyPath: m_Mesh
@@ -109,7 +109,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
