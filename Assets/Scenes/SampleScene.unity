@@ -1870,6 +1870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954614912}
   - component: {fileID: 954614911}
+  - component: {fileID: 954614913}
   m_Layer: 0
   m_Name: SkyCamera
   m_TagString: Untagged
@@ -1943,6 +1944,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &954614913
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954614909}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: b9f3be7c46d8c7044967f656420f99b8, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,7 +1989,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
