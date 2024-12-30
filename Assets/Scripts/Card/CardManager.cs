@@ -150,12 +150,14 @@ public class CardManager : MonoBehaviour
         //Debug.Log("Choose " + card.name);
         if (card == ChosenCard)
         {
-            if(EnergyCnt < card.GetCost())
+            if(card.IsUsable())
             {
-                Debug.Log("费用不足");
+                Use(card);
             }
             else
-                Use(card);
+            {
+                Debug.Log("使用失败！");
+            }
         }
     }
     private void Use(CardProto card)

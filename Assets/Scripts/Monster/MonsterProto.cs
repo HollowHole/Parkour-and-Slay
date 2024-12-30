@@ -19,6 +19,11 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     private float hp;
     private float MaxHp;
     public Action<float, float> OnHpChange;
+
+     public float DmgMagni {  get; set; }
+    public float AffeSpeMagni {  get; set; }
+     public float TakenDmgMagni{ get; set; }
+
     [HideInInspector]public Vector3 Center =>center + transform.position;
     Vector3 center;
 
@@ -54,7 +59,10 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         center = GetComponentInChildren<Collider>().bounds.center;
         // rb = GetComponentInChildren<Rigidbody>();
         ReadSO();
-        
+
+        DmgMagni = 1;
+        AffeSpeMagni = 1;
+        TakenDmgMagni = 1;
     }
     protected virtual void Start()
     {
@@ -132,14 +140,16 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     }
     public void TakeDamage(float damage)
     {
+        if(damage > 0)
+            damage *= TakenDmgMagni;
         Hp -= damage;
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            player.GetComponent<ICanTakeDmg>().TakeDamage(CollideDmg);
-            player.GetComponent<ICanAffectSpeed>().AffectSpeed(AffectSpeedAbi);
+            player.GetComponent<ICanTakeDmg>().TakeDamage(CollideDmg * DmgMagni);
+            player.GetComponent<ICanAffectSpeed>().AffectSpeed(AffectSpeedAbi * AffeSpeMagni);
         }
     }
 }

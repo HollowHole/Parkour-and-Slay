@@ -7,9 +7,8 @@ public class CardHoppingLeftAndRight : CardProto
     CardHoppingLeftAndRightSO m_cardSO;
     protected override void Awake()
     {
-        base.Awake();
         m_cardSO = (CardHoppingLeftAndRightSO)cardSO;
-
+        base.Awake();
     }
     protected override void ApplyMyBuffOnHit(Transform target)
     {

@@ -54,28 +54,24 @@ public class MonsterIceBaby : RangedMonsterProto
     protected override void ApplyMyBuffOnHit(Transform target)
     {
         base.ApplyMyBuffOnHit(target);
-        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_monsterSO.LastTime,m_monsterSO.DmgScalarBonus,m_monsterSO.AffectSpeedAbiScalarBonus));
+        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_monsterSO.LastTime, m_monsterSO.DmgIncrePerc, m_monsterSO.AffeSpeIncrePerc));
     }
     public class MyBuff : Buff
     {
-        float DmgScalarBonus;
-        public float AffectSpeedAbiScalarBonus;
-        public MyBuff(float lastTime,float _DmgScalarBonus,float AfSpScalarBonus) : base(null, lastTime)
+        float DmgIncrePerc;
+        public float AffeSpeIncrePerc;
+        public MyBuff(float lastTime,float _DmgIncrePerc, float _AffeSpeIncrePerc) : base(null, lastTime)
         {
-            DmgScalarBonus = _DmgScalarBonus;
-            AffectSpeedAbiScalarBonus = AfSpScalarBonus;
+            DmgIncrePerc = _DmgIncrePerc / 100;
+            AffeSpeIncrePerc = _AffeSpeIncrePerc / 100;
         }
         protected override void HandleInitEffect(Transform target)
         {
             base.HandleInitEffect(target);
             MonsterProto monster = target.GetComponent<MonsterProto>();
-            monster.CollideDmg *= DmgScalarBonus;
-            monster.AffectSpeedAbi *= AffectSpeedAbiScalarBonus;
-            if (monster.GetSO().Type==MonsterType.Ranged )//近战加碰撞伤害
-            {
-                target.GetComponent<RangedMonsterProto>().BulletDmg *= DmgScalarBonus;
-            }
 
+            monster.DmgMagni += DmgIncrePerc;
+            monster.AffeSpeMagni += AffeSpeIncrePerc;
         }
         protected override void HandleLastingEffect(Transform target)
         {
@@ -85,12 +81,9 @@ public class MonsterIceBaby : RangedMonsterProto
         {
             base.HandleFinishEffect(target);
             MonsterProto monster = target.GetComponent<MonsterProto>();
-            monster.CollideDmg /= DmgScalarBonus;
-            monster.AffectSpeedAbi /= AffectSpeedAbiScalarBonus;
-            if (monster.GetSO().Type == MonsterType.Ranged)//近战加碰撞伤害
-            {
-                target.GetComponent<RangedMonsterProto>().BulletDmg /= DmgScalarBonus;
-            }
+
+            monster.DmgMagni -= DmgIncrePerc;
+            monster.AffeSpeMagni -= AffeSpeIncrePerc;
         }
     }
 }

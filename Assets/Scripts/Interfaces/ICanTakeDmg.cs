@@ -6,5 +6,4 @@ using UnityEngine;
 public interface ICanTakeDmg
 {
     public void TakeDamage(float damage);
-    
 }

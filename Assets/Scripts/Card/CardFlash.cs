@@ -4,8 +4,8 @@ public class CardFlash : CardProto
     CardFlashSO m_cardSO;
     protected override void Awake()
     {
-        base.Awake();
         m_cardSO = cardSO as CardFlashSO;
+        base.Awake(); 
     }
     public override void OnUse()
     {

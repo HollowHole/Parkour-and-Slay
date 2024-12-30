@@ -12,7 +12,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     [SerializeField]public PlayerIniData InitDataSO;
     // Start is called before the first frame update
     
-    [HideInInspector]public float Speed { get;  private set; }
+    [HideInInspector]public float Speed { get; set; }
     float SpeedUpRate;
     bool jumpInput;
     float jumpHeight;
@@ -34,8 +34,15 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     private float InvincibalTimer;
     public bool isInvincibal => InvincibalTimer > 0;
     public Action<float,float,float> OnHpChange;
-    public Func<float, float> CalcFinalDmg;
-    
+    //
+    public Func<float> DmgMagniSpeed;
+    [HideInInspector] float DmgMagniOther;
+    ///<summary>
+    ///总伤害倍率
+    /// </summary>
+    public float DmgMagni => DmgMagniSpeed.Invoke() * DmgMagniOther;
+    public float TakenDmgMagni { get; set; }
+    //
     public float Hp
     {
         get
@@ -69,6 +76,8 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         }
     }
 
+
+
     private void Awake()
     {
         Instance = this;
@@ -82,7 +91,9 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 
         Moveable = true;
 
-        CalcFinalDmg += (dmg) => { return dmg * Speed / 100; };
+        DmgMagniSpeed = () => Instance.Speed / 100;
+        DmgMagniOther = 1;
+        TakenDmgMagni = 1;
     }
     private void Start()
     {
@@ -220,7 +231,9 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         //受伤
         else 
         {
+            damage *= TakenDmgMagni;
             InvincibalTimer = PlayerInvincibilityFrameOnHit;
+            Debug.Log("Player take damage " + damage);
             if (damage < Armor)
             {
                 Armor -= damage;
@@ -234,12 +247,12 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
             
     }
 
-    public void AffectSpeed(float value)
+    void ICanAffectSpeed.AffectSpeed(float value)
     {
         Speed += value;
     }
 
-    public GameObject ShowThisUI(Sprite sprite)
+    GameObject ICanShowBuffUI.ShowThisUI(Sprite sprite)
     {
         return BuffUIZone.Instance.AddBuffUI(sprite);
     }

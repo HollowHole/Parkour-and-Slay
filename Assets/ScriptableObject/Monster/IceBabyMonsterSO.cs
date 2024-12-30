@@ -7,8 +7,8 @@ public class IceBabyMonsterSO : RangedMonsterProtoSO
 {
     [Header("Buff效果")]
     public float LastTime = 2f;
-    [Tooltip("伤害倍率加成")]
-    public float DmgScalarBonus = 1.3f;
-    [Tooltip("降速能力倍率加成")]
-    public float AffectSpeedAbiScalarBonus = 1.3f;
+    [Tooltip("攻击力加成百分比")]
+    public float DmgIncrePerc = 30;
+    [Tooltip("降速能力加成百分比")]
+    public float AffeSpeIncrePerc = 30;
 }

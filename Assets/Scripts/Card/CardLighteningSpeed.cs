@@ -19,20 +19,15 @@ public class CardLighteningSpeed : CardProto
         public MyBuff(Sprite ui) : base(ui)
         {
         }
-        float MyDamageBonus(float damage)
-        {
-            float oriPlayerSpeedBonus = Player.Instance.Speed / 100;
-            return damage/ oriPlayerSpeedBonus * Mathf.Pow(2,oriPlayerSpeedBonus);
-        }
         protected override void HandleInitEffect(Transform target)
         {
             base.HandleInitEffect(target);
-            target.GetComponent<Player>().CalcFinalDmg += MyDamageBonus;
+            Player.Instance.DmgMagniSpeed = () => Mathf.Pow(2, Player.Instance.Speed / 100);
         }
         protected override void HandleFinishEffect(Transform target)
         {
             base.HandleFinishEffect(target);
-            target.GetComponent<Player>().CalcFinalDmg -= MyDamageBonus;
+            Player.Instance.DmgMagniSpeed = () => Player.Instance.Speed / 100;
         }
     }
 }

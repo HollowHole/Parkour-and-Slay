@@ -61,7 +61,6 @@ public class BulletProto : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             Transform target = other.transform;
-            Debug.Log("Bullet Hit " + target.name);
             //用ICanTakeDmg定位
             ICanTakeDmg cpnt = other.GetComponent<ICanTakeDmg>();
             if (cpnt == null)

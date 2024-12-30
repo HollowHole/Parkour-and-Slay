@@ -130,6 +130,10 @@ public class CardProto : MonoBehaviour
         myRectTransform.localScale= new Vector3(1,1,1);
         //highlightableObject.ConstantOffImmediate();
     }
+    public virtual bool IsUsable()
+    {
+        return CardManager.Instance.EnergyCnt > EnergyCost;
+    }
     public virtual void OnUse()
     {
         //抽卡
@@ -141,7 +145,6 @@ public class CardProto : MonoBehaviour
         Player.Instance.Armor += GainArmor;
         //生成子弹
         SpawnBullets();
-
     }
 
     private void ApplyBasicAttriAndBuffAffect2Bullet()
@@ -150,9 +153,11 @@ public class CardProto : MonoBehaviour
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
             Vector3 bulletV = transform.forward * BulletSpeed;
-            b.ApplyBasicAttri(TargetTag, bulletV, Player.Instance.CalcFinalDmg(Damage) , 0,isPierce);
 
-            Debug.Log("originDmg: "+Damage +"newDamage: "+Player.Instance.CalcFinalDmg(Damage));
+            float bulletDmg = Damage;
+            if (Damage > 0)
+                bulletDmg *= Player.Instance.DmgMagni;
+            b.ApplyBasicAttri(TargetTag, bulletV, bulletDmg , 0,isPierce);
 
             b.OnHitTarget += ApplyMyBuffOnHit;
         }

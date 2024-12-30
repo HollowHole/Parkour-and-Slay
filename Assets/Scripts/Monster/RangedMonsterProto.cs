@@ -63,7 +63,7 @@ public class RangedMonsterProto : MonsterProto
             Quaternion rotationQuaternion = Quaternion.AngleAxis(UnityEngine.Random.Range(0,r_monsterSO.Scatter), randomAxis);
             bulletV = rotationQuaternion * bulletV;
 
-            b.ApplyBasicAttri(r_monsterSO.TargetTag, bulletV, BulletDmg,AffectSpeedAbi,false,"Monster");
+            b.ApplyBasicAttri(r_monsterSO.TargetTag, bulletV, BulletDmg * DmgMagni, AffectSpeedAbi * AffeSpeMagni, false, "Monster");
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
