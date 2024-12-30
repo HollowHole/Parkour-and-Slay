@@ -12,8 +12,6 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     [SerializeField]public PlayerIniData InitDataSO;
     // Start is called before the first frame update
     
-    
-
     [HideInInspector]public float Speed { get;  private set; }
     float SpeedUpRate;
     bool jumpInput;
@@ -31,10 +29,12 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     Camera cam;
 
     private float hp;
+    private float armor;
     private float MaxHp;
     private float InvincibalTimer;
     public bool isInvincibal => InvincibalTimer > 0;
-    public Action<float,float> OnHpChange;
+    public Action<float,float,float> OnHpChange;
+    public Func<float, float> CalcFinalDmg;
     
     public float Hp
     {
@@ -53,7 +53,19 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
             {
                 hp = value>MaxHp?MaxHp: value;
             }
-            OnHpChange?.Invoke(hp,MaxHp);
+            OnHpChange?.Invoke(hp,MaxHp,Armor);
+        }
+    }
+    public float Armor
+    {
+        get
+        {
+            return armor;
+        }
+        set
+        {
+            armor = value;
+            OnHpChange?.Invoke(hp, MaxHp,armor);
         }
     }
 
@@ -69,6 +81,8 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         buffMgr = GetComponent<BuffMgr>();
 
         Moveable = true;
+
+        CalcFinalDmg += (dmg) => { return dmg * Speed / 100; };
     }
     private void Start()
     {
@@ -92,6 +106,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     {
         buffMgr.ClearAllBuff();
         SpeedUpRate = 0;
+        Armor = 0;
         Speed = InitDataSO.IniSpeed;
     }
     private void FixedUpdate()
@@ -197,9 +212,26 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         {
             return;
         }
-        Hp-=damage;
-        if (damage > 0)
+        //治疗
+        if(damage < 0)
+        {
+            Hp -= damage;
+        }
+        //受伤
+        else 
+        {
             InvincibalTimer = PlayerInvincibilityFrameOnHit;
+            if (damage < Armor)
+            {
+                Armor -= damage;
+            }
+            else
+            {
+                Hp -= damage - Armor;
+                Armor = 0;
+            }
+        }
+            
     }
 
     public void AffectSpeed(float value)

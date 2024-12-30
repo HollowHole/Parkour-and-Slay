@@ -11,7 +11,8 @@ public class BulletProto : MonoBehaviour
     string targetTag;
     Vector3 initSpeed;
     bool isPierce;
-    float damage;
+    protected float damage;
+    float affectSpeed;
 
     public Action<Transform> OnHitTarget;
 
@@ -20,13 +21,14 @@ public class BulletProto : MonoBehaviour
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        
+
+
 
         OnHitTarget += BasicHitEffect;
     }
     private void Start()
     {
-        rb.velocity = initSpeed;
+        rb.velocity = initSpeed * Global.SpeedFactor;
     }
     protected virtual void Update()
     {
@@ -35,11 +37,7 @@ public class BulletProto : MonoBehaviour
     }
     protected virtual void HandleDisappear()
     {
-        if (transform.position.z < -5f)
-        {
-            Destroy(gameObject);
-        }
-        if(transform.position.z > 100f)
+        if (transform.position.z < -5f || transform.position.z > 100f)
         {
             Destroy(gameObject);
         }
@@ -48,13 +46,14 @@ public class BulletProto : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void ApplyBasicAttri(string _targettag,Vector3 speed,float D,bool isP = false,string _sourcetag = "Player")
+    public void ApplyBasicAttri(string _targettag,Vector3 speed,float D,float _affectSpeed,bool isP = false,string _sourcetag = "Player")
     {
         targetTag = _targettag;
         initSpeed = speed;
         isPierce = isP;
         damage = D;
         sourceTag = _sourcetag;
+        affectSpeed = _affectSpeed;
     }
     
     private void OnTriggerEnter(Collider other)
@@ -80,9 +79,15 @@ public class BulletProto : MonoBehaviour
     {
         
         target.GetComponent<ICanTakeDmg>().TakeDamage(damage);
+        ICanAffectSpeed canAffectSpeed =  target.GetComponent<ICanAffectSpeed>();
+        if (canAffectSpeed != null) canAffectSpeed.AffectSpeed(affectSpeed);
         if (isHostile)
         {
             DodgeJudger.Instance.SuccessfullyHit(gameObject);
+        }
+        else if(damage > 0) 
+        {
+            DmgDisplayOP.Instance.ShowDmgAt(damage, transform.position);
         }
     }
 }

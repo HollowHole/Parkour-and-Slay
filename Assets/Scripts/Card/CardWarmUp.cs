@@ -42,9 +42,5 @@ public class CardWarmUp : CardProto
             base.HandleFinishEffect(target);
             CardManager.Instance.OnUseSpeedUpCard -= NextSpeedUpCardGainExtraValue;
         }
-        public override void CountDown()
-        {
-            //DoNothing;
-        }
     }
 }

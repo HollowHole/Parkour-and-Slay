@@ -25,7 +25,7 @@ MonoBehaviour:
   AttackRange: 20
   AttackInterval: 5
   Scatter: 0
-  BulletSpeed: 5
+  BulletSpeed: 25
   BulletSpeedUpRate: 0
   TargetTag: Player
   BulletDamage: 5

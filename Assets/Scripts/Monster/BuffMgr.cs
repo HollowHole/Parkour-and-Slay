@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class BuffMgr : MonoBehaviour
 
     public void AddBuff(Buff buff)
     {
+        Buff[] sameBuff = BuffList.Where((_buff) => { return buff.UISprite == _buff.UISprite; }).ToArray();
+        if(sameBuff.Length > 0 ) sameBuff.First().Finish();
         BuffList.Add(buff);
 
         //Debug.Log("buff added!");
@@ -71,17 +74,22 @@ public abstract class Buff
     Transform target;
     public GameObject myUI;
     public bool isOver => LastTime <= 0;
-
-    public Buff(Sprite uiSprite, float lastTime = 1f, GameObject BuffUI = null)
+    public bool isPersistant = false;
+    public Buff(Sprite uiSprite)
+    {
+        UISprite = uiSprite;
+        LastTime = 1;
+        isPersistant = true;
+    }
+    public Buff(Sprite uiSprite, float lastTime)
     {
         LastTime = lastTime;
-        myUI = BuffUI;
         UISprite = uiSprite;    
     }
     public virtual void CountDown()
     {
+        if(!isPersistant)
         LastTime -= Time.deltaTime;
-        
     }
     public void Init(Transform _target)
     {

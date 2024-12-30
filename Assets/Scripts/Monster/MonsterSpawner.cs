@@ -26,7 +26,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] float spawnPosMaxY = 2f;
 
     int rangedMonsterCnt = 0;
-    [SerializeField] int rangedMonsterCntLimit = 3;
+    [SerializeField] int rangedMonsterCntLimit = 2;
 
     //List<MonsterProto> meleeMonsters2Spawn = new List<MonsterProto>();
     List<MonsterProto> rangedMonsters2Spawn = new List<MonsterProto>();
@@ -87,6 +87,7 @@ public class MonsterSpawner : MonoBehaviour
     void OnLevelBegin()
     {
         difficultyDemand =LevelMgr.Instance.CurLevelCnt * difficultyIncreaseRate;
+        rangedMonsterCntLimit = Mathf.FloorToInt(LevelMgr.Instance.CurLevelCnt * 1.34f + 0.66f);
         GenerateMonsterList();
     }
     public void OnMonsterDisappear(MonsterProto monster)

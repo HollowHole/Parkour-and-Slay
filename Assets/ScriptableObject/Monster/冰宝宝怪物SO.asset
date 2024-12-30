@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: "\u51B0\u5B9D\u5B9D\u602A\u7269SO"
   m_EditorClassIdentifier: 
   Type: 1
-  Hp: 0
-  Speed: 0
+  Hp: 15
+  Speed: 10
   SpeedUpRate: 0
-  MaxSpeedLimit: 0
+  MaxSpeedLimit: 10
   CollideDamage: 0
   AffectSpeedAbility: 0
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
   DifficultyValue: 0.2
-  AttackRange: 0
-  AttackInterval: 1
+  AttackRange: 10
+  AttackInterval: 2
   Scatter: 0
-  BulletSpeed: 5
+  BulletSpeed: 25
   BulletSpeedUpRate: 1
-  TargetTag: Player
-  BulletDamage: 1
+  TargetTag: Monster
+  BulletDamage: -5
   LastTime: 2
   DmgScalarBonus: 1.3
   AffectSpeedAbiScalarBonus: 1.3

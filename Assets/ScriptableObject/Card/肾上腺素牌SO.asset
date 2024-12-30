@@ -18,10 +18,11 @@ MonoBehaviour:
   CardDesc: "\u52A015\u70B9\u79FB\u901F\uFF0C\u6263\u88405\u70B9"
   CardFace: {fileID: 21300000, guid: 7f995071b386a96448b554f76ca83dd3, type: 3}
   EnergyCost: 1
+  GainArmor: 0
   SpeedUpValue: 15
   DrawCardCnt: 0
   isPierce: 0
-  BulletSpeed: 5
+  BulletSpeed: 0
   TargetTag: Player
   Damage: 5
   CD: 3

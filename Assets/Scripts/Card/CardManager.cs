@@ -14,7 +14,7 @@ public class CardManager : MonoBehaviour
     [SerializeField]List<CardProto> CardDeck;
     List<CardProto> DrawPileCards = new List<CardProto>();
     List<CardProto> DiscardPileCards = new List<CardProto>();
-
+    List<CardProto> ConsumePileCards = new List<CardProto>();
 
     [SerializeField] Transform HandCardZone;
     //SO
@@ -92,8 +92,13 @@ public class CardManager : MonoBehaviour
         {
             Destroy(cardGo.gameObject);
         }
+        foreach(CardProto cardGo in ConsumePileCards)
+        {
+            Destroy(cardGo.gameObject);
+        }
         DrawPileCards = new List<CardProto>();
         DiscardPileCards = new List<CardProto>();
+        ConsumePileCards = new List<CardProto>();
     }
     private void Update()
     {
@@ -157,17 +162,16 @@ public class CardManager : MonoBehaviour
     {
         EnergyCnt -= card.GetCost();
 
-
         if(card.SpeedUpValue > 0)
         {
             OnUseSpeedUpCard?.Invoke(card);
         }
 
         card.OnUse();
-        if (card.cardTypes.Contains(CardType.Comsume))//消耗类型
+        if (card.cardTypes.Contains(CardType.Consume))//消耗类型
         {
-            //Destroy(card.gameObject);
-            DestroyImmediate(card.gameObject);
+            //DestroyImmediate(card.gameObject);
+            Consume(card);
         }
         else
         {
@@ -189,6 +193,13 @@ public class CardManager : MonoBehaviour
         //Debug.Log("DiscardPileCards:" + stringBuilder);
         //stringBuilder = new StringBuilder();
     }
+
+    private void Consume(CardProto card)
+    {
+        card.transform.SetParent(transform, false);
+        ConsumePileCards.Add(card);
+    }
+
     void Discard(CardProto card)
     {
         card.transform.SetParent(transform, false);

@@ -63,7 +63,7 @@ public class RangedMonsterProto : MonsterProto
             Quaternion rotationQuaternion = Quaternion.AngleAxis(UnityEngine.Random.Range(0,r_monsterSO.Scatter), randomAxis);
             bulletV = rotationQuaternion * bulletV;
 
-            b.ApplyBasicAttri(r_monsterSO.TargetTag, bulletV, BulletDmg,false,"Monster");
+            b.ApplyBasicAttri(r_monsterSO.TargetTag, bulletV, BulletDmg,AffectSpeedAbi,false,"Monster");
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
@@ -72,7 +72,8 @@ public class RangedMonsterProto : MonsterProto
         myBullets.Clear();
         GameObject b = (Instantiate(BulletPrefab, GameObject.Find("AllBullets").transform, false));
         myBullets.Add(b);
-        b.transform.position = Center;
+        Vector3 Ext=GetComponentInChildren<Collider>().bounds.extents;
+        b.transform.position = Center + (Ext.z + 0.6f) * transform.forward;
         //b.transform.rotation = transform.rotation;
     }
 

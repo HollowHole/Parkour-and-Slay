@@ -10,10 +10,6 @@ public class CardExhaust : CardProto
         base.Awake();
         m_cardSO = (CardExhaustSO)cardSO;
     }
-    public override void OnUse()
-    {
-        base.OnUse();
-    }
     protected override void ApplyMyBuffOnHit(Transform target)
     {
 
@@ -25,15 +21,6 @@ public class CardExhaust : CardProto
         public MyBuff(Sprite ui,float delayTime,float _punishValue):base(ui,delayTime)
         {
             punishValue = _punishValue;
-        }
-        protected override void HandleInitEffect(Transform target)
-        {
-            base.HandleInitEffect(target);
-        }
-
-        protected override void HandleLastingEffect(Transform target)
-        {
-            base.HandleLastingEffect(target);
         }
         protected override void HandleFinishEffect(Transform target)
         {

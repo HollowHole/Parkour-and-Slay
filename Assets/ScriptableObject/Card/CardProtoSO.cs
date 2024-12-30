@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.EditorTools;
 using UnityEngine;
 
-public enum CardType { Comsume };
+public enum CardType { Consume };
 public enum Rarity { Initial,Common,Rare,Legendary};
 
 [CreateAssetMenu(fileName = "基础牌SO", menuName = "ScriptableObject/牌/基础牌SO", order = 0)]
@@ -22,6 +22,8 @@ public class CardProtoSO : ScriptableObject
 
     [Tooltip("费用")]
     public int EnergyCost = 1;
+    [Tooltip("起甲")]
+    public float GainArmor = 0;
 
     //[Tooltip("生成对象")]
     //public GameObject bullet;

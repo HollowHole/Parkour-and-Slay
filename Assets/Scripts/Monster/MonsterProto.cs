@@ -15,6 +15,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
 
     protected float speed;
     public float AffectSpeedAbi {  get; set; }
+    public float CollideDmg {  get; set; }
     private float hp;
     private float MaxHp;
     public Action<float, float> OnHpChange;
@@ -65,6 +66,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         hp = MaxHp = monsterSO.Hp;
         speed = monsterSO.Speed;
         AffectSpeedAbi = monsterSO.AffectSpeedAbility;
+        CollideDmg = monsterSO.CollideDamage;
     }
     protected virtual void FixedUpdate()
     {
@@ -74,7 +76,6 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         HandleRepulseMonster();
         // Debug.Log(gameObject.name + " has velocity " + rb.velocity);
     }
-
     private void HandleRepulseMonster()
     {
         Collider myCollider = GetComponentInChildren<Collider>();
@@ -99,7 +100,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
 
     protected virtual void HandleDisappear()
     {
-        if (transform.position.z < -5f)
+        if (transform.position.z < -5f|| transform.position.y < -100f)
         {
             MonsterSpawner.Instance.OnMonsterDisappear(this);
             Destroy(gameObject);
@@ -122,7 +123,8 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     }
     protected virtual void HandleRotation()
     {
-        transform.LookAt(player.transform.position + new Vector3(0,Player.BulletShootHeight,0));
+        
+        transform.LookAt(transform.position - Center + player.transform.position + new Vector3(0, Player.BulletShootHeight, 0));
     }
     public MonsterProtoSO GetSO()
     {
@@ -136,8 +138,8 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     {
         if (collision.collider.CompareTag("Player"))
         {
-            player.GetComponent<ICanTakeDmg>().TakeDamage(monsterSO.CollideDamage);
-            player.GetComponent<ICanAffectSpeed>().AffectSpeed(monsterSO.AffectSpeedAbility);
+            player.GetComponent<ICanTakeDmg>().TakeDamage(CollideDmg);
+            player.GetComponent<ICanAffectSpeed>().AffectSpeed(AffectSpeedAbi);
         }
     }
 }

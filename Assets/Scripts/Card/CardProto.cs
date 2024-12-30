@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using TMPro;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
@@ -35,6 +36,7 @@ public class CardProto : MonoBehaviour
     public float BulletSpeed { get; set; }
     public string TargetTag { get; set; }
     public float Damage { get; set; }
+    public float GainArmor {  get; set; }
 
     protected virtual void Awake()
     {
@@ -55,6 +57,31 @@ public class CardProto : MonoBehaviour
         Damage = cardSO.Damage;
         TargetTag = cardSO.TargetTag;
         cardTypes = cardSO.CardTypes;
+        GainArmor = cardSO.GainArmor;
+
+        Image img = transform.Find("Face").GetComponent<Image>();
+        img.sprite = cardSO.CardFace;
+        img.preserveAspect = true;
+        transform.Find("Name").GetComponent<TextMeshProUGUI>().text = cardSO.CardName;
+        transform.Find("Cost").GetComponent<TextMeshProUGUI>().text = cardSO.EnergyCost.ToString();
+        transform.Find("Description").GetComponent<TextMeshProUGUI>().text = cardSO.CardDesc; 
+        //Background
+        RawImage bg = transform.Find("Background").GetComponent<RawImage>();
+        switch (cardSO.rarity)
+        {
+            case Rarity.Common:
+                bg.color = new Color(162f / 255, 162f / 255, 162f / 255);
+                break;
+            case Rarity.Rare:
+                bg.color = new Color(0, 1, 120f / 255);
+                break;
+            case Rarity.Legendary:
+                bg.color = new Color(1, 68f / 255, 0);
+                break;
+            default:
+                bg.color = new Color(162f / 255, 162f / 255, 162f / 255);
+                break;
+        }
     }
 
     protected virtual void Start()
@@ -110,12 +137,11 @@ public class CardProto : MonoBehaviour
             CardManager.Instance.DrawOneCard();
         //自我加速
         Player.Instance.GetComponent<ICanAffectSpeed>().AffectSpeed(SpeedUpValue);
+        //起甲
+        Player.Instance.Armor += GainArmor;
         //生成子弹
-        myBullets.Clear();
-        
         SpawnBullets();
 
-        ApplyBasicAttriAndBuffAffect2Bullet();
     }
 
     private void ApplyBasicAttriAndBuffAffect2Bullet()
@@ -124,7 +150,10 @@ public class CardProto : MonoBehaviour
         {
             BulletProto b = bullet.GetComponent<BulletProto>();
             Vector3 bulletV = transform.forward * BulletSpeed;
-            b.ApplyBasicAttri(TargetTag, bulletV,  Damage * Player.Instance.Speed /100 , isPierce);
+            b.ApplyBasicAttri(TargetTag, bulletV, Player.Instance.CalcFinalDmg(Damage) , 0,isPierce);
+
+            Debug.Log("originDmg: "+Damage +"newDamage: "+Player.Instance.CalcFinalDmg(Damage));
+
             b.OnHitTarget += ApplyMyBuffOnHit;
         }
     }
@@ -134,12 +163,16 @@ public class CardProto : MonoBehaviour
 
     protected virtual void SpawnBullets()
     {
+        myBullets.Clear();
+
         GameObject b = (Instantiate(BulletPrefab, GameObject.Find("AllBullets").transform, false));
         myBullets.Add(b);
 
         Vector3 bulletPos =  Player.Instance.transform.position;
         bulletPos.y += Player.BulletShootHeight;
         b.transform.position =  bulletPos;
+
+        ApplyBasicAttriAndBuffAffect2Bullet();
     }
     public virtual int GetCost()
     {

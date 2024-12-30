@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6842466910587047212}
   - component: {fileID: 2520895289127167841}
   - component: {fileID: 7717413229692420845}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ice
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4676873864440794199}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigJaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4942970788161705039}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,9 +185,9 @@ GameObject:
   - component: {fileID: -915732096537923684}
   - component: {fileID: 8173255011476165625}
   - component: {fileID: 4118165712122987613}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ice
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +223,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: e7067c5313539294e8d57e2d9f59b378, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -265,7 +265,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -283,8 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSO: {fileID: 11400000, guid: c2e1b09d60a62b24f8ec094bdb35a019, type: 2}
-  Center: {x: 0, y: 0, z: 0}
-  BulletPrefab: {fileID: 5015294809367098342, guid: 96d07af8c5c4c934bbc8f2bf72aa39f6, type: 3}
+  BulletPrefab: {fileID: 5015294809367098342, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
 --- !u!1 &8518873110653533710
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4068700248367609475}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +328,7 @@ GameObject:
   - component: {fileID: 8931067887528504203}
   - component: {fileID: 8931067887528504201}
   - component: {fileID: 8931067887528504202}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FX Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

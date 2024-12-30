@@ -8,7 +8,7 @@ public class GameoverMgr : MonoBehaviour
     {
         FindObjectOfType<Player>().OnHpChange += GameoverJudge;
     }
-    void GameoverJudge(float playerHp,float _)
+    void GameoverJudge(float playerHp,float _, float __)
     {
         if (playerHp < 0)
         {

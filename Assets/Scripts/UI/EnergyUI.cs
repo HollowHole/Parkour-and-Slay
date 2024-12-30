@@ -17,9 +17,10 @@ public class EnergyUI : MonoBehaviour
     void OnEnergyChange(int energyCnt)
     {
         int diff = energyCnt - transform.childCount;
+        
         while (diff < 0)
         {
-            Destroy(transform.GetChild(0).gameObject);
+            DestroyImmediate(transform.GetChild(0).gameObject);
             diff++;
         }
         while(diff > 0)
