@@ -132,7 +132,7 @@ public class CardProto : MonoBehaviour
     }
     public virtual bool IsUsable()
     {
-        return CardManager.Instance.EnergyCnt > EnergyCost;
+        return CardManager.Instance.EnergyCnt >= EnergyCost;
     }
     public virtual void OnUse()
     {
