@@ -25,7 +25,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] float spawnXBias = 3f;
     [SerializeField] float spawnPosMaxY = 2f;
 
-    int rangedMonsterCnt = 0;
+    List<MonsterProto> SpawnedMonsterList;
     [SerializeField] int rangedMonsterCntLimit = 2;
 
     //List<MonsterProto> meleeMonsters2Spawn = new List<MonsterProto>();
@@ -37,6 +37,7 @@ public class MonsterSpawner : MonoBehaviour
         Instance = this;
 
         OnLevelBegin();
+        SpawnedMonsterList = new List<MonsterProto>();
     }
     private void Start()
     {
@@ -93,14 +94,9 @@ public class MonsterSpawner : MonoBehaviour
     public void OnMonsterDisappear(MonsterProto monster)
     {
 
-        if(monster.GetSO().Type == MonsterType.Ranged)
-            rangedMonsterCnt--;
+        SpawnedMonsterList.Remove(monster);
 
-        //if (meleeMonsters2Spawn.Count + rangedMonsters2Spawn.Count + meleeMonsterCnt + rangedMonsterCnt <= 0)
-        //{
-        //    OnAllMonsterCleared?.Invoke();
-        //}
-        if ( rangedMonsters2Spawn.Count + rangedMonsterCnt <= 0)
+        if ( rangedMonsters2Spawn.Count + SpawnedMonsterList.Count <= 0)
         {
             OnAllMonsterCleared?.Invoke();
         }
@@ -119,7 +115,7 @@ public class MonsterSpawner : MonoBehaviour
         //{
         //    SpawnMonster(MonsterType.Melee);
         //}
-        if(rangedMonsterCnt < rangedMonsterCntLimit && rangedMonsters2Spawn.Count>0)
+        if(SpawnedMonsterList.Count < rangedMonsterCntLimit && rangedMonsters2Spawn.Count>0)
         {
             SpawnMonster(MonsterType.Ranged);
         }
@@ -128,6 +124,8 @@ public class MonsterSpawner : MonoBehaviour
 
     private bool SpawnMonster(MonsterType type)
     {
+        SpawnTimer = SpawnCD;
+
         Vector3 spawnPoint = MonsterSpawnPoint.position;
         spawnPoint.x += UnityEngine.Random.Range(-spawnXBias, spawnXBias);
         spawnPoint.y = UnityEngine.Random.Range(0, spawnPosMaxY);
@@ -141,14 +139,17 @@ public class MonsterSpawner : MonoBehaviour
         //    monster.transform.position = spawnPoint;
         //}
         if(type == MonsterType.Ranged) {
-            RangedMonsterProto monster;
-            rangedMonsterCnt++;
-            monster = Instantiate(rangedMonsters2Spawn[rangedMonsters2Spawn.Count - 1], transform) as RangedMonsterProto;
-            rangedMonsters2Spawn.RemoveAt(rangedMonsters2Spawn.Count - 1);
+            int SpawnIndex = rangedMonsters2Spawn.Count;
+            MonsterProto monster;
+            while (--SpawnIndex >= 0 && !rangedMonsters2Spawn[SpawnIndex].MeetSpawnReq(SpawnedMonsterList)) ;
+
+            if(SpawnIndex < 0)
+                return false;
+            monster = Instantiate(rangedMonsters2Spawn[SpawnIndex], transform);
+            SpawnedMonsterList.Add(monster);
+            rangedMonsters2Spawn.RemoveAt(SpawnIndex);
             monster.transform.position = spawnPoint;
         }
-
-        SpawnTimer = SpawnCD;
         return true;
     }
 

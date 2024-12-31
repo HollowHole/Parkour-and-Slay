@@ -15,7 +15,12 @@ public class CardWarmUp : CardProto
 
     protected override void ApplyMyBuffOnHit(Transform target)
     {
-        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(cardWarmUpSO.BuffSprite,cardWarmUpSO.ExtraSpeedValue));
+        base.ApplyMyBuffOnHit(target);
+        BuffMgr buffMgr = target.GetComponent<BuffMgr>();
+        if (buffMgr != null)
+        {
+            buffMgr.AddBuff(new MyBuff(cardWarmUpSO.BuffSprite, cardWarmUpSO.ExtraSpeedValue));
+        }
     }
     public class MyBuff : Buff
     {

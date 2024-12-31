@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476ffd6266e95364dab49c222be57641, type: 3}
+  m_Name: "\u51B0\u76FE\u6218\u58EB\u602A\u7269SO"
+  m_EditorClassIdentifier: 
+  Type: 1
+  Hp: 20
+  Speed: 10
+  SpeedUpRate: 0
+  MaxSpeedLimit: 10
+  CollideDamage: 0
+  AffectSpeedAbility: 0
+  DifficultyRangeMin: 1
+  DifficultyRangeMax: 5
+  DifficultyValue: 0.2
+  AttackRange: 9
+  AttackInterval: 0
+  Scatter: 0
+  BulletSpeed: 0
+  BulletSpeedUpRate: 0
+  TargetTag: Player
+  BulletDamage: 0
+  ShieldHp: 50
+  DizzyTimeOnShieldBroken: 5
+  DmgBonus2PassedBullet: 20
+  AffeSpeBonus2PassedBullet: 20

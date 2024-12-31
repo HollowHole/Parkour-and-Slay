@@ -24,11 +24,12 @@ public class MonsterIceBaby : RangedMonsterProto
         }
         //可以改成发射完寻找下一个目标，缓满旋转过去
         Collider[] colliders = Physics.OverlapSphere(Center, m_monsterSO.AttackRange, LayerMask.GetMask("Monster"));
-        if (colliders.Length <= 1) { return; }//一定有自己
 
-        MonsterProto[] AllMonsters = colliders .Select(collider => collider.GetComponentInParent<MonsterProto>())
-                                                .Where(monster => monster != null&& monster != this) // 确保不为 null
+        MonsterProto[] AllMonsters = colliders.Select(collider => collider.GetComponentInParent<MonsterProto>())
+                                                .Where(monster => monster != null && monster != this) // 确保不为 null
                                                 .ToArray();
+
+        if (AllMonsters.Length <= 0) { return; }
 
         targetMonster = AllMonsters.OrderBy(monster => monster.Hp)
                                    .First();
@@ -37,7 +38,7 @@ public class MonsterIceBaby : RangedMonsterProto
 
         AttackTimer = m_monsterSO.AttackInterval;
         SpawnBullets();
-        ApplyBasicAttriAndBuffAffect2Bullet();
+        
     }
     protected override void HandleRotation()
     {
@@ -54,7 +55,11 @@ public class MonsterIceBaby : RangedMonsterProto
     protected override void ApplyMyBuffOnHit(Transform target)
     {
         base.ApplyMyBuffOnHit(target);
-        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_monsterSO.LastTime, m_monsterSO.DmgIncrePerc, m_monsterSO.AffeSpeIncrePerc));
+        BuffMgr buffMgr = target.GetComponent<BuffMgr>();
+        if (buffMgr != null)
+        {
+            buffMgr.AddBuff(new MyBuff(m_monsterSO.LastTime, m_monsterSO.DmgIncrePerc, m_monsterSO.AffeSpeIncrePerc));
+        }
     }
     public class MyBuff : Buff
     {

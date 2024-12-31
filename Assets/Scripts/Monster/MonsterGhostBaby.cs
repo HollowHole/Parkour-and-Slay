@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MonsterGhostBaby : RangedMonsterProto
 {
-    GhostBabyMonsterSO m_monsterSO;
+    MonsterGhostBabySO m_monsterSO;
     protected override void Awake()
     {
         base.Awake();
-        m_monsterSO = base.monsterSO as GhostBabyMonsterSO;
+        m_monsterSO = base.monsterSO as MonsterGhostBabySO;
     }
     protected override void HandleMovement()//添加重力
     {
@@ -22,6 +22,7 @@ public class MonsterGhostBaby : RangedMonsterProto
     {
         base.SpawnBullets();
 
+        //子弹放到脚底
         Bounds bound = GetComponentInChildren<Collider>().bounds;//脚底
         float newY = bound.center.y - bound.extents.y;
         foreach (GameObject b in myBullets)
@@ -34,7 +35,12 @@ public class MonsterGhostBaby : RangedMonsterProto
     protected override void ApplyMyBuffOnHit(Transform target)
     {
         base.ApplyMyBuffOnHit(target);
-        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_monsterSO.BuffSprite,m_monsterSO.ControlTime));
+        
+        BuffMgr buffMgr = target.GetComponent<BuffMgr>();
+        if (buffMgr != null)
+        {
+            buffMgr.AddBuff(new MyBuff(m_monsterSO.BuffSprite, m_monsterSO.ControlTime));
+        }
     }
     public class MyBuff : Buff
     {
@@ -48,7 +54,7 @@ public class MonsterGhostBaby : RangedMonsterProto
             player = target.GetComponent<Player>();
             if(player != null)
             {
-                player.Moveable = false;
+                player.Moveable--;
                 Debug.Log("cant move!");
             }
         }
@@ -61,7 +67,7 @@ public class MonsterGhostBaby : RangedMonsterProto
             base.HandleFinishEffect(target);
             if(player != null)
             {
-                player.Moveable = true;
+                player.Moveable++;
                 Debug.Log("Moveable Again");
             }
         }

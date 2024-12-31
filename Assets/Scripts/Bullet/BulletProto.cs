@@ -8,9 +8,9 @@ public class BulletProto : MonoBehaviour
     protected Rigidbody rb;
 
     string sourceTag;
-    string targetTag;
-    Vector3 initSpeed;
-    bool isPierce;
+    protected string targetTag;
+    protected Vector3 initSpeed;
+    protected bool isPierce;
     protected float damage;
     float affectSpeed;
 
@@ -22,11 +22,9 @@ public class BulletProto : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-
-
         OnHitTarget += BasicHitEffect;
     }
-    private void Start()
+    protected virtual void Start()
     {
         rb.velocity = initSpeed * Global.SpeedFactor;
     }
@@ -55,6 +53,10 @@ public class BulletProto : MonoBehaviour
         sourceTag = _sourcetag;
         affectSpeed = _affectSpeed;
     }
+    public void SetInitialSpeed(Vector3 speed)
+    {
+        initSpeed = speed;
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -78,6 +80,7 @@ public class BulletProto : MonoBehaviour
     {
         
         target.GetComponent<ICanTakeDmg>().TakeDamage(damage);
+        Debug.Log(target.name+" take damage" + damage);
         ICanAffectSpeed canAffectSpeed =  target.GetComponent<ICanAffectSpeed>();
         if (canAffectSpeed != null) canAffectSpeed.AffectSpeed(affectSpeed);
         if (isHostile)
@@ -88,5 +91,14 @@ public class BulletProto : MonoBehaviour
         {
             DmgDisplayOP.Instance.ShowDmgAt(damage, transform.position);
         }
+    }
+
+    public void ApplyDmgBonus(float bonus)
+    {
+        damage += bonus;
+    }
+    public void ApplyAffeSpeBonus(float bonus)
+    {
+        affectSpeed += bonus;
     }
 }

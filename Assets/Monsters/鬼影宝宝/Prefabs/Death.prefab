@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSO: {fileID: 11400000, guid: 11182d6c65cd0e94d9d329c5fffe2801, type: 2}
-  BulletPrefab: {fileID: 5571785853453812541, guid: 145f9a76ea24d464e8ce5fc6d00e9a22, type: 3}
+  BulletPrefab: {fileID: 5571785853453812541, guid: 5bf4799bb325cba4bb61652fc9d53802, type: 3}
 --- !u!114 &365208821360451840
 MonoBehaviour:
   m_ObjectHideFlags: 0

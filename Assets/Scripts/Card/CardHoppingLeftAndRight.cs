@@ -12,8 +12,12 @@ public class CardHoppingLeftAndRight : CardProto
     }
     protected override void ApplyMyBuffOnHit(Transform target)
     {
-        //Debug.Log("hit" + collider.name);
-        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.DodgeSuccBonus,m_cardSO.DodgeFailPunish));
+        base.ApplyMyBuffOnHit(target);
+        BuffMgr buffMgr = target.GetComponent<BuffMgr>();
+        if (buffMgr != null)
+        {
+            buffMgr.AddBuff(new MyBuff(m_cardSO.BuffSprite, m_cardSO.DodgeSuccBonus, m_cardSO.DodgeFailPunish));
+        }
     }
     public class MyBuff : Buff
     {

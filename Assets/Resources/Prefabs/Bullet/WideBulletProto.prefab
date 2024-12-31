@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8049988455578754376}
   - component: {fileID: 5890034377322782272}
   - component: {fileID: 7108233795147250680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WideBulletProto
   m_TagString: Bullet
   m_Icon: {fileID: 0}

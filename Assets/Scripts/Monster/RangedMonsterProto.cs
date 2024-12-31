@@ -49,7 +49,7 @@ public class RangedMonsterProto : MonsterProto
         {
             AttackTimer = r_monsterSO.AttackInterval;
             SpawnBullets();
-            ApplyBasicAttriAndBuffAffect2Bullet();
+            
         }
     }
     protected void ApplyBasicAttriAndBuffAffect2Bullet()
@@ -75,6 +75,7 @@ public class RangedMonsterProto : MonsterProto
         Vector3 Ext=GetComponentInChildren<Collider>().bounds.extents;
         b.transform.position = Center + (Ext.z + 0.6f) * transform.forward;
         //b.transform.rotation = transform.rotation;
+        ApplyBasicAttriAndBuffAffect2Bullet();
     }
 
     protected override void HandleMovement()

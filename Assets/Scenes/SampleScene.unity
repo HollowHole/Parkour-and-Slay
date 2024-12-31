@@ -444,7 +444,6 @@ MonoBehaviour:
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
   - {fileID: 3243663127498769334, guid: 2606584ed31fe0e468de4d2461f84d22, type: 3}
-  - {fileID: 4704547600112974774, guid: 48774de8dc84979428d5400dde472e16, type: 3}
   HandCardZone: {fileID: 973173099}
   MaxHandCnt: 4
   MaxEnergyLimit: 4

@@ -12,8 +12,13 @@ public class CardExhaust : CardProto
     }
     protected override void ApplyMyBuffOnHit(Transform target)
     {
+        base.ApplyMyBuffOnHit(target);
+        BuffMgr buffMgr = target.GetComponent<BuffMgr>();
+        if (buffMgr != null)
+        {
+            buffMgr.AddBuff(new MyBuff(m_cardSO.BuffSprite, m_cardSO.Time, m_cardSO.PunishValue));
 
-        target.GetComponent<BuffMgr>().AddBuff(new MyBuff(m_cardSO.BuffSprite,m_cardSO.Time, m_cardSO.PunishValue));
+        }
     }
     public class MyBuff : Buff
     {

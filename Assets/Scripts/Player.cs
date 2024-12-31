@@ -18,7 +18,12 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     float jumpHeight;
     private Vector3 velocity;
     float LRMoveSpeed;
-    [HideInInspector]public bool Moveable { get; set; } 
+    /// <summary>
+    /// Moveable-=1 来定住玩家
+    /// </summary>
+    [HideInInspector]public int Moveable { get; set; }
+    bool isInprisoned => Moveable < 0;
+
     private bool isGrounded;
 
     private Rigidbody rb;
@@ -89,7 +94,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         rb = GetComponent<Rigidbody>();
         buffMgr = GetComponent<BuffMgr>();
 
-        Moveable = true;
+        Moveable = 0;
 
         DmgMagniSpeed = () => Instance.Speed / 100;
         DmgMagniOther = 1;
@@ -122,6 +127,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     }
     private void FixedUpdate()
     {
+
         velocity = rb.velocity;
         GroundedCheck();
         HandleMove();
@@ -170,7 +176,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         //Vector3 pointTop = transform.position + transform.up * meshCollider.bounds.size.y/2 - transform.up * radius;
         Vector3 pointBottom = transform.position + transform.up * 0.2f;
         Vector3 pointTop = pointBottom + transform.up * meshCollider.bounds.extents.y;
-        LayerMask ignoreLayer = ~LayerMask.GetMask("Player");
+        LayerMask ignoreLayer = ~(LayerMask.GetMask("Player") + LayerMask.GetMask("Bullet"));
 
         Collider[] colliders = Physics.OverlapCapsule(pointBottom, pointTop, radius, ignoreLayer);
         Debug.DrawLine(pointBottom, pointTop,Color.black);
@@ -190,7 +196,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     void HandleMove()
     {
         float vx = 0;
-        if(Moveable)
+        if(!isInprisoned)
             vx = Input.GetAxis("Horizontal") * LRMoveSpeed ;
         velocity.x = vx;
         velocity.z = -transform.position.z;
@@ -201,7 +207,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
 
         if (isGrounded)
         {
-            if (jumpInput && Moveable)
+            if (jumpInput && !isInprisoned)
             {
                 velocity.y = Mathf.Sqrt(2 * Global.GRAVITY * jumpHeight);
             }

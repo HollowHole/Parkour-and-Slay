@@ -144,6 +144,10 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
             damage *= TakenDmgMagni;
         Hp -= damage;
     }
+    public virtual bool MeetSpawnReq(List<MonsterProto> monsters)
+    {
+        return true;
+    } 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
