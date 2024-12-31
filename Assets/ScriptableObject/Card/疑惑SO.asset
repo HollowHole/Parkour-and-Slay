@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31af29a80579abe4b8986f782cd49e11, type: 3}
-  m_Name: "\u8B66\u60D5SO"
+  m_Name: "\u7591\u60D1SO"
   m_EditorClassIdentifier: 
   CardTypes: 
   rarity: 1
-  CardName: "\u8B66\u60D5"
-  CardDesc: "\u51CF8\u70B9\u79FB\u901F"
+  CardName: "\u7591\u60D1"
+  CardDesc: "\u51CF5\u70B9\u79FB\u901F\uFF0C\u83B7\u5F9715\u62A4\u76FE"
   CardFace: {fileID: 21300000, guid: e85e76e9c0777e848b40d8efd008b0e2, type: 3}
   EnergyCost: 1
-  SpeedUpValue: -8
+  GainArmor: 15
+  SpeedUpValue: -5
   DrawCardCnt: 0
   isPierce: 0
-  BulletSpeed: 0
+  BulletSpeed: 5
   TargetTag: Player
   Damage: 0
   CD: 3
