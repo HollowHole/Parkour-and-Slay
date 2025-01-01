@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LRMoveSpeed: 2
   IniSpeed: 150
-  IniSpeedUpRate: 1
+  IniSpeedUpRate: -1
   IniJumpHeight: 2
   SpeedLimit: 200
   IniMaxHp: 60

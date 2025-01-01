@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u5145\u7535\u724CSO"
   m_EditorClassIdentifier: 
   CardTypes: 00000000
-  rarity: 1
+  rarity: 0
   CardName: "\u5145\u7535"
   CardDesc: "\u56DE\u590D3\u70B9\u8840\u91CF\u3002\u6D88\u8017\u3002"
   CardFace: {fileID: 21300000, guid: 722dfe0a0a7e27a42bf592238602201d, type: 3}
