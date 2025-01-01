@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &503681685144925655
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666233661849417192, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015294809367098342, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      propertyPath: m_Name
+      value: LargeLightBallBullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -5845483055520462367, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5015294809367098342, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -800487711128965989}
+  m_SourcePrefab: {fileID: 100100000, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+--- !u!1 &4856155678898734641 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5015294809367098342, guid: fd7d1b1ab3f1aef468be607c15f163fe, type: 3}
+  m_PrefabInstance: {fileID: 503681685144925655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-800487711128965989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856155678898734641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1be476aecf19c347908ab755f55fffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplodeRange: 3

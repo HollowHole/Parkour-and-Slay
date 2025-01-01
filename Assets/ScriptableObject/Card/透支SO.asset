@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardTypes: 
   rarity: 1
-  CardName: "\u5361\u724C\u540D\u79F0"
-  CardDesc: "\u5361\u724C\u63CF\u8FF0"
+  CardName: "\u900F\u652F"
+  CardDesc: "\u52A012\u70B9\u79FB\u901F\uFF0C10s\u540E\u51CF\u5C1118\u70B9\u79FB\u901F"
   CardFace: {fileID: 21300000, guid: a044ac5bd7e4c9f4ab67ec27e224a059, type: 3}
   EnergyCost: 1
   GainArmor: 0

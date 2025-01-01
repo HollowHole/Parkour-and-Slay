@@ -21,7 +21,7 @@ MonoBehaviour:
   AffectSpeedAbility: 0
   DifficultyRangeMin: 1
   DifficultyRangeMax: 5
-  DifficultyValue: 0.2
+  DifficultyValue: 0.5
   AttackRange: 14
   AttackInterval: 2
   Scatter: 0

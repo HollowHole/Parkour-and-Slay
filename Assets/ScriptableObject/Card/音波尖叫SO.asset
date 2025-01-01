@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5dd4466f1946846a0863e4b40a4e9a, type: 3}
+  m_Name: "\u97F3\u6CE2\u5C16\u53EBSO"
+  m_EditorClassIdentifier: 
+  CardTypes: 
+  rarity: 2
+  CardName: "\u97F3\u6CE2\u5C16\u53EB"
+  CardDesc: "\u5168\u90E8\u602A\u7269\u653B\u51FB\u529B\u4E0B\u964D25%\uFF0C\u53D7\u5230\u4F24\u5BB3\u589E\u52A025%\uFF0C\u6301\u7EED10\u79D2\u3002"
+  CardFace: {fileID: 21300000, guid: 9363688fa7c8c124d8c38b21a87fe72a, type: 3}
+  EnergyCost: 2
+  GainArmor: 0
+  SpeedUpValue: 0
+  DrawCardCnt: 0
+  isPierce: 0
+  BulletSpeed: 5
+  TargetTag: Player
+  Damage: 0
+  CD: 3
+  BuffSprite: {fileID: 0}
+  LastTime: 10
+  DmgDecrePerc: 25
+  TakeDmgIncrePerc: 25
+  AffectRange: 100
