@@ -18,4 +18,8 @@ public class CardFlash : CardProto
 
         Player.Instance.transform.position = targetPos;
     }
+    protected override void SpawnBullets()
+    {
+        //base.SpawnBullets();
+    }
 }

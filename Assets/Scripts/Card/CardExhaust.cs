@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 透支
+/// </summary>
 public class CardExhaust : CardProto 
 {
     CardExhaustSO m_cardSO;
@@ -23,7 +26,7 @@ public class CardExhaust : CardProto
     public class MyBuff : Buff
     {
         float punishValue;
-        public MyBuff(Sprite ui,float delayTime,float _punishValue):base(ui,delayTime)
+        public MyBuff(Sprite ui,float delayTime,float _punishValue):base("透支", ui,delayTime)
         {
             punishValue = _punishValue;
         }

@@ -23,7 +23,7 @@ public class CardHoppingLeftAndRight : CardProto
     {
         float bonusValue;
         float punishValue;
-        public MyBuff(Sprite sprite,float bonus,float punish):base(sprite) 
+        public MyBuff(Sprite sprite,float bonus,float punish):base("左右横跳", sprite) 
         {
             bonusValue = bonus;
             punishValue = punish;

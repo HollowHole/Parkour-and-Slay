@@ -239,7 +239,6 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         {
             damage *= TakenDmgMagni;
             InvincibalTimer = PlayerInvincibilityFrameOnHit;
-            Debug.Log("Player take damage " + damage);
             if (damage < Armor)
             {
                 Armor -= damage;
@@ -258,8 +257,8 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
         Speed += value;
     }
 
-    GameObject ICanShowBuffUI.ShowThisUI(Sprite sprite)
+    BuffUI ICanShowBuffUI.ShowThisUI(Sprite sprite, string Buffname)
     {
-        return BuffUIZone.Instance.AddBuffUI(sprite);
+        return BuffUIZone.Instance.AddBuffUI(sprite,Buffname);
     }
 }

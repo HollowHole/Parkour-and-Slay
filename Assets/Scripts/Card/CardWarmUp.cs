@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 热身运动
+/// </summary>
 public class CardWarmUp : CardProto
 {
     CardWarmUpSO cardWarmUpSO;
@@ -25,7 +28,7 @@ public class CardWarmUp : CardProto
     public class MyBuff : Buff
     {
         float extraSpeedValue;
-        public MyBuff(Sprite ui,float _extraSpeedValue):base(ui) 
+        public MyBuff(Sprite ui,float _extraSpeedValue):base("热身运动", ui) 
         {
             extraSpeedValue = _extraSpeedValue;
         }

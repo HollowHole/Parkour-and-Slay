@@ -1,4 +1,7 @@
 using UnityEngine;
+/// <summary>
+/// 休息歌声
+/// </summary>
 public class CardRestSong : CardProto
 {
     CardRestSongSO m_cardSO;
@@ -21,7 +24,7 @@ public class CardRestSong : CardProto
         float EnergyRegenerateIncrePerc;
         float RecoverHpSpeed;
         float HpRecoverTimer;
-        public MyBuff(Sprite ui, float lastTime,float enerReg,float HpRec) : base(ui,lastTime)
+        public MyBuff(Sprite ui, float lastTime,float enerReg,float HpRec) : base("休息歌声", ui,lastTime)
         {
             EnergyRegenerateIncrePerc = enerReg;
             RecoverHpSpeed = HpRec;

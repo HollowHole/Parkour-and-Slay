@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 闪电速度
+/// </summary>
 public class CardLighteningSpeed : CardProto
 {
     CardLighteningSpeedSO m_cardSO;
@@ -21,7 +23,7 @@ public class CardLighteningSpeed : CardProto
     }
     public class MyBuff : Buff
     {
-        public MyBuff(Sprite ui) : base(ui)
+        public MyBuff(Sprite ui) : base("闪电速度", ui)
         {
         }
         protected override void HandleInitEffect(Transform target)

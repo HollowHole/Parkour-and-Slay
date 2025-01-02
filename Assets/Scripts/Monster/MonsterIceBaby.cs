@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// 冰宝宝
+/// </summary>
 public class MonsterIceBaby : RangedMonsterProto
 {
     MonsterProto targetMonster;
@@ -65,7 +68,7 @@ public class MonsterIceBaby : RangedMonsterProto
     {
         float DmgIncrePerc;
         public float AffeSpeIncrePerc;
-        public MyBuff(float lastTime,float _DmgIncrePerc, float _AffeSpeIncrePerc) : base(null, lastTime)
+        public MyBuff(float lastTime,float _DmgIncrePerc, float _AffeSpeIncrePerc) : base("冰宝Buff",null, lastTime)
         {
             DmgIncrePerc = _DmgIncrePerc / 100;
             AffeSpeIncrePerc = _AffeSpeIncrePerc / 100;
@@ -77,6 +80,7 @@ public class MonsterIceBaby : RangedMonsterProto
 
             monster.DmgMagni += DmgIncrePerc;
             monster.AffeSpeMagni += AffeSpeIncrePerc;
+            //Debug.Log("Magni With Buff:" + monster.DmgMagni.ToString());
         }
         protected override void HandleLastingEffect(Transform target)
         {
@@ -89,6 +93,7 @@ public class MonsterIceBaby : RangedMonsterProto
 
             monster.DmgMagni -= DmgIncrePerc;
             monster.AffeSpeMagni -= AffeSpeIncrePerc;
+            //Debug.Log("Magni Without Buff:" + monster.DmgMagni.ToString());
         }
     }
 }

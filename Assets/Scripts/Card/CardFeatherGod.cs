@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-
+/// <summary>
+/// 羽神
+/// </summary>
 public class CardFeatherGod : CardProto
 {
     CardFeatherGodSO m_cardSO;
@@ -20,7 +22,7 @@ public class CardFeatherGod : CardProto
         UnityAction Shoot;
         float shootInterval;
         float shootTimer;
-        public MyBuff(Sprite ui, float _shootInter,UnityAction SpawnBullet) : base(ui)
+        public MyBuff(Sprite ui, float _shootInter,UnityAction SpawnBullet) : base("羽神", ui)
         {
             shootInterval = _shootInter;
             shootTimer = _shootInter;

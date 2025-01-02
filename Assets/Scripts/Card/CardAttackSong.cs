@@ -23,7 +23,7 @@ public class CardAttackSong : CardProto
     {
         Player player;
         float dmgIncrePerc;
-        public MyBuff(Sprite ui, float lastTime, float dmgInc) : base(ui, lastTime)
+        public MyBuff(Sprite ui, float lastTime, float dmgInc) : base("进攻歌声", ui, lastTime)
         {
             dmgIncrePerc = dmgInc;
         }

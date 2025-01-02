@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface ICanShowBuffUI
 {
-    public GameObject ShowThisUI(Sprite UIImg);
+    public BuffUI ShowThisUI(Sprite UIImg,string Buffname);
 }

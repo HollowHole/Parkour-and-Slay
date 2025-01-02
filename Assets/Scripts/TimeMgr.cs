@@ -48,7 +48,6 @@ public class TimeMgr
     public void EndBulletTime()
     {
         isBulletTime =false;
-        Debug.Log("END Bullet Time");
         TimeJudge();
     }
     void TimeJudge()

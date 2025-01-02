@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GameoverMgr : MonoBehaviour
 {
+    
     private void Start()
     {
+        transform.localScale = Vector3.zero;
         FindObjectOfType<Player>().OnHpChange += GameoverJudge;
     }
     void GameoverJudge(float playerHp,float _, float __)
     {
-        if (playerHp < 0)
+        if (playerHp <= 0)
         {
-            Debug.Log("GamgOver!");
+            TimeMgr.Instance.PauseGame();
+            transform.localScale = Vector3.one;
         }
     }
 }

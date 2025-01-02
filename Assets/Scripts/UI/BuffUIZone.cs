@@ -13,12 +13,15 @@ public class BuffUIZone : MonoBehaviour
         Instance = this;
         
     }
-    public GameObject AddBuffUI(Sprite sprite)
+    public BuffUI AddBuffUI(Sprite sprite, string Buffname)
     {
-        GameObject ui = Instantiate(BuffUIProto, transform);
-        ui.GetComponent<Image>().sprite = sprite;
+        GameObject uiGo = Instantiate(BuffUIProto, transform);
+        BuffUI buffUI = uiGo.GetComponent<BuffUI>();
+
+        buffUI.GetComponent<Image>().sprite = sprite;
+        buffUI.SetBuffName(Buffname);
         //BuffIDList.Add(ID);
-        return ui;
+        return buffUI;
     }
     public static void HelpDestroy(GameObject gameObject)
     {

@@ -1,4 +1,7 @@
 using UnityEngine;
+/// <summary>
+/// 防御歌声
+/// </summary>
 public class CardDefenceSong : CardProto
 {
     CardDefenceSongSO m_cardSO;
@@ -20,7 +23,7 @@ public class CardDefenceSong : CardProto
     {
         Player player;
         float defIncrePerc;
-        public MyBuff(Sprite ui, float lastTime, float defInc) : base(ui, lastTime)
+        public MyBuff(Sprite ui, float lastTime, float defInc) : base("防御歌声", ui, lastTime)
         {
             defIncrePerc = defInc;
         }

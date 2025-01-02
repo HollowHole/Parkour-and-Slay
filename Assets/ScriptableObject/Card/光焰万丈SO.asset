@@ -22,7 +22,7 @@ MonoBehaviour:
   SpeedUpValue: 0
   DrawCardCnt: 0
   isPierce: 0
-  BulletSpeed: 5
+  BulletSpeed: 100
   TargetTag: Monster
   Damage: 6
   CD: 3

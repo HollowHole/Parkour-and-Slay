@@ -1,4 +1,7 @@
 using UnityEngine;
+/// <summary>
+/// 音波尖叫
+/// </summary>
 public class CardSonicScream : CardProto
 {
     CardSonicScreamSO m_cardSO;
@@ -28,7 +31,7 @@ public class CardSonicScream : CardProto
     {
         float DmgDecrePerc;
         float TakeDmgIncrePerc;
-        public MyBuff(Sprite ui, float lastTime, float _DmgDecrePerc, float _TakeDmgIncrePerc) : base(ui, lastTime)
+        public MyBuff(Sprite ui, float lastTime, float _DmgDecrePerc, float _TakeDmgIncrePerc) : base("音波尖叫", ui, lastTime)
         {
             DmgDecrePerc = _DmgDecrePerc / 100;
             TakeDmgIncrePerc = _TakeDmgIncrePerc / 100;

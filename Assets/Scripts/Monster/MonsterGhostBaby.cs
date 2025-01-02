@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 鬼影宝宝
+/// </summary>
 public class MonsterGhostBaby : RangedMonsterProto
 {
     MonsterGhostBabySO m_monsterSO;
@@ -45,7 +47,7 @@ public class MonsterGhostBaby : RangedMonsterProto
     public class MyBuff : Buff
     {
         Player player;
-        public MyBuff(Sprite sprite, float lastTime) : base(sprite,lastTime)
+        public MyBuff(Sprite sprite, float lastTime) : base("鬼影宝宝Buff", sprite,lastTime)
         {
         }
         protected override void HandleInitEffect(Transform target)

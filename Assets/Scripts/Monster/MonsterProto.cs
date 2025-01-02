@@ -95,6 +95,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         HandleRotation();
         HandleDisappear();
         HandleRepulseMonster();
+        buffMgr.HandleBuffEffect();
         // Debug.Log(gameObject.name + " has velocity " + rb.velocity);
     }
     private void HandleRepulseMonster()
@@ -108,13 +109,17 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
             if (collider == myCollider) continue;
             if (collider.CompareTag("Monster"))
             {
+                
                 Bounds colBnd = collider.bounds;
                 Vector3 repulsive = colBnd.center - bound.center;//Direction
                 repulsive = 1 / repulsive.magnitude * repulsive.normalized;
-                repulsive *= 40;
+                repulsive *= 100;
 
                 Rigidbody otherRB = collider.GetComponentInParent<Rigidbody>();
-                if(otherRB != null) otherRB.AddForce(repulsive);
+                if (otherRB != null) {
+                    otherRB.AddForce(repulsive);
+                    Debug.Log("Push " + collider.name + repulsive);
+                }
             }
         }
     }

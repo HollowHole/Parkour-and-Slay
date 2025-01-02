@@ -34,7 +34,7 @@ public class CardBurnBridge : CardProto
         float lifeStealPerc;
         float dmgIncrePerc;
         float takeDmgDecrePerc;
-        public MyBuff(Sprite ui, float lifeSt,float dmgInc, float ta) : base(ui)
+        public MyBuff(Sprite ui, float lifeSt,float dmgInc, float ta) : base("破釜沉舟", ui)
         {
             lifeStealPerc = lifeSt;
             dmgIncrePerc = dmgInc;

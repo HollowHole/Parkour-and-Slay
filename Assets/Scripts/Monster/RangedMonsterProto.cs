@@ -93,7 +93,6 @@ public class RangedMonsterProto : MonsterProto
 
         speed += monsterSO.SpeedUpRate * Time.deltaTime;
         speed = Mathf.Clamp(speed, 0, monsterSO.MaxSpeedLimit);
-
     }
     protected virtual void ApplyMyBuffOnHit(Transform target) { }
 }
