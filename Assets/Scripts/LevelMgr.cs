@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelMgr : MonoBehaviour
@@ -30,5 +31,10 @@ public class LevelMgr : MonoBehaviour
     {
         Debug.Log("Level End!");
         OnLevelEnd?.Invoke();
+        foreach(Transform b in GameObject.Find("AllBullets").transform)
+        {
+            Destroy(b.gameObject);
+        }
     }
+    
 }

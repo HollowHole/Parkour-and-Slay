@@ -23,6 +23,7 @@ public class LargeLightBallBullet : BulletProto
             if (monster != null)
             {
                 monster.TakeDamage(damage);
+                DmgDisplayOP.Instance.ShowDmgAt(damage,collider.transform.position);
             }
         }
     }

@@ -1,14 +1,13 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(BuffMgr),typeof(Rigidbody))]
 public class MonsterProto : MonoBehaviour,ICanTakeDmg
 {
     [SerializeField]protected MonsterProtoSO monsterSO;
+    protected Transform HpBar;
     protected Player player;
     protected Rigidbody rb;
     protected BuffMgr buffMgr;
@@ -46,6 +45,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
             {
                 //hp = value > MaxHp ? MaxHp : value;
                 hp = value;
+
             }
             OnHpChange?.Invoke(hp, MaxHp);
         }
@@ -57,6 +57,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
         rb = GetComponent<Rigidbody>();
         buffMgr = GetComponent<BuffMgr>();
         center = GetComponentInChildren<Collider>().bounds.center;
+        center.y += 0.4f;
         // rb = GetComponentInChildren<Rigidbody>();
         ReadSO();
 
@@ -67,6 +68,18 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
     protected virtual void Start()
     {
         player = Player.Instance;
+        SpawnHpBar();
+    }
+
+    private void SpawnHpBar()
+    {
+        Bounds bounds = GetComponentInChildren<Collider>().bounds;
+        GameObject HpBarGo = Instantiate(Resources.Load<GameObject>("Prefabs/MonsterHpBar"), transform);
+        HpBarGo.transform.position = Center + new Vector3(0, bounds.extents.y / 2, 0);
+        HpBarGo.transform.localScale = new Vector3(bounds.extents.x, 1, 1);
+        HpBar = HpBarGo.transform.GetComponentInChildren<Image>().transform;
+
+        OnHpChange += (hp, MaxHP) => { HpBar.localScale = new Vector3(hp / MaxHp, 1, 1); };
     }
 
     protected virtual void ReadSO()

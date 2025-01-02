@@ -23,7 +23,10 @@ public class CardManager : MonoBehaviour
     //energy
     [SerializeField] int MaxEnergyLimit = 4;
     [SerializeField] int InitEnergy = 3;
-    [SerializeField] float EnergyRegenerateRate = 2f;
+    /// <summary>
+    /// 能量恢复速度，单位：一每秒
+    /// </summary>
+    [SerializeField] public float EnergyRegenerateRate = 2f;
     private int energyCnt;
     public int EnergyCnt
     {
@@ -41,7 +44,7 @@ public class CardManager : MonoBehaviour
     public Action<int> OnEnergyChange;
     public Action<CardProto> OnUseSpeedUpCard;
     //my var
-    List<CardProto> handCards = new List<CardProto>();//not used yet
+    List<CardProto> handCards = new List<CardProto>();
     CardProto ChosenCard;
     CardProto CardGonnaChoose;
     //bool useCardTrigger;//will Trigger on use card
@@ -88,15 +91,16 @@ public class CardManager : MonoBehaviour
         {
             Destroy(card.gameObject);
         }
-        foreach(Transform cardGo in HandCardZone.transform)
+        foreach(CardProto card in handCards)
         {
-            Destroy(cardGo.gameObject);
+            Destroy(card.gameObject);
         }
-        foreach(CardProto cardGo in ConsumePileCards)
+        foreach(CardProto card in ConsumePileCards)
         {
-            Destroy(cardGo.gameObject);
+            Destroy(card.gameObject);
         }
         DrawPileCards = new List<CardProto>();
+        handCards = new List<CardProto>();
         DiscardPileCards = new List<CardProto>();
         ConsumePileCards = new List<CardProto>();
     }
@@ -150,7 +154,7 @@ public class CardManager : MonoBehaviour
         //Debug.Log("Choose " + card.name);
         if (card == ChosenCard)
         {
-            if(card.IsUsable())
+            if(card.IsUsable(handCards))
             {
                 Use(card);
             }
@@ -200,11 +204,13 @@ public class CardManager : MonoBehaviour
     {
         card.transform.SetParent(transform, false);
         ConsumePileCards.Add(card);
+        handCards.Remove(card);
     }
 
     void Discard(CardProto card)
     {
         card.transform.SetParent(transform, false);
+        handCards.Remove(card);
         DiscardPileCards.Add(card);
     }
     void DrawCard()
@@ -224,6 +230,7 @@ public class CardManager : MonoBehaviour
         }
         CardProto card = DrawPileCards[DrawPileCards.Count - 1];
         DrawPileCards.Remove(card);
+        handCards.Add(card);
         card.transform.SetParent(HandCardZone, false);
 
         return true;

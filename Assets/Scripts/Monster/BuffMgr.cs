@@ -12,7 +12,10 @@ public class BuffMgr : MonoBehaviour
     public void AddBuff(Buff buff)
     {
         Buff[] sameBuff = BuffList.Where((_buff) => { return buff.UISprite == _buff.UISprite; }).ToArray();
-        if(sameBuff.Length > 0 ) sameBuff.First().Finish();
+        if(sameBuff.Length > 0 )
+        {
+            sameBuff.First().Finish();
+        }
         BuffList.Add(buff);
 
         //Debug.Log("buff added!");

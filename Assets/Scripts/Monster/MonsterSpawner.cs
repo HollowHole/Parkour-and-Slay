@@ -89,6 +89,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         difficultyDemand =LevelMgr.Instance.CurLevelCnt * difficultyIncreaseRate;
         rangedMonsterCntLimit = Mathf.FloorToInt(LevelMgr.Instance.CurLevelCnt * 1.34f + 0.66f);
+
         GenerateMonsterList();
     }
     public void OnMonsterDisappear(MonsterProto monster)

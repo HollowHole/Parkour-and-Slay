@@ -41,7 +41,7 @@ public class Player : MonoBehaviour,ICanTakeDmg,ICanAffectSpeed,ICanShowBuffUI
     public Action<float,float,float> OnHpChange;
     //
     public Func<float> DmgMagniSpeed;
-    [HideInInspector] float DmgMagniOther;
+    public float DmgMagniOther {  get; set; }
     ///<summary>
     ///总伤害倍率
     /// </summary>

@@ -130,7 +130,7 @@ public class CardProto : MonoBehaviour
         myRectTransform.localScale= new Vector3(1,1,1);
         //highlightableObject.ConstantOffImmediate();
     }
-    public virtual bool IsUsable()
+    public virtual bool IsUsable(List<CardProto> CurHandCards)
     {
         return CardManager.Instance.EnergyCnt >= EnergyCost;
     }
