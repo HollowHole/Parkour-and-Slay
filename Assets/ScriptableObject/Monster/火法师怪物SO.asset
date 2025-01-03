@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: "\u706B\u6CD5\u5E08\u602A\u7269SO"
   m_EditorClassIdentifier: 
   Type: 1
-  Hp: 5
+  Hp: 50
   Speed: 20
   SpeedUpRate: 0
   MaxSpeedLimit: 20
   CollideDamage: 0
   AffectSpeedAbility: 0
   DifficultyRangeMin: 1
-  DifficultyRangeMax: 5
+  DifficultyRangeMax: 10
   DifficultyValue: 1
   AttackRange: 20
   AttackInterval: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   BulletSpeed: 5
   BulletSpeedUpRate: 1
   TargetTag: Player
-  BulletDamage: 1
-  HorizontalSpeedMax: 40.8
-  HorizontalSpeedMin: 28.3
+  BulletDamage: 10
+  HorizontalSpeedMax: 6.9
+  HorizontalSpeedMin: 55.7
   DropPosBiasZ: 0.33
