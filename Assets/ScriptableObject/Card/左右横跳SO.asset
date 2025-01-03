@@ -26,6 +26,6 @@ MonoBehaviour:
   TargetTag: Player
   Damage: 0
   CD: 3
-  DodgeSuccBonus: 3
+  DodgeSuccBonus: 5
   DodgeFailPunish: 2
   BuffSprite: {fileID: 21300000, guid: a2700a0b4ec9f154881fa091d222d30c, type: 3}

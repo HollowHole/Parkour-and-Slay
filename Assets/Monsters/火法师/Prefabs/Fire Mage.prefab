@@ -5158,7 +5158,7 @@ GameObject:
   - component: {fileID: 4132088137726978401}
   m_Layer: 9
   m_Name: Fire Mage
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5381,7 +5381,7 @@ GameObject:
   - component: {fileID: 231767589181802456}
   - component: {fileID: -8982323964987907795}
   - component: {fileID: 2045381191047189113}
-  - component: {fileID: 4018512285782957089}
+  - component: {fileID: 4487092215813525999}
   m_Layer: 9
   m_Name: Fire Mage
   m_TagString: Monster
@@ -5467,7 +5467,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4018512285782957089
+--- !u!114 &4487092215813525999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5476,7 +5476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6817494484392920856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e07b283c32e5c46b766b60fb02998c, type: 3}
+  m_Script: {fileID: 11500000, guid: efb0794c3ffc65c4380e8641f9a39a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSO: {fileID: 11400000, guid: c7efa90af3fb3cb48bf6ec84c0ac54e2, type: 2}

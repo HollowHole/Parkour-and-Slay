@@ -20,7 +20,7 @@ MonoBehaviour:
   CollideDamage: 0
   AffectSpeedAbility: 10
   DifficultyRangeMin: 1
-  DifficultyRangeMax: 5
+  DifficultyRangeMax: 10
   DifficultyValue: 1
   AttackRange: 10
   AttackInterval: 1
@@ -28,4 +28,4 @@ MonoBehaviour:
   BulletSpeed: 10
   BulletSpeedUpRate: 1
   TargetTag: Player
-  BulletDamage: 5
+  BulletDamage: 0

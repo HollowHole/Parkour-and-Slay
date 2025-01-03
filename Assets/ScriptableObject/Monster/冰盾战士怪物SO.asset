@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: "\u51B0\u76FE\u6218\u58EB\u602A\u7269SO"
   m_EditorClassIdentifier: 
   Type: 1
-  Hp: 20
+  Hp: 15
   Speed: 10
   SpeedUpRate: 0
   MaxSpeedLimit: 10
   CollideDamage: 0
   AffectSpeedAbility: 0
   DifficultyRangeMin: 1
-  DifficultyRangeMax: 5
+  DifficultyRangeMax: 10
   DifficultyValue: 1
   AttackRange: 9
   AttackInterval: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   BulletSpeedUpRate: 0
   TargetTag: Player
   BulletDamage: 0
-  ShieldHp: 50
-  DizzyTimeOnShieldBroken: 5
+  ShieldHp: 30
+  DizzyTimeOnShieldBroken: 8
   DmgBonus2PassedBullet: 20
   AffeSpeBonus2PassedBullet: 20
