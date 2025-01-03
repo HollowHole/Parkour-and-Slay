@@ -118,7 +118,7 @@ public class MonsterProto : MonoBehaviour,ICanTakeDmg
                 Rigidbody otherRB = collider.GetComponentInParent<Rigidbody>();
                 if (otherRB != null) {
                     otherRB.AddForce(repulsive);
-                    Debug.Log("Push " + collider.name + repulsive);
+                    //Debug.Log("Push " + collider.name + repulsive);
                 }
             }
         }

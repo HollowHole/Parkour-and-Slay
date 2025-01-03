@@ -20,8 +20,8 @@ public class IceShield : MonoBehaviour, ICanTakeDmg
             {
                 hp = 0;
                 //die and ?//TODO drops
-                transform.localScale = Vector3.zero;
                 OnBroken?.Invoke();
+                gameObject.SetActive(false);
             }
             else
             {
@@ -34,6 +34,7 @@ public class IceShield : MonoBehaviour, ICanTakeDmg
     private void Awake()
     {
         originScale = transform.localScale;
+        
     }
     public void TakeDamage(float damage)
     {
@@ -47,8 +48,8 @@ public class IceShield : MonoBehaviour, ICanTakeDmg
     }
     public void Recover()
     {
+        gameObject.SetActive (true);
         Hp = fullHp;
-        transform.localScale = originScale;
     }
     private void OnTriggerEnter(Collider other)
     {
