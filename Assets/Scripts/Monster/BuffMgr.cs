@@ -127,7 +127,7 @@ public abstract class Buff
     {
         if (myUI != null && !isPersistant)
         {
-            myUI.lastTime = LastTime.ToString() + "s";
+            myUI.lastTime = LastTime.ToString("F2") + "s";
         }
     }
 

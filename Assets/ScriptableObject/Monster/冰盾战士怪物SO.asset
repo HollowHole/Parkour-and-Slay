@@ -31,5 +31,5 @@ MonoBehaviour:
   BulletDamage: 0
   ShieldHp: 30
   DizzyTimeOnShieldBroken: 8
-  DmgBonus2PassedBullet: 20
-  AffeSpeBonus2PassedBullet: 20
+  DmgBonus2PassedBullet: 5
+  AffeSpeBonus2PassedBullet: 5
