@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public enum CardType { Consume };
